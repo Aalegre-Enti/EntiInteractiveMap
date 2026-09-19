@@ -25,6 +25,17 @@
       <symbol id="icon-move" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M9 6l3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3m12-6 3 3-3 3"/></symbol>
       <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
       <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="icon-office" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3M3 12a21 21 0 0 0 18 0M10 12h4v3h-4z"/></symbol>
+      <symbol id="icon-dining" viewBox="0 0 24 24"><path d="M4 3v5a3 3 0 0 0 6 0V3M7 3v18M20 21V3c-4 2-5 6-5 10h5"/></symbol>
+      <symbol id="icon-study" viewBox="0 0 24 24"><path d="M12 5c-3-2-6-2-10-1v15c4-1 7-1 10 1 3-2 6-2 10-1V4c-4-1-7-1-10 1v15"/></symbol>
+      <symbol id="icon-lobby" viewBox="0 0 24 24"><path d="M4 21V3h16v18M9 21V9h6v12M2 21h20M8 6h8"/></symbol>
+      <symbol id="icon-entrance" viewBox="0 0 24 24"><path d="M14 3h6v18h-6M3 12h12m-5-5 5 5-5 5"/></symbol>
+      <symbol id="icon-tutoring" viewBox="0 0 24 24"><path d="M21 11a8 8 0 0 1-8 8H8l-5 3v-6a8 8 0 0 1 0-10 8 8 0 0 1 10-3 8 8 0 0 1 8 8Z"/><path d="M7 9h10M7 13h7"/></symbol>
+      <symbol id="icon-vending" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M7 5h7v10H7zM7 10h7M17 6h.01M17 10h.01M8 18h8"/></symbol>
+      <symbol id="icon-terrace" viewBox="0 0 24 24"><path d="M3 10a9 9 0 0 1 18 0H3Zm9-9v20M7 21h10M5 15v6M19 15v6"/></symbol>
+      <symbol id="icon-elevator" viewBox="0 0 24 24"><rect x="3" y="2" width="18" height="20" rx="2"/><path d="M7 18V7m-2 2 2-2 2 2m8-3v11m-2-2 2 2 2-2"/></symbol>
+      <symbol id="icon-stairs" viewBox="0 0 24 24"><path d="M3 21h6v-6h6V9h6V3M3 13V5h8M3 5l8 8"/></symbol>
+      <symbol id="icon-auditorium" viewBox="0 0 24 24"><path d="M3 3h18v9H3zM7 16v5M17 16v5M3 21h8m2 0h8"/><rect x="4" y="15" width="6" height="3" rx="1"/><rect x="14" y="15" width="6" height="3" rx="1"/></symbol>
     </svg>
 
     <a class="skip-link" href="#map-viewport">Ves al plànol</a>
@@ -64,12 +75,14 @@
           <div id="map-viewport" class="map-viewport" tabindex="0" role="region" aria-label="Plànol interactiu de la planta baixa" aria-describedby="map-keyboard-help" aria-busy="true">
             <div id="map-transform" class="map-transform" hidden>
               <img id="floor-image" class="floor-image" alt="Plànol de la planta baixa" draggable="false" />
+              <div id="room-overlay" class="room-overlay" aria-hidden="true" hidden></div>
               <svg id="area-overlay" class="area-overlay" aria-hidden="true"></svg>
               <div id="marker-layer" class="marker-layer"></div>
             </div>
           </div>
           <p id="map-keyboard-help" class="sr-only">Fes servir les fletxes per moure el plànol, les tecles més i menys per ampliar o reduir, i la tecla Inici o el zero per veure el plànol sencer.</p>
           <div id="map-message" class="map-message" role="status"><span class="loading-spinner" aria-hidden="true"></span><p id="map-message-text">S’està carregant el plànol…</p><button id="retry-button" class="primary-button" type="button" hidden>Torna-ho a provar</button></div>
+          <p id="overlay-notice" class="overlay-notice" role="status" hidden></p>
           <div class="map-bottom-bar">
             <p class="map-hint"><svg class="icon"><use href="#icon-move"/></svg><span id="map-hint-text">Arrossega per moure’t</span></p>
             <div class="map-controls" role="group" aria-label="Controls del plànol">
@@ -94,7 +107,7 @@
       <span class="dialog-icon"><svg class="icon"><use href="#icon-map"/></svg></span>
       <p class="eyebrow">UNA MICA D’AJUDA</p><h2 id="help-title">Mou-te pel mapa</h2><p class="dialog-intro">Tot el que necessites per explorar l’edifici.</p>
       <ol class="help-steps">
-        <li><span>1</span><div><h3>Tria una planta</h3><p>Prem una de les cinc plantes per veure’n el plànol i la llista d’espais. Desplega un espai per consultar els centres que l’utilitzen i els usos entre setmana i els caps de setmana.</p></div></li>
+        <li><span>1</span><div><h3>Tria una planta i un espai</h3><p>Prem una planta per veure’n el plànol. «Espais de la planta» obre i tanca la llista. A la planta baixa, selecciona un espai per ressaltar-lo en lila. El ressaltat polsa uns segons i després queda fix. Les aules també mostren els centres i usos; en obrir-ne una, es plega l’anterior.</p></div></li>
         <li><span>2</span><div><h3>Acosta’t als detalls</h3><p>Fes servir els botons + i − o la roda del ratolí. Al mòbil, separa dos dits per ampliar.</p></div></li>
         <li><span>3</span><div><h3>Explora el plànol</h3><p>Arrossega’l amb el ratolí o amb un dit. Prem «Encaixa» per tornar a veure’l sencer.</p></div></li>
       </ol>

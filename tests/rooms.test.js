@@ -18,7 +18,8 @@ test('cada planta inclou exactament una entrada de lavabos sense atribucions inv
     assert.equal(bathrooms[0].name, 'Lavabos');
     assert.deepEqual(bathrooms[0].uses, []);
   }
-  assert.equal(floors.flatMap((floor) => floor.rooms).length, 44);
+  assert.equal(floors.flatMap((floor) => floor.rooms).length, 60);
+  assert.deepEqual(floors.map((floor) => floor.rooms.length), [14, 13, 13, 10, 10]);
 });
 
 test('els espais compartits mantenen els centres, períodes i usos del full', () => {

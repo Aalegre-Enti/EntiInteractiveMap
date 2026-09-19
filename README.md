@@ -5,8 +5,9 @@ Aplicació estàtica en català per explorar els cinc nivells de l’edifici. Fu
 ## Funcions
 
 - Selector de cinc plantes amb els plànols nets proporcionats.
-- Submenú per planta amb els 39 espais de `Rooms.ods` i una entrada de lavabos a cadascuna de les cinc plantes.
-- Fitxes desplegables amb tots els centres i usos, diferenciant entre setmana i caps de setmana.
+- Submenú per planta amb els 39 espais de `Rooms.ods`, 16 espais comuns addicionals i una entrada de lavabos a cadascuna de les cinc plantes.
+- Selecció dels 14 espais de la planta baixa amb les capes proporcionades: ressaltat lila que polsa durant tres segons i després queda semitransparent.
+- Fitxes desplegables amb els centres i usos, diferenciant entre setmana i caps de setmana. Oficines, Menjador, Sala d’estudi i els espais comuns afegits tenen una icona pròpia i el mateix estil que els lavabos, sense informació dels centres ni usos acadèmics.
 - Ampliació amb botons, roda del ratolí i gest de dos dits.
 - Desplaçament amb ratolí, dit o teclat; botó per encaixar el plànol.
 - Pantalla completa, amb alternativa per als navegadors que no admeten aquesta funció.
@@ -49,11 +50,17 @@ python scripts/import_rooms.py
 
 L’importador genera `src/rooms.js` sense modificar el full. Conserva totes les assignacions de les columnes ENTI i EUSES (entre setmana) i ISEP i FISIOFOCUS (caps de setmana), i tradueix els textos al català. Manté els codis i les denominacions Artist, Developer i E Leader. Els camps buits no es converteixen en assignacions. Si apareix una descripció nova, cal afegir-ne la traducció a l’importador abans de regenerar les dades.
 
-La importació actual conté 39 espais: 7 a la planta baixa, 10 a la primera, 10 a la segona, 7 a la tercera i 5 a la quarta. La fila 41 no té ni codi ni planta; es conserva al full i es registra a `roomImport.skippedRows`, però no es mostra en cap planta. `src/floors.js` afegeix una entrada de lavabos a cada planta, sense atribuir-li un centre no indicat.
+La importació actual conté 39 espais: 7 a la planta baixa, 10 a la primera, 10 a la segona, 7 a la tercera i 5 a la quarta. La fila 41 no té ni codi ni planta; es conserva al full i es registra a `roomImport.skippedRows`, però no es mostra en cap planta.
 
-En seleccionar una planta es desplega la seva llista. Cada espai permet consultar els centres i usos; «Espais de la planta» permet plegar la llista. Al mòbil, el submenú apareix sota els cinc selectors, amb desplaçament propi per mantenir el mapa a l’abast. La publicació continua sent estàtica i no necessita Python ni el full de càlcul al navegador.
+`src/floors.js` afegeix Lavabos, Ascensors i Escales a cada planta; Auditori, Vestíbul, Entrada i Sala de tutories a la planta baixa; i Sala de vending i Terrassa a la quarta planta. També configura Oficines, Menjador i Sala d’estudi perquè no mostrin centres ni usos. Aquestes personalitzacions es mantenen quan es torna a importar el full. En total hi ha 60 entrades: 14, 13, 13, 10 i 10, de la planta baixa a la quarta.
+
+En seleccionar una planta es desplega la seva llista a l’escriptori. Al mòbil, la llista comença plegada per deixar més espai al mapa; es pot obrir amb «Espais de la planta» o prement de nou la planta activa. Les llistes tenen desplaçament propi. Els espais amb informació d’ús es poden desplegar per consultar-la; només hi ha una fitxa d’informació oberta a la vegada. Les capçaleres, els marges i els controls són compactes, amb botons d’almenys 44 píxels d’alçada. La publicació continua sent estàtica i no necessita Python ni el full de càlcul al navegador.
 
 ## Afegir ubicacions dels espais
+
+Les capes PNG de la planta baixa es relacionen amb els codis dels espais a `src/room-overlays.js`. Cada imatge ha de conservar les dimensions del plànol complet (1083 × 976 píxels per a la planta baixa) i delimitar l’espai amb transparència. L’app utilitza el canal alfa com a màscara del color `#94167f`, sense modificar els fitxers originals. L’Auditori comú utilitza `Auditori.png`; AUD-01 i AUD-02 utilitzen les seves capes individuals.
+
+En seleccionar un espai es mostra el plànol sencer, es ressalta només la seva zona i es marca la fila seleccionada. La capa polsa durant tres segons, entre un 32% i un 65% d’opacitat, i després es manté al 32%. La preferència de moviment reduït omet la pulsació. La capa segueix el plànol en ampliar-lo o desplaçar-lo; seleccionar un altre espai la substitueix, i canviar de planta o prémer Esc la retira. Al mòbil, la selecció porta el plànol a la vista. Les altres plantes mantenen les seves llistes i queden preparades per afegir-hi capes al mateix fitxer de configuració.
 
 Les plantes es defineixen a `src/floors.js`. Cada planta té un camp `points`, actualment buit. Quan es disposi de la informació real, s’hi poden afegir entrades com aquesta (coordenades només d’exemple):
 
