@@ -9,7 +9,7 @@
   --muted: #747079;
   --line: #eae7ec;
   --surface: #f7f7f9;
-  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  font-family: var(--font-family, "Segoe UI", -apple-system, BlinkMacSystemFont, Arial, sans-serif);
   font-synthesis: none;
   color: var(--ink);
   background: #fff;
@@ -53,7 +53,7 @@ a { color: inherit; }
 .floor-button-title { display: block; font-size: .875rem; font-weight: 550; }
 .floor-button-subtitle { display: none; }
 .floor-chevron { width: 16px; margin-left: auto; opacity: 0; }
-.floor-button[aria-current="true"] { border-color: #e9cde3; background: var(--brand-light); }
+.floor-button[aria-current="true"] { border-color: rgba(var(--brand-rgb, 148, 22, 127), .22); background: var(--brand-light); }
 .floor-button[aria-current="true"] .floor-number { border-color: var(--brand); background: var(--brand); color: #fff; }
 .floor-button[aria-current="true"] .floor-button-title { color: var(--brand); font-weight: 650; }
 .floor-button[aria-current="true"] .floor-chevron { opacity: 1; color: var(--brand); }
@@ -66,7 +66,7 @@ summary:focus-visible { outline: 3px solid var(--brand); outline-offset: -3px; b
 .room-count { margin-left: auto; color: var(--brand); font-size: .75rem; font-weight: 650; }
 .disclosure-chevron { display: inline-block; width: 7px; height: 7px; margin: 0 3px; flex-shrink: 0; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(-45deg); }
 .room-submenu[open] > .room-submenu-toggle .disclosure-chevron, .room-entry[open] > .room-summary .disclosure-chevron { transform: rotate(45deg); }
-.room-list { margin: 0; padding: 0 7px; max-height: max(120px, calc(100dvh - 420px)); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #cabac7 transparent; list-style: none; border-top: 1px solid var(--line); }
+.room-list { margin: 0; padding: 0 7px; max-height: max(120px, calc(100dvh - var(--floor-menu-height, 420px))); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #cabac7 transparent; list-style: none; border-top: 1px solid var(--line); }
 .room-list-item + .room-list-item { border-top: 1px solid var(--line); }
 .room-summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 50px; padding: 6px 3px; cursor: pointer; list-style: none; }
 .room-summary-text { min-width: 0; }
@@ -83,7 +83,7 @@ summary:focus-visible { outline: 3px solid var(--brand); outline-offset: -3px; b
 .service-entry { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 50px; padding: 6px 3px; }
 .service-entry > div { min-width: 0; }
 .service-badge { display: grid; place-items: center; width: 28px; height: 28px; flex-shrink: 0; font-size: .75rem; font-weight: 600; color: var(--muted); border: 1px solid var(--line); border-radius: 5px; }
-.service-badge .icon { width: 19px; height: 19px; }
+.service-badge .icon { width: 19px; height: 19px; object-fit: contain; }
 .room-select-button { width: 100%; background: transparent; text-align: left; border-radius: 6px; }
 .room-select-button:hover { background: var(--surface); }
 .room-select-button:focus-visible { outline-offset: -3px; }
@@ -116,14 +116,35 @@ h1 { margin: 0; font-weight: 600; font-size: 1.25rem; letter-spacing: -.035em; l
 .map-transform { position: absolute; top: 0; left: 0; transform-origin: 0 0; will-change: transform; }
 .floor-image { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; mix-blend-mode: multiply; }
 .map-transform { mix-blend-mode: multiply; }
-.room-overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; background: var(--brand); opacity: .32; mask-image: var(--room-mask); -webkit-mask-image: var(--room-mask); mask-mode: alpha; mask-size: 100% 100%; -webkit-mask-size: 100% 100%; mask-position: center; -webkit-mask-position: center; mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat; }
-.room-overlay.is-pulsing { animation: room-highlight-pulse 1s ease-in-out 3; }
-@keyframes room-highlight-pulse { 0%, 100% { opacity: .32; } 50% { opacity: .65; } }
+.room-overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; background: var(--brand); opacity: var(--room-opacity, .32); mask-image: var(--room-mask); -webkit-mask-image: var(--room-mask); mask-mode: alpha; mask-size: 100% 100%; -webkit-mask-size: 100% 100%; mask-position: center; -webkit-mask-position: center; mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat; }
+.room-overlay.is-pulsing { animation: room-highlight-pulse var(--room-pulse-duration, 1s) ease-in-out var(--room-pulse-count, 3); }
+@keyframes room-highlight-pulse { 0%, 100% { opacity: var(--room-opacity, .32); } 50% { opacity: var(--room-pulse-opacity, .65); } }
 .overlay-notice { position: absolute; z-index: 3; bottom: 84px; left: 24px; right: 24px; margin: 0; padding: 12px 16px; background: #fff; border: 1px solid var(--brand); border-radius: 8px; color: var(--brand-dark); font-size: .875rem; line-height: 1.5; }
 .area-overlay, .marker-layer { position: absolute; width: 100%; height: 100%; inset: 0; pointer-events: none; }
-.area-highlight { fill: #94167f25; stroke: var(--brand); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.area-highlight { fill: rgba(var(--brand-rgb, 148, 22, 127), .15); stroke: var(--brand); stroke-width: 2; vector-effect: non-scaling-stroke; }
 .map-marker { position: absolute; display: grid; place-items: center; width: 44px; height: 44px; padding: 9px; border: 3px solid #fff; border-radius: 50%; background: var(--brand); color: #fff; box-shadow: 0 2px 9px #39143130; pointer-events: auto; transform: translate(-50%, -50%) scale(var(--marker-scale, 1)); transform-origin: center; }
 .map-marker:hover, .map-marker[aria-pressed="true"] { background: var(--brand-dark); }
+.room-marker { position: absolute; z-index: 1; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; background: transparent; border-radius: 50%; pointer-events: auto; opacity: var(--room-marker-opacity, .68); transform: translate(-50%, -50%) scale(var(--marker-scale, 1)); transform-origin: center; transition: opacity .15s; }
+.room-marker-dot { width: var(--room-marker-dot-size, 9px); height: var(--room-marker-dot-size, 9px); box-sizing: content-box; border: 2px solid #fff; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 1px var(--brand); }
+.room-marker-label { position: absolute; top: calc(50% + var(--room-marker-label-gap, 11px)); left: 50%; transform: translateX(-50%); max-width: 105px; padding: 2px 5px; border: 1px solid var(--line); border-radius: 4px; background: #fff; color: var(--ink); font-size: var(--room-marker-label-size, 11px); font-weight: 600; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 1px 3px #26232b12; }
+.room-marker[data-label-position="top"] .room-marker-label { top: auto; bottom: calc(50% + var(--room-marker-label-gap, 11px)); }
+.room-marker[data-label-position="left"] .room-marker-label { top: 50%; left: auto; right: calc(50% + var(--room-marker-label-gap, 11px)); transform: translateY(-50%); }
+.room-marker[data-label-position="right"] .room-marker-label { top: 50%; left: calc(50% + var(--room-marker-label-gap, 11px)); transform: translateY(-50%); }
+.room-marker:hover, .room-marker:focus-visible, .room-marker[aria-pressed="true"] { opacity: 1; z-index: 3; }
+.room-marker[aria-pressed="true"] .room-marker-dot { box-shadow: 0 0 0 1px var(--brand), 0 0 0 5px rgba(var(--brand-rgb), .18); }
+.room-marker[aria-pressed="true"] .room-marker-label { background: var(--brand); border-color: var(--brand); color: #fff; }
+.here-marker { position: absolute; z-index: 2; width: var(--here-size, 28px); height: var(--here-size, 28px); color: var(--brand-dark); pointer-events: none; transform: translate(-50%, -50%) scale(var(--marker-scale, 1)); transform-origin: center; }
+.here-dot { display: grid; place-items: center; width: var(--here-size, 28px); height: var(--here-size, 28px); border: 4px solid #fff; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 1px var(--brand), 0 0 0 6px rgba(var(--brand-rgb, 148, 22, 127), .13); color: #fff; }
+.here-arrows { display: none; width: calc(var(--here-size, 28px) - 9px); height: calc(var(--here-size, 28px) - 9px); stroke-width: 2.5; }
+.here-label { position: absolute; bottom: calc(100% + 9px); left: 50%; transform: translateX(-50%); display: grid; gap: 2px; padding: 6px 9px; border: 1px solid rgba(var(--brand-rgb, 148, 22, 127), .25); border-radius: 7px; background: #fff; box-shadow: 0 2px 8px #39143118; text-align: center; white-space: nowrap; }
+.here-label strong { font-size: .8125rem; font-weight: 700; }
+.here-label > span { font-size: .75rem; }
+.here-marker[data-direction="up"], .here-marker[data-direction="down"] { opacity: var(--here-other-opacity, .65); }
+.here-marker:not([data-direction="same"]) .here-arrows { display: block; }
+.here-marker[data-direction="down"] .here-arrows { transform: rotate(180deg); }
+.here-marker.label-right .here-label { left: 0; transform: none; }
+.here-marker.label-left .here-label { left: auto; right: 0; transform: none; }
+.here-marker.label-below .here-label { bottom: auto; top: calc(100% + 9px); }
 .icon-button { display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 10px; border-radius: 7px; background: #fff; flex-shrink: 0; }
 .icon-button:hover:not(:disabled), .fit-button:hover { background: var(--brand-light); color: var(--brand); }
 .fullscreen-button { position: absolute; top: 8px; right: 8px; z-index: 3; border: 1px solid var(--line); box-shadow: 0 2px 4px #26232b03; }
@@ -183,8 +204,8 @@ body.has-expanded-map { overflow: hidden; }
   .help-button span { display: none; }
   .sidebar { display: block; flex-shrink: 0; overflow: visible; border-right: 0; border-bottom: 1px solid var(--line); padding: 6px 8px; }
   .section-heading, .sidebar-guide { display: none; }
-  .floor-navigation { flex-direction: row; gap: 4px; }
-  .floor-group { flex: 1; }
+  .floor-navigation { flex-direction: row; gap: 4px; overflow-x: auto; scrollbar-width: thin; }
+  .floor-group { flex: 1 0 58px; }
   .floor-button { flex-direction: column; gap: 2px; justify-content: center; min-width: 0; min-height: 44px; padding: 4px 2px; border: 1px solid var(--line); border-radius: 6px; }
   .floor-number { height: auto; width: auto; border: 0; background: transparent; font-size: .9375rem; line-height: 1.1; font-weight: 600; }
   .floor-button-title { font-size: .6875rem; font-weight: 500; }

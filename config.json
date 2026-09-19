@@ -1,0 +1,1652 @@
+{
+  "version": 1,
+  "site": {
+    "name": "Mapa de l’edifici",
+    "caption": "PLÀNOL INTERACTIU",
+    "description": "Explora els plànols de l’edifici. Tria una planta, amplia el mapa i orienta’t al teu ritme.",
+    "language": "ca",
+    "favicon": "./favicon.svg",
+    "icon": "map"
+  },
+  "theme": {
+    "brand": "#94167f",
+    "ink": "#26232b",
+    "muted": "#747079",
+    "line": "#eae7ec",
+    "surface": "#f7f7f9",
+    "fontFamily": "\"Segoe UI\", -apple-system, BlinkMacSystemFont, Arial, sans-serif"
+  },
+  "view": {
+    "defaultFloorId": "0",
+    "maxZoom": 5,
+    "zoomStep": 1.25,
+    "fitScale": 0.94,
+    "wheelSensitivity": 0.002,
+    "panStep": 50,
+    "fastPanStep": 100,
+    "mobileMenuCollapsed": true
+  },
+  "overlay": {
+    "opacity": 0.32,
+    "pulseOpacity": 0.65,
+    "pulseDuration": 1,
+    "pulseCount": 3
+  },
+  "roomMarkers": {
+    "enabled": true,
+    "inactiveOpacity": 0.68,
+    "dotSize": 9,
+    "labelSize": 11
+  },
+  "here": {
+    "label": "Ets aquí",
+    "defaultLocation": null,
+    "otherFloorOpacity": 0.65,
+    "size": 28
+  },
+  "periods": [
+    {
+      "id": "weekdays",
+      "label": "Entre setmana"
+    },
+    {
+      "id": "weekends",
+      "label": "Caps de setmana"
+    }
+  ],
+  "texts": {
+    "skipLink": "Ves al plànol",
+    "help": "Com funciona?",
+    "brandHome": "{site}, inici",
+    "floorsHeading": "Les plantes",
+    "floorCountOne": "1 nivell",
+    "floorCountMany": "{count} nivells",
+    "floorIntro": "Tria la planta que vols explorar.",
+    "chooseFloor": "Selecció de planta",
+    "floorNav": "Plantes de l’edifici",
+    "buildingFloors": "Un edifici, {count} plantes",
+    "roomCountOne": "1 espai",
+    "roomCountMany": "{count} espais",
+    "roomsToggle": "Espais de la planta",
+    "roomsList": "Espais: {floor}",
+    "showRoom": "Mostra {room} al plànol",
+    "selectRoom": "Selecciona {room}",
+    "unspecifiedUse": "Ús no especificat",
+    "commonSpace": "Espai comú",
+    "services": "Serveis",
+    "guideTitle": "Explora al teu ritme",
+    "guideBody": "Arrossega el plànol per moure’t i amplia’l per veure’n els detalls.",
+    "guideHelp": "Ajuda amb el mapa",
+    "mapEyebrow": "EXPLORA L’EDIFICI",
+    "mapView": "Vista del plànol",
+    "plan": "Plànol: {floor}",
+    "interactivePlan": "Plànol interactiu: {floor}",
+    "keyboardHelp": "Fes servir les fletxes per moure el plànol, les tecles més i menys per ampliar o reduir, i la tecla Inici o el zero per veure el plànol sencer.",
+    "loading": "S’està carregant el plànol…",
+    "loadError": "No s’ha pogut carregar el plànol. Comprova la connexió i torna-ho a provar.",
+    "retry": "Torna-ho a provar",
+    "dragHint": "Arrossega per moure’t",
+    "controls": "Controls del plànol",
+    "zoomOut": "Redueix el plànol",
+    "zoomIn": "Amplia el plànol",
+    "zoomLevel": "Nivell d’ampliació",
+    "fit": "Mostra el plànol sencer",
+    "fitLabel": "Encaixa",
+    "fullscreen": "Amplia el mapa a pantalla completa",
+    "exitFullscreen": "Surt de la pantalla completa",
+    "titleFullscreen": "Pantalla completa",
+    "closeInfo": "Tanca la informació de l’espai",
+    "infoTitle": "INFORMACIÓ DE L’ESPAI",
+    "pointInfo": "Informació: {title}",
+    "selectedRoom": "{room}. {floor}. Espai seleccionat.",
+    "highlightRoom": "{room}. Espai ressaltat al plànol.",
+    "overlayError": "No s’ha pogut ressaltar {room}. Torna a seleccionar l’espai per provar-ho de nou.",
+    "unavailableFloor": "El plànol no està disponible.",
+    "badOverlay": "La capa no coincideix amb el plànol.",
+    "loadedFloor": "{floor}. Plànol carregat.",
+    "loadFloorError": "No s’ha pogut carregar el plànol: {floor}.",
+    "wholeFloor": "Es mostra el plànol sencer.",
+    "titleFloor": "{floor} · {site}",
+    "titleRoom": "{room} · {floor} · {site}",
+    "upOne": "1 planta més amunt",
+    "upMany": "{count} plantes més amunt",
+    "downOne": "1 planta més avall",
+    "downMany": "{count} plantes més avall",
+    "hereDescription": "{label}: {floor}.",
+    "hereRelative": "La teva ubicació és {distance} respecte al plànol que estàs veient.",
+    "hereHelp": "El punt «{label}» indica la teva ubicació. En veure una altra planta, apareix atenuat i les fletxes indiquen si ets més amunt o més avall.",
+    "footerLegend": "Plànol de la planta",
+    "footerTip": "Apropa’t per descobrir els detalls.",
+    "closeHelp": "Tanca l’ajuda",
+    "helpEyebrow": "UNA MICA D’AJUDA",
+    "helpTitle": "Mou-te pel mapa",
+    "helpIntro": "Tot el que necessites per explorar l’edifici.",
+    "helpStep1Title": "Tria una planta i un espai",
+    "helpStep1Body": "Prem una planta per veure’n el plànol. Pots seleccionar una sala des de la llista o prement el seu punt al mapa. Els punts de la planta actual tenen una etiqueta i es mostren atenuats fins que els selecciones. Les sales amb una capa disponible es ressalten. En obrir la informació d’una sala, es plega l’anterior.",
+    "helpStep2Title": "Acosta’t als detalls",
+    "helpStep2Body": "Fes servir els botons + i − o la roda del ratolí. Al mòbil, separa dos dits per ampliar.",
+    "helpStep3Title": "Explora el plànol",
+    "helpStep3Body": "Arrossega’l amb el ratolí o amb un dit. Prem «Encaixa» per tornar a veure’l sencer.",
+    "keyboardTitle": "També amb el teclat.",
+    "keyboardBody": "Amb el plànol seleccionat, utilitza les fletxes per moure’t, + i − per ampliar o reduir, i 0 per encaixar.",
+    "helpDone": "Entesos, explorem!",
+    "integrationTitle": "Selecciona una planta",
+    "integrationDescription": "Mostra el plànol d’una de les plantes configurades.",
+    "integrationInvalidFloor": "La planta no existeix."
+  },
+  "floors": [
+    {
+      "id": "0",
+      "code": "PB",
+      "name": "Planta baixa",
+      "shortName": "Baixa",
+      "image": "./img/CleanedFloorplan/Level0.png",
+      "width": 1200,
+      "height": 895,
+      "points": [],
+      "rooms": [
+        {
+          "id": "0-AUD-01",
+          "code": "AUD-01",
+          "name": "AUD-01",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Cicle de tècnic de so"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Màster 6"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level0/AUD.01.png",
+          "marker": {
+            "x": 51.25,
+            "y": 13.3
+          }
+        },
+        {
+          "id": "0-AUD-02",
+          "code": "AUD-02",
+          "name": "AUD-02",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Cicle de salut 3"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Màster 7"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level0/AUD.02.png",
+          "marker": {
+            "x": 66.67,
+            "y": 12.29
+          }
+        },
+        {
+          "id": "0-PB.01",
+          "code": "PB.01",
+          "name": "PB.01",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Grau Developer"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level0/PB.01.png",
+          "marker": {
+            "x": 30.08,
+            "y": 14.86
+          }
+        },
+        {
+          "id": "0-PB.02",
+          "code": "PB.02",
+          "name": "PB.02",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Nou grau / Cicle de salut 1 / Màster de música i ciberseguretat"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level0/PB.02.png",
+          "marker": {
+            "x": 19.67,
+            "y": 27.6
+          }
+        },
+        {
+          "id": "0-PB.03",
+          "code": "PB.03",
+          "name": "PB.03",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Nou grau / Cicle de salut 2"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Màster 9"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level0/PB.03.png",
+          "marker": {
+            "x": 11.08,
+            "y": 42.57
+          }
+        },
+        {
+          "id": "0-PB.04",
+          "code": "PB.04",
+          "name": "PB.04",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Cicle de ciberseguretat"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level0/PB.04.png",
+          "marker": {
+            "x": 10.25,
+            "y": 63.8
+          }
+        },
+        {
+          "id": "0-PB.05",
+          "code": "PB.05",
+          "name": "PB.05",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Grau Developer"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level0/PB.05.png",
+          "marker": {
+            "x": 14.92,
+            "y": 78.44
+          }
+        },
+        {
+          "id": "0-auditori",
+          "code": "AUDITORI",
+          "name": "Auditori",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "auditorium",
+          "subtitle": "Espai comú",
+          "overlay": "./img/CleanedFloorplan/Level0/Auditori.png",
+          "marker": {
+            "x": 59,
+            "y": 5.5,
+            "labelPosition": "top"
+          }
+        },
+        {
+          "id": "0-vestibul",
+          "code": "VESTIBUL",
+          "name": "Vestíbul",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "lobby",
+          "subtitle": "Espai comú",
+          "overlay": "./img/CleanedFloorplan/Level0/Vestíbul.png",
+          "marker": {
+            "x": 60,
+            "y": 50,
+            "labelPosition": "right"
+          }
+        },
+        {
+          "id": "0-entrada",
+          "code": "ENTRADA",
+          "name": "Entrada",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "entrance",
+          "subtitle": "Espai comú",
+          "overlay": "./img/CleanedFloorplan/Level0/Entrada.png",
+          "marker": {
+            "x": 60.17,
+            "y": 61.23
+          }
+        },
+        {
+          "id": "0-tutories",
+          "code": "TUTORIES",
+          "name": "Sala de tutories",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "tutoring",
+          "subtitle": "Espai comú",
+          "overlay": "./img/CleanedFloorplan/Level0/Sala de tutoríes.png",
+          "marker": {
+            "x": 24.92,
+            "y": 59.55,
+            "label": "Tutories",
+            "labelPosition": "left"
+          }
+        },
+        {
+          "id": "0-ascensors",
+          "code": "ASCENSORS",
+          "name": "Ascensors",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "elevator",
+          "subtitle": "Espai comú",
+          "overlay": "./img/CleanedFloorplan/Level0/Ascensors.png",
+          "marker": {
+            "x": 35,
+            "y": 65.5,
+            "labelPosition": "bottom"
+          }
+        },
+        {
+          "id": "0-escales",
+          "code": "ESCALES",
+          "name": "Escales",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "stairs",
+          "subtitle": "Espai comú",
+          "overlay": "./img/CleanedFloorplan/Level0/Escales.png",
+          "marker": {
+            "x": 44.5,
+            "y": 36,
+            "labelPosition": "right"
+          }
+        },
+        {
+          "id": "0-wc",
+          "code": "WC",
+          "name": "Lavabos",
+          "kind": "bathroom",
+          "uses": [],
+          "badge": "WC",
+          "subtitle": "Serveis",
+          "overlay": "./img/CleanedFloorplan/Level0/WC.png",
+          "marker": {
+            "x": 25,
+            "y": 48.5
+          }
+        }
+      ],
+      "level": 0,
+      "importAliases": [
+        "PB"
+      ]
+    },
+    {
+      "id": "1",
+      "code": "01",
+      "name": "Primera planta",
+      "shortName": "Primera",
+      "image": "./img/CleanedFloorplan/Level1.png",
+      "width": 1200,
+      "height": 895,
+      "points": [],
+      "rooms": [
+        {
+          "id": "1-1.01",
+          "code": "1.01",
+          "name": "1.01",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Cicle de salut 5"
+            },
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Grau de fisioteràpia"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Fisioteràpia"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level1/1.01.png",
+          "marker": {
+            "x": 53.33,
+            "y": 8.72
+          }
+        },
+        {
+          "id": "1-1.02",
+          "code": "1.02",
+          "name": "1.02",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Cicle de salut 5"
+            },
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Grau de fisioteràpia"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Fisioteràpia"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level1/1.02.png",
+          "marker": {
+            "x": 51.75,
+            "y": 20.78
+          }
+        },
+        {
+          "id": "1-1.03",
+          "code": "1.03",
+          "name": "1.03",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Grau de música"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Màster 1"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level1/1.03.png",
+          "marker": {
+            "x": 11.33,
+            "y": 43.02
+          }
+        },
+        {
+          "id": "1-1.04",
+          "code": "1.04",
+          "name": "1.04",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Grau de música"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Màster 2"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level1/1.04.png",
+          "marker": {
+            "x": 7.92,
+            "y": 83.35
+          }
+        },
+        {
+          "id": "1-1.05",
+          "code": "1.05",
+          "name": "1.05",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Grau de música"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Màster 3"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level1/1.05.png",
+          "marker": {
+            "x": 21.08,
+            "y": 84.13
+          }
+        },
+        {
+          "id": "1-LAB.REHAB",
+          "code": "LAB.REHAB",
+          "name": "LAB.REHAB",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Grau de fisioteràpia"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Curs ISEP 2"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Fisioteràpia"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level1/Lab-Rehab.png",
+          "marker": {
+            "x": 21.33,
+            "y": 30.95
+          }
+        },
+        {
+          "id": "1-LAB-1.01",
+          "code": "LAB-1.01",
+          "name": "LAB-1.01",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Grau de fisioteràpia"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Fisioteràpia"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level1/LAB-1.01.png",
+          "marker": {
+            "x": 77.42,
+            "y": 10.39
+          }
+        },
+        {
+          "id": "1-LAB-1.02",
+          "code": "LAB-1.02",
+          "name": "LAB-1.02",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Grau de fisioteràpia"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Fisioteràpia"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level1/LAB-1.02.png",
+          "marker": {
+            "x": 72.92,
+            "y": 30.5
+          }
+        },
+        {
+          "id": "1-SALA ESTUDI",
+          "code": "SALA ESTUDI",
+          "name": "Sala d’estudi",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Tots"
+            },
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Tots"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Màster 10"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Tots"
+            }
+          ],
+          "showUsage": false,
+          "source": "spreadsheet",
+          "icon": "study",
+          "subtitle": "Espai comú",
+          "overlay": "./img/CleanedFloorplan/Level1/Sala d'estudi.png",
+          "marker": {
+            "x": 32.75,
+            "y": 14.97,
+            "label": "Estudi"
+          }
+        },
+        {
+          "id": "1-SALA SIMULACIO",
+          "code": "SALA SIMULACIO",
+          "name": "Sala de simulació",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Grau de fisioteràpia"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Curs ISEP 1"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Fisioteràpia"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "overlay": "./img/CleanedFloorplan/Level1/Simulació.png",
+          "marker": {
+            "x": 9.75,
+            "y": 61.12,
+            "label": "Simulació"
+          }
+        },
+        {
+          "id": "1-ascensors",
+          "code": "ASCENSORS",
+          "name": "Ascensors",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "elevator",
+          "subtitle": "Espai comú",
+          "marker": {
+            "x": 35,
+            "y": 65.5,
+            "labelPosition": "left"
+          },
+          "overlay": "./img/CleanedFloorplan/Level1/Ascensors.png"
+        },
+        {
+          "id": "1-escales",
+          "code": "ESCALES",
+          "name": "Escales",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "stairs",
+          "subtitle": "Espai comú",
+          "marker": {
+            "x": 44.5,
+            "y": 36
+          },
+          "overlay": "./img/CleanedFloorplan/Level1/Escales.png"
+        },
+        {
+          "id": "1-wc",
+          "code": "WC",
+          "name": "Lavabos",
+          "kind": "bathroom",
+          "uses": [],
+          "badge": "WC",
+          "subtitle": "Serveis",
+          "marker": {
+            "x": 47,
+            "y": 72
+          },
+          "overlay": "./img/CleanedFloorplan/Level1/WC.png"
+        }
+      ],
+      "level": 1,
+      "importAliases": [
+        "P1"
+      ]
+    },
+    {
+      "id": "2",
+      "code": "02",
+      "name": "Segona planta",
+      "shortName": "Segona",
+      "image": "./img/CleanedFloorplan/Level2.png",
+      "width": 1200,
+      "height": 895,
+      "points": [],
+      "rooms": [
+        {
+          "id": "2-2.01",
+          "code": "2.01",
+          "name": "2.01",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Cicle de salut 4"
+            },
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Grau de fisioteràpia"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Fisioteràpia"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 53.33,
+            "y": 8.72
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/2.01.png"
+        },
+        {
+          "id": "2-2.02",
+          "code": "2.02",
+          "name": "2.02",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Cicle de salut 4"
+            },
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Grau de fisioteràpia"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Fisioteràpia"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 51.83,
+            "y": 20.67
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/2.02.png"
+        },
+        {
+          "id": "2-2.03",
+          "code": "2.03",
+          "name": "2.03",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Grau Artist"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 21.25,
+            "y": 31.84
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/2.03.png"
+        },
+        {
+          "id": "2-2.04",
+          "code": "2.04",
+          "name": "2.04",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Grau de música"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Màster 4"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 9.58,
+            "y": 61.45
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/2.04.png"
+        },
+        {
+          "id": "2-2.05",
+          "code": "2.05",
+          "name": "2.05",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Cicle d’artista"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 6.67,
+            "y": 82.68
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/2.05.png"
+        },
+        {
+          "id": "2-2.06",
+          "code": "2.06",
+          "name": "2.06",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Cicle de finances"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 21.25,
+            "y": 84.25
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/2.06.png"
+        },
+        {
+          "id": "2-LAB.POLI-2.02",
+          "code": "LAB.POLI-2.02",
+          "name": "LAB.POLI-2.02",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Tots"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Màster 8"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 11.25,
+            "y": 40.78
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/LAB.POLI-2.02.png"
+        },
+        {
+          "id": "2-LAB.VR-2.01",
+          "code": "LAB.VR-2.01",
+          "name": "LAB.VR-2.01",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Àrea de videojocs ENTI"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 34.58,
+            "y": 15.08
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/LAB.VR-2.01.png"
+        },
+        {
+          "id": "2-LAB-2.01",
+          "code": "LAB-2.01",
+          "name": "LAB-2.01",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Grau de fisioteràpia"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Fisioteràpia"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 75.58,
+            "y": 28.72
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/LAB-2.01.png"
+        },
+        {
+          "id": "2-LAB-2.02",
+          "code": "LAB-2.02",
+          "name": "LAB-2.02",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Grau de fisioteràpia"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Fisioteràpia"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 77.5,
+            "y": 10.84
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/LAB-2.02.png"
+        },
+        {
+          "id": "2-ascensors",
+          "code": "ASCENSORS",
+          "name": "Ascensors",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "elevator",
+          "subtitle": "Espai comú",
+          "marker": {
+            "x": 35,
+            "y": 65.5,
+            "labelPosition": "left"
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/Ascensors.png"
+        },
+        {
+          "id": "2-escales",
+          "code": "ESCALES",
+          "name": "Escales",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "stairs",
+          "subtitle": "Espai comú",
+          "marker": {
+            "x": 44.5,
+            "y": 36
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/Escales.png"
+        },
+        {
+          "id": "2-wc",
+          "code": "WC",
+          "name": "Lavabos",
+          "kind": "bathroom",
+          "uses": [],
+          "badge": "WC",
+          "subtitle": "Serveis",
+          "marker": {
+            "x": 47,
+            "y": 72
+          },
+          "overlay": "./img/CleanedFloorplan/Level2/WC.png"
+        }
+      ],
+      "level": 2,
+      "importAliases": [
+        "P2"
+      ]
+    },
+    {
+      "id": "3",
+      "code": "03",
+      "name": "Tercera planta",
+      "shortName": "Tercera",
+      "image": "./img/CleanedFloorplan/Level3.png",
+      "width": 1200,
+      "height": 895,
+      "points": [],
+      "rooms": [
+        {
+          "id": "3-3.01",
+          "code": "3.01",
+          "name": "3.01",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Grau Artist"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 75.25,
+            "y": 10.5
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/3.01.png"
+        },
+        {
+          "id": "3-3.02",
+          "code": "3.02",
+          "name": "3.02",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Grau de ciberseguretat"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 48.33,
+            "y": 13.41
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/3.02.png"
+        },
+        {
+          "id": "3-3.03",
+          "code": "3.03",
+          "name": "3.03",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Grau de ciberseguretat"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 32,
+            "y": 16.87
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/3.03.png"
+        },
+        {
+          "id": "3-3.04",
+          "code": "3.04",
+          "name": "3.04",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Aula comodí / Grau de ciberseguretat"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Màster 5"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 21.42,
+            "y": 30.61
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/3.04.png"
+        },
+        {
+          "id": "3-ESTUDI MUSICA",
+          "code": "ESTUDI MUSICA",
+          "name": "Sala de gravació",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Àrea de música ENTI"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 12.08,
+            "y": 41,
+            "label": "Gravació"
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/Sala de gravació.png"
+        },
+        {
+          "id": "3-SALA CONTROL",
+          "code": "SALA CONTROL",
+          "name": "Sala de control",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Àrea de música ENTI"
+            }
+          ],
+          "showUsage": true,
+          "source": "manual",
+          "marker": {
+            "x": 10,
+            "y": 59,
+            "label": "Control"
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/Sala de control.png"
+        },
+        {
+          "id": "3-BUCS GRAVACIO",
+          "code": "BUCS GRAVACIO",
+          "name": "Bucs de gravació",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Àrea de música ENTI"
+            }
+          ],
+          "showUsage": true,
+          "source": "manual",
+          "marker": {
+            "x": 9.4,
+            "y": 82.9,
+            "label": "Bucs",
+            "labelPosition": "top"
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/Bucs de gravació.png"
+        },
+        {
+          "id": "3-MAGATZEM MUSICA",
+          "code": "MAGATZEM MUSICA",
+          "name": "Magatzem de música",
+          "kind": "room",
+          "uses": [],
+          "showUsage": true,
+          "source": "manual",
+          "marker": {
+            "label": "Magatzem",
+            "labelPosition": "right",
+            "x": 23.92,
+            "y": 53.18
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/Magatzem de música.png"
+        },
+        {
+          "id": "3-LAB.POLI-3.02",
+          "code": "LAB.POLI-3.02",
+          "name": "LAB.POLI-3.02",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Tots / Màster E Leader"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 21.25,
+            "y": 84.69
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/LAB.POLI-3.02.png"
+        },
+        {
+          "id": "3-LAB-3.01",
+          "code": "LAB-3.01",
+          "name": "LAB-3.01",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Grau i cicle de ciberseguretat"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 74.17,
+            "y": 28.16
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/LAB-3.01.png"
+        },
+        {
+          "id": "3-ascensors",
+          "code": "ASCENSORS",
+          "name": "Ascensors",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "elevator",
+          "subtitle": "Espai comú",
+          "marker": {
+            "x": 35,
+            "y": 65.5,
+            "labelPosition": "left"
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/Ascensors.png"
+        },
+        {
+          "id": "3-escales",
+          "code": "ESCALES",
+          "name": "Escales",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "stairs",
+          "subtitle": "Espai comú",
+          "marker": {
+            "x": 44.5,
+            "y": 36
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/Escales.png"
+        },
+        {
+          "id": "3-wc",
+          "code": "WC",
+          "name": "Lavabos",
+          "kind": "bathroom",
+          "uses": [],
+          "badge": "WC",
+          "subtitle": "Serveis",
+          "marker": {
+            "x": 47,
+            "y": 72
+          },
+          "overlay": "./img/CleanedFloorplan/Level3/WC.png"
+        }
+      ],
+      "level": 3,
+      "importAliases": [
+        "P3"
+      ]
+    },
+    {
+      "id": "4",
+      "code": "04",
+      "name": "Quarta planta",
+      "shortName": "Quarta",
+      "image": "./img/CleanedFloorplan/Level4.png",
+      "width": 1200,
+      "height": 895,
+      "points": [],
+      "rooms": [
+        {
+          "id": "4-4.01",
+          "code": "4.01",
+          "name": "4.01",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Cicle Developer"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 7.92,
+            "y": 83.13
+          },
+          "overlay": "./img/CleanedFloorplan/Level4/4.01.png"
+        },
+        {
+          "id": "4-4.02",
+          "code": "4.02",
+          "name": "4.02",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Cicle de màrqueting"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Curs ISEP 3"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 21.33,
+            "y": 84.92
+          },
+          "overlay": "./img/CleanedFloorplan/Level4/4.02.png"
+        },
+        {
+          "id": "4-LAB-4.01",
+          "code": "LAB-4.01",
+          "name": "LAB-4.01",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Cicle de salut"
+            }
+          ],
+          "showUsage": true,
+          "source": "spreadsheet",
+          "marker": {
+            "x": 14.33,
+            "y": 37.43
+          },
+          "overlay": "./img/CleanedFloorplan/Level4/LAB-4.01.png"
+        },
+        {
+          "id": "4-OFICINES",
+          "code": "OFICINES",
+          "name": "Oficines",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Tots"
+            },
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Tots"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Tots"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Tots"
+            }
+          ],
+          "showUsage": false,
+          "source": "spreadsheet",
+          "icon": "office",
+          "subtitle": "Espai comú",
+          "marker": {
+            "x": 32.5,
+            "y": 15.5
+          },
+          "overlay": "./img/CleanedFloorplan/Level4/OFICINES.png"
+        },
+        {
+          "id": "4-MENJADOR",
+          "code": "MENJADOR",
+          "name": "Menjador",
+          "kind": "room",
+          "uses": [
+            {
+              "institution": "ENTI",
+              "period": "weekdays",
+              "activity": "Tots"
+            },
+            {
+              "institution": "EUSES",
+              "period": "weekdays",
+              "activity": "Tots"
+            },
+            {
+              "institution": "ISEP",
+              "period": "weekends",
+              "activity": "Tots"
+            },
+            {
+              "institution": "FISIOFOCUS",
+              "period": "weekends",
+              "activity": "Tots"
+            }
+          ],
+          "showUsage": false,
+          "source": "spreadsheet",
+          "icon": "dining",
+          "subtitle": "Espai comú",
+          "marker": {
+            "x": 58.33,
+            "y": 17.43
+          },
+          "overlay": "./img/CleanedFloorplan/Level4/Menjador.png"
+        },
+        {
+          "id": "4-vending",
+          "code": "VENDING",
+          "name": "Sala de vending",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "vending",
+          "subtitle": "Espai comú",
+          "marker": {
+            "x": 74.0,
+            "y": 8.72,
+            "label": "Vending"
+          },
+          "overlay": "./img/CleanedFloorplan/Level4/Vending.png"
+        },
+        {
+          "id": "4-terrassa",
+          "code": "TERRASSA",
+          "name": "Terrassa",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "terrace",
+          "subtitle": "Espai comú",
+          "marker": {
+            "x": 73.75,
+            "y": 23.58
+          },
+          "overlay": "./img/CleanedFloorplan/Level4/Terrassa.png"
+        },
+        {
+          "id": "4-ascensors",
+          "code": "ASCENSORS",
+          "name": "Ascensors",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "elevator",
+          "subtitle": "Espai comú",
+          "marker": {
+            "x": 35,
+            "y": 65.5,
+            "labelPosition": "left"
+          },
+          "overlay": "./img/CleanedFloorplan/Level4/Ascensors.png"
+        },
+        {
+          "id": "4-escales",
+          "code": "ESCALES",
+          "name": "Escales",
+          "kind": "common",
+          "showUsage": false,
+          "uses": [],
+          "icon": "stairs",
+          "subtitle": "Espai comú",
+          "marker": {
+            "x": 44.5,
+            "y": 36
+          },
+          "overlay": "./img/CleanedFloorplan/Level4/Escales.png"
+        },
+        {
+          "id": "4-wc",
+          "code": "WC",
+          "name": "Lavabos",
+          "kind": "bathroom",
+          "uses": [],
+          "badge": "WC",
+          "subtitle": "Serveis",
+          "marker": {
+            "x": 47,
+            "y": 72
+          },
+          "overlay": "./img/CleanedFloorplan/Level4/WC.png"
+        }
+      ],
+      "level": 4,
+      "importAliases": [
+        "P4"
+      ]
+    }
+  ],
+  "import": {
+    "source": "Rooms.ods",
+    "metadata": {
+      "source": "Rooms.ods",
+      "roomCount": 39,
+      "skippedRows": [
+        {
+          "row": 41,
+          "reason": "Falta el nom o la planta",
+          "values": [
+            "",
+            "",
+            "TODOS",
+            "TODOS",
+            "TODOS",
+            "TODOS"
+          ]
+        }
+      ]
+    },
+    "codeColumn": "CODE",
+    "floorColumn": "LEVEL",
+    "columns": [
+      {
+        "header": "ENTI - During the week",
+        "institution": "ENTI",
+        "period": "weekdays"
+      },
+      {
+        "header": "EUSES - During the week",
+        "institution": "EUSES",
+        "period": "weekdays"
+      },
+      {
+        "header": "ISEP - Weekends",
+        "institution": "ISEP",
+        "period": "weekends"
+      },
+      {
+        "header": "FISIOFOCUS - Weekends",
+        "institution": "FISIOFOCUS",
+        "period": "weekends"
+      }
+    ],
+    "names": {
+      "ESTUDI MUSICA": "Sala de gravació",
+      "OFICINES": "Oficines",
+      "SALA ESTUDI": "Sala d’estudi",
+      "MENJADOR": "Menjador",
+      "SALA SIMULACIO": "Sala de simulació"
+    },
+    "translations": {
+      "GRADO FISIO": "Grau de fisioteràpia",
+      "FISIO": "Fisioteràpia",
+      "GRADO MUSICA": "Grau de música",
+      "GRADO ARTIST": "Grau Artist",
+      "GRADO DEVELOPER": "Grau Developer",
+      "GRADO CIBER": "Grau de ciberseguretat",
+      "GRADO I CICLO CIBER": "Grau i cicle de ciberseguretat",
+      "CICLO ARTISTA": "Cicle d’artista",
+      "CICLO DEVELOPER": "Cicle Developer",
+      "CICLO FINANZAS": "Cicle de finances",
+      "CICLO MARKETING": "Cicle de màrqueting",
+      "CICLO TECNICO DE SONIDO": "Cicle de tècnic de so",
+      "CICLO CIBER": "Cicle de ciberseguretat",
+      "CICLO SALUT": "Cicle de salut",
+      "AULA COMODIN": "Aula comodí",
+      "AREA MUSICA ENTI": "Àrea de música ENTI",
+      "AREA VIDEOJUEGOS ENTI": "Àrea de videojocs ENTI",
+      "TODOS": "Tots",
+      "MASTER E LEADER": "Màster E Leader",
+      "MASTER MUSICA I CIBER": "Màster de música i ciberseguretat",
+      "NUEVO GRADO": "Nou grau"
+    },
+    "translationPatterns": [
+      {
+        "pattern": "CICLO SALUT (\\d+)",
+        "replacement": "Cicle de salut \\1"
+      },
+      {
+        "pattern": "MASTER (\\d+)",
+        "replacement": "Màster \\1"
+      },
+      {
+        "pattern": "CURS ISEP (\\d+)",
+        "replacement": "Curs ISEP \\1"
+      }
+    ]
+  }
+}

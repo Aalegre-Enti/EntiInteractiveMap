@@ -1,90 +1,197 @@
 # Mapa interactiu de l’edifici
 
-Aplicació estàtica en català per explorar els cinc nivells de l’edifici. Funciona en ordinadors, tauletes i mòbils, sense serveis externs ni dependències de producció.
+Aplicació estàtica en català, adaptable a ordinadors i mòbils i compatible amb GitHub Pages. Totes les dades i opcions de l’edifici són a **`config.json`**. No cal editar JavaScript per afegir plantes, sales o capes.
 
-## Funcions
+## Configuració
 
-- Selector de cinc plantes amb els plànols nets proporcionats.
-- Submenú per planta amb els 39 espais de `Rooms.ods`, 16 espais comuns addicionals i una entrada de lavabos a cadascuna de les cinc plantes.
-- Ressaltat dels 14 espais de la planta baixa i de 10 espais de la primera planta amb les capes proporcionades: lila que polsa durant tres segons i després queda semitransparent.
-- Fitxes desplegables amb els centres i usos, diferenciant entre setmana i caps de setmana. Oficines, Menjador, Sala d’estudi i els espais comuns afegits tenen una icona pròpia i el mateix estil que els lavabos, sense informació dels centres ni usos acadèmics.
-- Ampliació amb botons, roda del ratolí i gest de dos dits.
-- Desplaçament amb ratolí, dit o teclat; botó per encaixar el plànol.
-- Pantalla completa, amb alternativa per als navegadors que no admeten aquesta funció.
-- Enllaços a cada planta i sala, com ara `#planta-3` o `#planta-0/sala/PB.01`. La URL s’actualitza en seleccionar un espai i es pot copiar per compartir-lo.
-- Controls accessibles, ajuda en català i respecte per la preferència de moviment reduït.
-- Capa de punts i àrees ressaltades preparada per afegir-hi les ubicacions dels espais sobre el plànol.
+Edita `config.json`, desa’l i recarrega la pàgina. A GitHub Pages, publica també aquest fitxer. El JSON no admet comentaris ni comes després de l’últim element.
 
-## Previsualització local
+| Apartat | Què configura |
+| --- | --- |
+| `site` | Nom, descripció, idioma, icona i favicon. |
+| `theme` | Color principal `brand`, text `ink`, text secundari `muted`, vores `line`, fons `surface` i tipografia `fontFamily`. Els colors utilitzen `#RRGGBB`. |
+| `floors` | Plantes, ordre del menú, imatges, sales, usos, capes i punts d’informació. La quantitat de plantes es calcula automàticament. |
+| `periods` | Identificadors i noms dels períodes d’ús, com ara entre setmana i caps de setmana. |
+| `view` | Planta inicial, ampliació màxima, pas d’ampliació, marge inicial, sensibilitat de la roda, desplaçament amb teclat i menú mòbil plegat. |
+| `overlay` | Opacitat fixa, opacitat màxima de la pulsació, durada de cada cicle en segons i nombre de cicles. `pulseCount: 0` desactiva la pulsació. |
+| `roomMarkers` | Visibilitat dels punts de sala (`enabled`), opacitat quan no estan seleccionats (`inactiveOpacity`), diàmetre del punt (`dotSize`) i mida de l’etiqueta (`labelSize`), en píxels. |
+| `here` | Etiqueta, mida del punt en píxels, opacitat en altres plantes i ubicació per defecte. |
+| `texts` | Textos visibles, ajuda, missatges i etiquetes accessibles. Conserva les variables entre claus, com `{room}`, `{floor}` o `{count}`. |
+| `import` | Opcions de la importació opcional del full ODS: origen, columnes, centres, períodes, noms, traduccions i registre de files incompletes. |
 
-Amb Node.js 18 o posterior:
+La configuració conté cinc plantes i 63 espais, tots amb punt i capa de ressaltat. Tots els plànols i les capes comparteixen un llenç de 1200 × 895 píxels per mantenir l’alineació entre plantes. Els lavabos, ascensors, escales i altres espais comuns són sales explícites del JSON: pots afegir-los, canviar-los o retirar-los per planta.
 
-```sh
-npm run dev
+### Afegir una planta
+
+Afegeix un objecte a `floors`, a la posició on vols que aparegui al menú. Exemple que reutilitza un plànol existent; substitueix la imatge i les dimensions pel nou plànol:
+
+```json
+{
+  "id": "soterrani",
+  "level": -1,
+  "code": "S1",
+  "name": "Soterrani",
+  "shortName": "Soterrani",
+  "image": "./img/CleanedFloorplan/Level0.png",
+  "width": 1200,
+  "height": 895,
+  "importAliases": ["S1"],
+  "rooms": [],
+  "points": []
+}
 ```
 
-Obre `http://127.0.0.1:4173`. No cal instal·lar paquets. Si no tens npm disponible, executa `node scripts/serve.mjs`. També es pot utilitzar qualsevol servidor de fitxers estàtics; cal servir la carpeta per HTTP, ja que el navegador no carrega els mòduls JavaScript si s’obre `index.html` directament com a fitxer.
+- `id`: identificador únic i estable, escrit com a text. Admet lletres, números, guions i guions baixos. S’utilitza als enllaços.
+- `level`: nivell físic enter i únic; admet negatius. Les fletxes d’«Ets aquí» calculen la diferència entre aquests nivells, independentment de l’ordre del menú.
+- `code`, `name` i `shortName`: etiqueta curta, nom complet i nom per al mòbil. `code` i `shortName` poden ometre’s: es deriven d’`id` i `name`.
+- `image`: ruta relativa a la pàgina. `width` i `height`: dimensions originals de la imatge, en píxels.
+- `rooms` i `points`: llistes opcionals; poden estar buides.
+- `importAliases`: noms que el full de càlcul fa servir per aquesta planta; només afecta l’importador.
 
-```sh
-npm test
+No hi ha un límit fix de cinc plantes. Al mòbil el selector es desplaça horitzontalment quan cal. Si retires una planta, revisa també `view.defaultFloorId` i `here.defaultLocation`.
+
+### Afegir una sala
+
+Afegeix-la a `rooms` de la planta corresponent:
+
+```json
+{
+  "code": "A.01",
+  "name": "Aula de pràctiques",
+  "kind": "room",
+  "showUsage": true,
+  "uses": [
+    {
+      "institution": "Nom del centre",
+      "period": "weekdays",
+      "activity": "Classes pràctiques"
+    }
+  ]
+}
 ```
 
-Les proves comproven els cinc fitxers de plànol, les dimensions i els càlculs d’ampliació i desplaçament.
+`code` és obligatori i únic dins la planta. `name` pot ometre’s per mostrar el codi. `id` és opcional i es deriva de la planta i el codi; si el defineixes, ha de ser únic a tot l’edifici. Cada `uses[].period` ha de correspondre a un `id` de `periods`.
 
-## Publicació a GitHub Pages
+Per a un espai comú, utilitza `kind: "common"`; per als lavabos, `kind: "bathroom"`. Tots dos amaguen els usos per defecte i utilitzen l’estil compacte amb icona. `showUsage: false` també permet amagar els usos d’una aula existent, com Oficines, Menjador o Sala d’estudi.
 
-1. Puja els fitxers al repositori de GitHub, incloent-hi `img`, `src`, `index.html`, `styles.css`, `favicon.svg` i `.nojekyll`.
-2. A **Settings → Pages → Build and deployment**, tria **Deploy from a branch**.
-3. Selecciona la branca que conté l’aplicació i la carpeta **/ (root)**. Desa els canvis.
-4. GitHub mostrarà l’adreça del lloc quan acabi la publicació.
+```json
+{
+  "code": "ASCENSORS",
+  "name": "Ascensors",
+  "kind": "common",
+  "icon": "elevator",
+  "subtitle": "Espai comú"
+}
+```
 
-No hi ha cap pas de compilació. Totes les rutes són relatives, de manera que l’app funciona tant en un domini propi com en el subdirectori d’un repositori de GitHub Pages. No cal cap servidor Node.js a producció. La configuració de Pages i la publicació al repositori s’han de fer a GitHub; no les activa la previsualització local.
+Opcions visuals de les sales comunes:
 
-## Actualitzar la llista d’espais
+- `icon`: `office`, `dining`, `study`, `lobby`, `entrance`, `tutoring`, `vending`, `terrace`, `elevator`, `stairs`, `auditorium`, `map`, `layers`, `pin`, `info`, `help`, `plus`, `minus`, `fit`, `expand`, `close`, `arrow` o `move`.
+- `iconImage`: ruta a una imatge pròpia, que té prioritat sobre la icona incorporada.
+- `badge`: text curt en lloc d’icona, per exemple `"WC"`.
+- `subtitle`: text sota el nom. Sense aquest camp, es mostra el text de serveis o espai comú de `texts`.
 
-`Rooms.ods` és la font de les dades. Per actualitzar la llista després d’editar el full, executa amb Python 3:
+Per destacar una sala al mapa, afegeix `overlay` amb la ruta a la seva capa, per exemple `"./img/CleanedFloorplan/Level0/Auditori.png"`. La capa ha de ser una imatge transparent amb les mateixes dimensions i alineació que el plànol complet. L’app utilitza el canal alfa per aplicar el color de `theme.brand`. Sense `overlay`, la sala conserva la informació i l’enllaç, però no mostra ressaltat.
+
+Les dades són text pla, no HTML. Només una fitxa de sala pot quedar desplegada alhora. En seleccionar-la, la URL s’actualitza; recarregar o compartir l’enllaç recupera la planta i la sala. Exemple: `#planta-0/sala/PB.01`. També funciona amb plantes noves: `#planta-soterrani/sala/A.01`.
+
+### Punts de les sales
+
+Cada espai actual té un punt amb una etiqueta curta. Només apareixen els punts de la planta que s’està consultant. Prémer un punt selecciona la sala, desplega la seva informació, actualitza l’enllaç i mostra la capa si en té. El punt seleccionat té intensitat completa; els altres queden atenuats. La selecció també se sincronitza amb el menú, els enllaços compartits i els botons enrere i endavant.
+
+Afegeix o modifica `marker` dins de cada sala:
+
+```json
+"marker": {
+  "x": 38.04,
+  "y": 15.47,
+  "label": "PB.01",
+  "labelPosition": "bottom"
+}
+```
+
+`x` i `y` són percentatges entre 0 i 100 de la imatge completa, amb l’origen a dalt a l’esquerra. Les posicions s’han ajustat al llenç compartit de 1200 × 895 píxels i s’ha comprovat que cada punt queda dins de la seva capa. `label` és opcional: per defecte s’utilitza el nom de la sala. `labelPosition` admet `top`, `bottom`, `left` o `right` per evitar que les etiquetes se superposin; el valor per defecte és `bottom`. Els punts mantenen la mida visual en ampliar el plànol.
+
+Per a sales noves, defineix les coordenades a `marker`; sense aquestes coordenades, la sala continua disponible al menú. `marker: null` amaga un punt individual i `roomMarkers.enabled: false` els amaga tots. La importació de l’ODS conserva els punts i les etiquetes ja configurats.
+
+### Punt «Ets aquí»
+
+Per establir una ubicació fixa per defecte:
+
+```json
+"here": {
+  "label": "Ets aquí",
+  "defaultLocation": { "floorId": "1", "x": 52.5, "y": 60 },
+  "otherFloorOpacity": 0.65,
+  "size": 28
+}
+```
+
+Utilitza `defaultLocation: null` per no mostrar cap ubicació per defecte. La URL pot substituir-la:
+
+```text
+?aqui=1&x=52.5&y=60#planta-0/sala/PB.01
+```
+
+`aqui` és l’`id` de qualsevol planta configurada. `x` i `y` són percentatges de la imatge completa entre 0 i 100, d’esquerra a dreta i de dalt a baix; admeten decimals amb punt. Si la URL no conté cap dels tres paràmetres, s’utilitza la ubicació del JSON. Si els paràmetres són incomplets o invàlids, no es mostra cap punt.
+
+Sense fragment explícit de planta, s’obre la planta de la ubicació; si no hi ha ubicació, s’obre `view.defaultFloorId`. En altres plantes el marcador queda atenuat i les fletxes indiquen on és la ubicació real. El punt conserva la mida visual en ampliar i no utilitza el GPS.
+
+### Punts d’informació
+
+Afegeix entrades a `points` dins d’una planta. Les coordenades són percentatges; `description`, `icon` i `polygon` són opcionals:
+
+```json
+{
+  "title": "Punt d’informació",
+  "description": "Atenció al públic.",
+  "icon": "info",
+  "x": 50,
+  "y": 40,
+  "polygon": [[40, 30], [60, 30], [60, 50], [40, 50]]
+}
+```
+
+## Importació opcional de Rooms.ods
+
+Pots editar directament el JSON sense utilitzar el full. Si prefereixes continuar actualitzant els usos des del full, executa amb Python 3:
 
 ```sh
 python scripts/import_rooms.py
 ```
 
-L’importador genera `src/rooms.js` sense modificar el full. Conserva totes les assignacions de les columnes ENTI i EUSES (entre setmana) i ISEP i FISIOFOCUS (caps de setmana), i tradueix els textos al català. Manté els codis i les denominacions Artist, Developer i E Leader. Els camps buits no es converteixen en assignacions. Si apareix una descripció nova, cal afegir-ne la traducció a l’importador abans de regenerar les dades.
+L’importador llegeix `import.source` i actualitza **`config.json`**, sense modificar l’ODS ni generar fitxers JavaScript. Les primeres dues columnes han de correspondre a `codeColumn` i `floorColumn`; les següents, a `import.columns`, en el mateix ordre. Les plantes es reconeixen per `id` o `importAliases`. Les traduccions són a `import.translations` i `import.translationPatterns`; afegeix les noves activitats abans d’importar. `import.names` proporciona el nom inicial de sales noves.
 
-La importació actual conté 39 espais: 7 a la planta baixa, 10 a la primera, 10 a la segona, 7 a la tercera i 5 a la quarta. La fila 41 no té ni codi ni planta; es conserva al full i es registra a `roomImport.skippedRows`, però no es mostra en cap planta.
+Les sales del full tenen `source: "spreadsheet"`. Quan es torna a importar:
 
-`src/floors.js` afegeix Lavabos, Ascensors i Escales a cada planta; Auditori, Vestíbul, Entrada i Sala de tutories a la planta baixa; i Sala de vending i Terrassa a la quarta planta. També configura Oficines, Menjador i Sala d’estudi perquè no mostrin centres ni usos. Aquestes personalitzacions es mantenen quan es torna a importar el full. En total hi ha 60 entrades: 14, 13, 13, 10 i 10, de la planta baixa a la quarta.
+- Es renoven els usos de cada sala coincident per planta i codi.
+- Es conserven els noms personalitzats, tipus, icones, capes i visibilitat dels usos.
+- S’afegeixen les sales noves i es retiren les sales amb `source: "spreadsheet"` que ja no apareixen al full.
+- Es conserven les sales manuals que no apareixen al full.
+- Les files incompletes es registren a `import.metadata.skippedRows`; una planta, període o traducció desconeguts aturen la importació abans d’escriure.
 
-En seleccionar una planta es desplega la seva llista a l’escriptori. Al mòbil, la llista comença plegada per deixar més espai al mapa; es pot obrir amb «Espais de la planta» o prement de nou la planta activa. Les llistes tenen desplaçament propi. Els espais amb informació d’ús es poden desplegar per consultar-la; només hi ha una fitxa d’informació oberta a la vegada. Les capçaleres, els marges i els controls són compactes, amb botons d’almenys 44 píxels d’alçada. La publicació continua sent estàtica i no necessita Python ni el full de càlcul al navegador.
+A la tercera planta, l’antic Estudi de música es divideix en Sala de gravació, Sala de control i Bucs de gravació, cadascun amb un punt propi. La Sala de gravació conserva el codi `ESTUDI MUSICA` per mantenir els enllaços anteriors i la relació amb el full; les altres dues entrades són manuals. Les tres conserven l’ús d’ENTI de l’espai original.
 
-En seleccionar qualsevol espai, inclosos els comuns, la URL incorpora la planta i el codi de la sala (`#planta-0/sala/AUDITORI`, per exemple). Obrir o recarregar aquest enllaç recupera la planta, desplega la llista i la informació disponible, marca la sala i carrega el ressaltat si té capa. També funciona amb els botons enrere i endavant del navegador. Canviar de planta o desmarcar amb Esc elimina la sala de la URL. Els fragments de la URL funcionen en subdirectoris de GitHub Pages sense configurar redireccions.
+El Magatzem de música és una altra entrada manual de la tercera planta, incorporada amb la seva capa proporcionada. No té centres ni usos assignats.
 
-## Afegir ubicacions dels espais
+## Previsualització i comprovacions
 
-Les capes PNG es relacionen amb els codis dels espais a `src/room-overlays.js`. Cada imatge ha de conservar les dimensions del plànol complet (1083 × 976 píxels per a la planta baixa; 1200 × 895 per a la primera planta) i delimitar l’espai amb transparència. L’app utilitza el canal alfa com a màscara del color `#94167f`, sense modificar els fitxers originals. L’Auditori comú utilitza `Auditori.png`; AUD-01 i AUD-02 utilitzen les seves capes individuals.
+Amb Node.js 18 o posterior, sense instal·lar paquets:
 
-La primera planta té capes per a les aules 1.01–1.05, LAB.REHAB, LAB-1.01, LAB-1.02, Sala d’estudi i Sala de simulació. Els fitxers són a `img/CleanedFloorplan/Level1`. Ascensors, Escales i Lavabos mantenen la selecció i l’enllaç directe, però encara no tenen una capa proporcionada en aquesta planta.
-
-En seleccionar un espai es mostra el plànol sencer, es ressalta només la seva zona i es marca la fila seleccionada. La capa polsa durant tres segons, entre un 32% i un 65% d’opacitat, i després es manté al 32%. La preferència de moviment reduït omet la pulsació. La capa segueix el plànol en ampliar-lo o desplaçar-lo; seleccionar un altre espai la substitueix, i canviar de planta o prémer Esc la retira. Al mòbil, la selecció porta el plànol a la vista. Les altres plantes mantenen les seves llistes i queden preparades per afegir-hi capes al mateix fitxer de configuració.
-
-Les plantes es defineixen a `src/floors.js`. Cada planta té un camp `points`, actualment buit. Quan es disposi de la informació real, s’hi poden afegir entrades com aquesta (coordenades només d’exemple):
-
-```js
-points: [
-  {
-    id: 'identificador-espai',
-    title: 'Nom de l’espai',
-    description: 'Informació de l’espai en català.',
-    x: 50,
-    y: 40,
-    polygon: [[40, 30], [60, 30], [60, 50], [40, 50]],
-  },
-],
+```sh
+node scripts/serve.mjs
+node --test
+python -B -m unittest discover -s tests -p "*_test.py"
 ```
 
-`x` i `y` indiquen la posició del marcador com a percentatges de l’amplada i de l’alçada de la imatge original. L’origen és la cantonada superior esquerra. `polygon` és opcional i permet ressaltar l’àrea de l’espai quan es prem el marcador. El marcador i la zona segueixen el plànol en ampliar o desplaçar-lo; la fitxa es pot tancar amb el seu botó o amb la tecla Esc. Els textos es mostren com a text pla.
+Obre `http://127.0.0.1:4173`. També pots utilitzar `npm run dev` i `npm test`. Cal un servidor HTTP: obrir `index.html` directament com a fitxer no carrega el JSON ni els mòduls.
 
-Els plànols originals i els retalls d’espais es conserven a `img` per a futures ampliacions. L’aplicació actual utilitza les cinc imatges de `img/CleanedFloorplan`.
+L’app valida identificadors, referències, coordenades i paràmetres abans de mostrar el mapa. Si el JSON no es pot carregar o conté errors, ofereix tornar-ho a provar; la consola del navegador indica el camp que cal corregir. Els missatges inicials d’error i càrrega són en català i viuen al codi perquè han de funcionar fins i tot sense configuració.
 
-## Estil
+## GitHub Pages
 
-El color principal és `#94167f`, definit a la variable `--brand` de `styles.css`. No es carreguen tipografies, recursos ni serveis de tercers.
+1. Puja `config.json`, `index.html`, `styles.css`, `favicon.svg`, `src`, `img` i `.nojekyll` al repositori.
+2. A **Settings → Pages → Build and deployment**, tria **Deploy from a branch**.
+3. Selecciona la branca de l’aplicació i **/ (root)**.
+
+No cal compilació ni servidor a producció. Les rutes relatives funcionen també dins del subdirectori d’un repositori. Només cal tornar a publicar els fitxers modificats; l’ODS i Python no són necessaris al navegador.

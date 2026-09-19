@@ -1,22 +1,3 @@
-const periods = [
-  { id: 'weekdays', label: 'Entre setmana' },
-  { id: 'weekends', label: 'Caps de setmana' },
-];
-
-const serviceIcons = {
-  AUDITORI: 'auditorium',
-  OFICINES: 'office',
-  MENJADOR: 'dining',
-  'SALA ESTUDI': 'study',
-  VESTIBUL: 'lobby',
-  ENTRADA: 'entrance',
-  TUTORIES: 'tutoring',
-  VENDING: 'vending',
-  TERRASSA: 'terrace',
-  ASCENSORS: 'elevator',
-  ESCALES: 'stairs',
-};
-
 function element(tag, className, text) {
   const node = document.createElement(tag);
   node.className = className;
@@ -24,15 +5,15 @@ function element(tag, className, text) {
   return node;
 }
 
-export function createRoomSubmenu(floor, { onSelect = () => {} } = {}) {
+export function createRoomSubmenu(floor, { onSelect, periods, t, language }) {
   const submenu = element('details', 'room-submenu');
   submenu.id = `floor-rooms-${floor.id}`;
   submenu.dataset.floorRooms = floor.id;
   const summary = element('summary', 'room-submenu-toggle');
-  summary.append(element('span', '', 'Espais de la planta'), element('span', 'room-count', String(floor.rooms.length)), element('span', 'disclosure-chevron'));
+  summary.append(element('span', '', t('roomsToggle')), element('span', 'room-count', String(floor.rooms.length)), element('span', 'disclosure-chevron'));
   summary.lastChild.setAttribute('aria-hidden', 'true');
   const list = element('ul', 'room-list');
-  list.setAttribute('aria-label', `Espais: ${floor.name.toLocaleLowerCase('ca')}`);
+  list.setAttribute('aria-label', t('roomsList', { floor: floor.name.toLocaleLowerCase(language) }));
 
   for (const room of floor.rooms) {
     const item = element('li', 'room-list-item');
@@ -42,24 +23,29 @@ export function createRoomSubmenu(floor, { onSelect = () => {} } = {}) {
       item.classList.add(isBathroom ? 'bathroom-entry' : 'common-space-entry');
       const service = element('button', 'service-entry room-select-button');
       service.type = 'button';
-      service.setAttribute('aria-label', room.overlay ? `Mostra ${room.name} al plànol` : `Selecciona ${room.name}`);
+      service.setAttribute('aria-label', t(room.overlay ? 'showRoom' : 'selectRoom', { room: room.name }));
       service.setAttribute('aria-pressed', 'false');
       if (room.overlay) service.setAttribute('aria-controls', 'room-overlay');
       service.dataset.roomSelect = room.id;
       service.addEventListener('click', () => onSelect(floor, room));
       item.append(service);
       const text = element('div', '');
-      text.append(element('span', 'room-name', room.name), element('span', 'room-centres', isBathroom ? 'Serveis' : 'Espai comú'));
+      text.append(element('span', 'room-name', room.name), element('span', 'room-centres', room.subtitle ?? t(isBathroom ? 'services' : 'commonSpace')));
       const badge = element('span', 'service-badge');
       badge.setAttribute('aria-hidden', 'true');
-      if (isBathroom) {
-        badge.textContent = 'WC';
+      if (room.iconImage) {
+        const image = element('img', 'icon');
+        image.src = room.iconImage;
+        image.alt = '';
+        badge.append(image);
+      } else if (room.badge) {
+        badge.textContent = room.badge;
       } else {
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.classList.add('icon');
         svg.setAttribute('focusable', 'false');
         const use = document.createElementNS(svg.namespaceURI, 'use');
-        use.setAttribute('href', `#icon-${serviceIcons[room.code] ?? 'layers'}`);
+        use.setAttribute('href', `#icon-${room.icon ?? 'layers'}`);
         svg.append(use);
         badge.append(svg);
       }
@@ -70,7 +56,7 @@ export function createRoomSubmenu(floor, { onSelect = () => {} } = {}) {
       const roomSummary = element('summary', 'room-summary');
       const text = element('span', 'room-summary-text');
       text.append(element('span', 'room-name', room.name));
-      text.append(element('span', 'room-centres', [...new Set(room.uses.map((use) => use.institution))].join(' · ') || 'Ús no especificat'));
+      text.append(element('span', 'room-centres', [...new Set(room.uses.map((use) => use.institution))].join(' · ') || t('unspecifiedUse')));
       const chevron = element('span', 'disclosure-chevron');
       chevron.setAttribute('aria-hidden', 'true');
       roomSummary.append(text, chevron);
@@ -92,7 +78,7 @@ export function createRoomSubmenu(floor, { onSelect = () => {} } = {}) {
         section.append(definitions);
         content.append(section);
       }
-      if (!room.uses.length) content.append(element('p', 'room-activity', 'Ús no especificat.'));
+      if (!room.uses.length) content.append(element('p', 'room-activity', t('unspecifiedUse')));
       details.append(roomSummary, content);
       item.append(details);
     }

@@ -1,37 +1,20 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { floors } from '../src/floors.js';
+import { floors } from './config-fixture.js';
 import { fitScale, constrainOffset, zoomAround, MAX_ZOOM } from '../src/viewport.js';
 
-test('les cinc imatges existeixen i les dimensions coincideixen amb els plànols', async () => {
-  assert.equal(new Set(floors.map((floor) => floor.id)).size, 5);
-  for (const floor of floors) {
-    const data = await readFile(new URL(`../${floor.image}`, import.meta.url));
-    assert.equal(data.readUInt32BE(16), floor.width);
-    assert.equal(data.readUInt32BE(20), floor.height);
+test('els PNG configurats existeixen i les capes coincideixen amb el plànol', async () => {
+ for(const floor of floors) {
+  const assets=[{path:floor.image,overlay:false},...floor.rooms.filter(r=>r.overlay).map(r=>({path:r.overlay,overlay:true}))];
+  for(const asset of assets) {
+   if(/^https?:/.test(asset.path) || !/\.png$/i.test(asset.path))continue;
+   const data=await readFile(new URL(`../${asset.path}`,import.meta.url));
+   assert.equal(data.readUInt32BE(16),floor.width,asset.path);
+   assert.equal(data.readUInt32BE(20),floor.height,asset.path);
+   if(asset.overlay) assert.ok([4,6].includes(data[25]) || data.includes(Buffer.from('tRNS')),asset.path+' té transparència');
   }
-});
-
-test('les 14 capes de la planta baixa i les 10 de la primera tenen transparència i coincideixen amb el plànol', async () => {
-  for (const [id, count] of [['0', 14], ['1', 10]]) {
-    const floor = floors.find((item) => item.id === id);
-    const mappedRooms = floor.rooms.filter((room) => room.overlay);
-    assert.equal(mappedRooms.length, count);
-    assert.equal(new Set(mappedRooms.map((room) => room.overlay)).size, count);
-    for (const room of mappedRooms) {
-      const data = await readFile(new URL(`../${room.overlay}`, import.meta.url));
-      assert.equal(data.readUInt32BE(16), floor.width, room.name);
-      assert.equal(data.readUInt32BE(20), floor.height, room.name);
-      assert.equal(data[25], 6, `${room.name}: PNG amb canal alfa`);
-    }
-  }
-  const auditorium = floors[0].rooms.find((room) => room.code === 'AUDITORI');
-  assert.equal(auditorium.kind, 'common');
-  assert.equal(auditorium.showUsage, false);
-  assert.deepEqual(auditorium.uses, []);
-  assert.deepEqual(floors[1].rooms.filter((room) => !room.overlay).map((room) => room.code), ['ASCENSORS', 'ESCALES', 'WC']);
-  assert.ok(floors.slice(2).every((otherFloor) => otherFloor.rooms.every((room) => !room.overlay)));
+ }
 });
 
 test('el plànol sencer cap en pantalles verticals i horitzontals', () => {
@@ -57,4 +40,9 @@ test('el desplaçament no pot fer desaparèixer el plànol', () => {
   assert.equal(constrainOffset(-9999, 400, 800), -424);
   assert.equal(constrainOffset(9999, 400, 800), 24);
   assert.equal(constrainOffset(9999, 400, 200), 100);
+});
+
+test('el marge inicial i el màxim d’ampliació són configurables',()=>{
+ assert.equal(fitScale(100,100,100,100,.8),.8);
+ assert.equal(zoomAround({zoom:1,x:0,y:0},10,0,0,1,3).zoom,3);
 });

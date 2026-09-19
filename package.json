@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Plànol interactiu de cinc plantes, en català i compatible amb GitHub Pages.",
+  "description": "Plànol interactiu configurable, en català i compatible amb GitHub Pages.",
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "test": "node --test"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  }
 }

@@ -1,0 +1,40 @@
+import { formatText } from './config.js';
+
+export function configurePage(config) {
+  const t = (key, values) => formatText(config.texts, key, values);
+  document.documentElement.lang = config.site.language;
+  document.title = config.site.name;
+  document.querySelector('meta[name="description"]').content = config.site.description;
+  document.querySelector('meta[name="theme-color"]').content = config.theme.brand;
+  if (config.site.favicon) document.querySelector('link[rel="icon"]').href = config.site.favicon;
+  else document.querySelector('link[rel="icon"]').remove();
+  const variables = { brand:'brand', ink:'ink', muted:'muted', line:'line', surface:'surface', fontFamily:'font-family' };
+  const style = document.documentElement.style;
+  for (const [key, variable] of Object.entries(variables)) if (config.theme[key]) style.setProperty(`--${variable}`, config.theme[key]);
+  const rgb = config.theme.brand.slice(1).match(/../g).map((value) => parseInt(value, 16));
+  style.setProperty('--brand-rgb', rgb.join(', '));
+  style.setProperty('--brand-dark', `rgb(${rgb.map((value) => Math.round(value * .79)).join(', ')})`);
+  style.setProperty('--brand-light', `rgb(${rgb.map((value) => Math.round(value * .075 + 255 * .925)).join(', ')})`);
+  style.setProperty('--room-opacity', config.overlay.opacity);
+  style.setProperty('--room-pulse-opacity', config.overlay.pulseOpacity);
+  style.setProperty('--room-pulse-duration', `${config.overlay.pulseDuration}s`);
+  style.setProperty('--room-pulse-count', config.overlay.pulseCount);
+  style.setProperty('--here-other-opacity', config.here.otherFloorOpacity);
+  style.setProperty('--here-size', `${config.here.size}px`);
+  style.setProperty('--room-marker-opacity', config.roomMarkers.inactiveOpacity);
+  style.setProperty('--room-marker-dot-size', `${config.roomMarkers.dotSize}px`);
+  style.setProperty('--room-marker-label-gap', `${config.roomMarkers.dotSize / 2 + 6}px`);
+  style.setProperty('--room-marker-label-size', `${config.roomMarkers.labelSize}px`);
+  style.setProperty('--floor-menu-height', `${config.floors.length * 48 + 180}px`);
+  for (const node of document.querySelectorAll('[data-text]')) node.textContent = t(node.dataset.text);
+  for (const node of document.querySelectorAll('[data-label]')) node.setAttribute('aria-label', t(node.dataset.label));
+  for (const node of document.querySelectorAll('[data-title]')) node.title = t(node.dataset.title);
+  document.getElementById('brand-name').textContent = config.site.name;
+  document.getElementById('brand-caption').textContent = config.site.caption;
+  document.querySelector('.brand').setAttribute('aria-label', t('brandHome', {site:config.site.name}));
+  document.querySelector('.brand-mark use').setAttribute('href', `#icon-${config.site.icon}`);
+  document.querySelector('.floor-count').textContent = t(config.floors.length === 1 ? 'floorCountOne' : 'floorCountMany', {count:config.floors.length});
+  document.getElementById('building-floors').textContent = t('buildingFloors', {count:config.floors.length});
+  document.querySelector('.here-label strong').textContent = config.here.label;
+  document.getElementById('here-help').textContent = t('hereHelp', {label:config.here.label});
+}
