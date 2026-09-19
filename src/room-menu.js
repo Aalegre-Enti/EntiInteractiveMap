@@ -3,6 +3,19 @@ const periods = [
   { id: 'weekends', label: 'Caps de setmana' },
 ];
 
+const serviceIcons = {
+  OFICINES: 'office',
+  MENJADOR: 'dining',
+  'SALA ESTUDI': 'study',
+  VESTIBUL: 'lobby',
+  ENTRADA: 'entrance',
+  TUTORIES: 'tutoring',
+  VENDING: 'vending',
+  TERRASSA: 'terrace',
+  ASCENSORS: 'elevator',
+  ESCALES: 'stairs',
+};
+
 function element(tag, className, text) {
   const node = document.createElement(tag);
   node.className = className;
@@ -23,11 +36,25 @@ export function createRoomSubmenu(floor) {
   for (const room of floor.rooms) {
     const item = element('li', 'room-list-item');
     item.dataset.roomId = room.id;
-    if (room.kind === 'bathroom') {
-      item.classList.add('bathroom-entry');
+    if (room.kind === 'bathroom' || room.showUsage === false) {
+      const isBathroom = room.kind === 'bathroom';
+      item.classList.add('service-entry', isBathroom ? 'bathroom-entry' : 'common-space-entry');
       const text = element('div', '');
-      text.append(element('span', 'room-name', room.name), element('span', 'room-centres', 'Serveis'));
-      item.append(text, element('span', 'bathroom-badge', 'WC'));
+      text.append(element('span', 'room-name', room.name), element('span', 'room-centres', isBathroom ? 'Serveis' : 'Espai comú'));
+      const badge = element('span', 'service-badge');
+      badge.setAttribute('aria-hidden', 'true');
+      if (isBathroom) {
+        badge.textContent = 'WC';
+      } else {
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.classList.add('icon');
+        svg.setAttribute('focusable', 'false');
+        const use = document.createElementNS(svg.namespaceURI, 'use');
+        use.setAttribute('href', `#icon-${serviceIcons[room.code] ?? 'layers'}`);
+        svg.append(use);
+        badge.append(svg);
+      }
+      item.append(text, badge);
     } else {
       const details = element('details', 'room-entry');
       const roomSummary = element('summary', 'room-summary');

@@ -1,5 +1,13 @@
 import { rooms } from './rooms.js';
 
+// Aquests espais es mostren només pel nom, sense centres ni usos.
+const nameOnlyRooms = new Set(['OFICINES', 'MENJADOR', 'SALA ESTUDI']);
+const sharedSpaces = [['ASCENSORS', 'Ascensors'], ['ESCALES', 'Escales']];
+const commonSpacesByFloor = {
+  '0': [['VESTIBUL', 'Vestíbul'], ['ENTRADA', 'Entrada'], ['TUTORIES', 'Sala de tutories']],
+  '4': [['VENDING', 'Sala de vending'], ['TERRASSA', 'Terrassa']],
+};
+
 // Coordenades dels punts i polígons: percentatges (0–100) de la imatge.
 // La llista d'espais no pressuposa una ubicació dins del plànol.
 export const floors = [
@@ -11,7 +19,19 @@ export const floors = [
 ].map((floor) => ({
   ...floor,
   rooms: [
-    ...rooms.filter((room) => room.floorId === floor.id),
+    ...rooms.filter((room) => room.floorId === floor.id).map((room) => ({
+      ...room,
+      showUsage: !nameOnlyRooms.has(room.code),
+    })),
+    ...[...(commonSpacesByFloor[floor.id] ?? []), ...sharedSpaces].map(([code, name]) => ({
+      id: `${floor.id}-${code.toLowerCase()}`,
+      code,
+      name,
+      floorId: floor.id,
+      kind: 'common',
+      showUsage: false,
+      uses: [],
+    })),
     { id: `${floor.id}-wc`, code: 'WC', name: 'Lavabos', floorId: floor.id, kind: 'bathroom', uses: [] },
   ],
 }));

@@ -80,8 +80,10 @@ summary:focus-visible { outline: 3px solid var(--brand); outline-offset: -3px; b
 .room-use + .room-use { margin-top: 12px; }
 .room-institution { color: var(--brand); font-size: .75rem; font-weight: 700; line-height: 1.5; }
 .room-activity { margin: 3px 0 0; font-size: .875rem; line-height: 1.55; overflow-wrap: anywhere; }
-.bathroom-entry { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 64px; padding: 11px 3px; }
-.bathroom-badge { font-size: .75rem; font-weight: 600; color: var(--muted); border: 1px solid var(--line); padding: 5px; border-radius: 5px; }
+.service-entry { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 64px; padding: 11px 3px; }
+.service-entry > div { min-width: 0; }
+.service-badge { display: grid; place-items: center; width: 32px; height: 32px; flex-shrink: 0; font-size: .75rem; font-weight: 600; color: var(--muted); border: 1px solid var(--line); border-radius: 5px; }
+.service-badge .icon { width: 19px; height: 19px; }
 .sidebar-guide { display: none; margin: auto 8px 0; padding-top: 40px; padding-bottom: 28px; }
 .guide-icon { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--line); border-radius: 8px; color: var(--brand); margin-bottom: 13px; }
 .guide-icon .icon { width: 18px; height: 18px; }

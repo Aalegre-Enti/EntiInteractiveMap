@@ -5,8 +5,8 @@ Aplicació estàtica en català per explorar els cinc nivells de l’edifici. Fu
 ## Funcions
 
 - Selector de cinc plantes amb els plànols nets proporcionats.
-- Submenú per planta amb els 39 espais de `Rooms.ods` i una entrada de lavabos a cadascuna de les cinc plantes.
-- Fitxes desplegables amb tots els centres i usos, diferenciant entre setmana i caps de setmana.
+- Submenú per planta amb els 39 espais de `Rooms.ods`, 15 espais comuns addicionals i una entrada de lavabos a cadascuna de les cinc plantes.
+- Fitxes desplegables amb els centres i usos, diferenciant entre setmana i caps de setmana. Oficines, Menjador, Sala d’estudi i els espais comuns afegits tenen una icona pròpia i el mateix estil que els lavabos, sense informació dels centres ni usos acadèmics.
 - Ampliació amb botons, roda del ratolí i gest de dos dits.
 - Desplaçament amb ratolí, dit o teclat; botó per encaixar el plànol.
 - Pantalla completa, amb alternativa per als navegadors que no admeten aquesta funció.
@@ -49,9 +49,11 @@ python scripts/import_rooms.py
 
 L’importador genera `src/rooms.js` sense modificar el full. Conserva totes les assignacions de les columnes ENTI i EUSES (entre setmana) i ISEP i FISIOFOCUS (caps de setmana), i tradueix els textos al català. Manté els codis i les denominacions Artist, Developer i E Leader. Els camps buits no es converteixen en assignacions. Si apareix una descripció nova, cal afegir-ne la traducció a l’importador abans de regenerar les dades.
 
-La importació actual conté 39 espais: 7 a la planta baixa, 10 a la primera, 10 a la segona, 7 a la tercera i 5 a la quarta. La fila 41 no té ni codi ni planta; es conserva al full i es registra a `roomImport.skippedRows`, però no es mostra en cap planta. `src/floors.js` afegeix una entrada de lavabos a cada planta, sense atribuir-li un centre no indicat.
+La importació actual conté 39 espais: 7 a la planta baixa, 10 a la primera, 10 a la segona, 7 a la tercera i 5 a la quarta. La fila 41 no té ni codi ni planta; es conserva al full i es registra a `roomImport.skippedRows`, però no es mostra en cap planta.
 
-En seleccionar una planta es desplega la seva llista. Cada espai permet consultar els centres i usos; «Espais de la planta» permet plegar la llista. Al mòbil, el submenú apareix sota els cinc selectors, amb desplaçament propi per mantenir el mapa a l’abast. La publicació continua sent estàtica i no necessita Python ni el full de càlcul al navegador.
+`src/floors.js` afegeix Lavabos, Ascensors i Escales a cada planta; Vestíbul, Entrada i Sala de tutories a la planta baixa; i Sala de vending i Terrassa a la quarta planta. També configura Oficines, Menjador i Sala d’estudi perquè no mostrin centres ni usos. Aquestes personalitzacions es mantenen quan es torna a importar el full. En total hi ha 59 entrades: 13, 13, 13, 10 i 10, de la planta baixa a la quarta.
+
+En seleccionar una planta es desplega la seva llista. Els espais amb informació d’ús es poden desplegar per consultar-la; «Espais de la planta» permet plegar la llista. Al mòbil, el submenú apareix sota els cinc selectors, amb desplaçament propi per mantenir el mapa a l’abast. La publicació continua sent estàtica i no necessita Python ni el full de càlcul al navegador.
 
 ## Afegir ubicacions dels espais
 
