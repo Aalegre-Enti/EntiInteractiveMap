@@ -1,5 +1,6 @@
 import { floors } from './floors.js';
 import { createRoomSubmenu } from './room-menu.js';
+import { selectionHash, selectionFromHash } from './selection-url.js';
 import { MIN_ZOOM, MAX_ZOOM, fitScale, constrainOffset, zoomAround } from './viewport.js';
 
 const $ = (id) => document.getElementById(id);
@@ -23,6 +24,8 @@ let resizeFrame = 0;
 let currentFloorLoad = Promise.resolve();
 let roomSelectionVersion = 0;
 let selectedRoom = null;
+let urlRestoreVersion = 0;
+let lastHandledHash;
 
 function icon(name) {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -123,7 +126,18 @@ function zoomTo(zoom, x = viewport.clientWidth / 2, y = viewport.clientHeight / 
   renderView();
 }
 
-function clearRoomHighlight() {
+function updateSelectionUrl(floor, room = null) {
+  // An interaction supersedes any link that is still waiting for its floor image.
+  urlRestoreVersion++;
+  const hash = selectionHash(floor, room);
+  lastHandledHash = hash;
+  if (location.hash === hash) return;
+  const url = new URL(location.href);
+  url.hash = hash;
+  history.pushState(null, '', url);
+}
+
+function clearRoomSelection({ updateUrl = false, closeInformation = true } = {}) {
   roomSelectionVersion++;
   selectedRoom = null;
   roomOverlay.hidden = true;
@@ -131,17 +145,22 @@ function clearRoomHighlight() {
   roomOverlay.style.removeProperty('--room-mask');
   delete roomOverlay.dataset.roomId;
   $('map-floor-name').textContent = activeFloor.name;
+  document.title = `${activeFloor.name} · Mapa de l’edifici`;
   $('overlay-notice').hidden = true;
   for (const item of document.querySelectorAll('.room-list-item.is-selected')) item.classList.remove('is-selected');
   for (const control of document.querySelectorAll('[data-room-select]')) {
     control.removeAttribute('aria-current');
     if (control.tagName === 'BUTTON') control.setAttribute('aria-pressed', 'false');
   }
+  if (closeInformation) {
+    for (const details of document.querySelectorAll('.room-entry[open]')) details.open = false;
+  }
+  if (updateUrl) updateSelectionUrl(activeFloor);
 }
 
-async function selectRoom(floor, room) {
-  if (activeFloor.id !== floor.id || !room.overlay) return;
-  clearRoomHighlight();
+async function selectRoom(floor, room, { updateUrl = true, reveal = false } = {}) {
+  if (activeFloor.id !== floor.id) return;
+  clearRoomSelection({ closeInformation: false });
   hideDetails();
   const version = roomSelectionVersion;
   selectedRoom = room;
@@ -152,6 +171,17 @@ async function selectRoom(floor, room) {
   control?.closest('.room-list-item').classList.add('is-selected');
   control?.setAttribute('aria-current', 'true');
   if (control?.tagName === 'BUTTON') control.setAttribute('aria-pressed', 'true');
+  if (reveal) {
+    $(`floor-rooms-${floor.id}`).open = true;
+    const details = control?.closest('.room-entry');
+    if (details) details.open = true;
+    control?.scrollIntoView({ block: 'nearest', behavior: 'instant' });
+  }
+  $('map-floor-name').textContent = room.name;
+  document.title = `${room.name} · ${floor.name} · Mapa de l’edifici`;
+  if (updateUrl) updateSelectionUrl(floor, room);
+  announce(`${room.name}. ${floor.name}. Espai seleccionat.`);
+  if (!room.overlay) return;
   const isCurrent = () => version === roomSelectionVersion && activeFloor.id === floor.id;
   try {
     await currentFloorLoad;
@@ -178,7 +208,6 @@ async function selectRoom(floor, room) {
     if (compact.matches) panel.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
   } catch {
     if (!isCurrent()) return;
-    clearRoomHighlight();
     $('overlay-notice').textContent = `No s’ha pogut ressaltar ${room.name}. Torna a seleccionar l’espai per provar-ho de nou.`;
     $('overlay-notice').hidden = false;
   }
@@ -213,7 +242,7 @@ function renderPoints() {
     button.setAttribute('aria-controls', 'point-details');
     button.append(icon('pin'));
     button.addEventListener('click', () => {
-      clearRoomHighlight();
+      clearRoomSelection({ updateUrl: true });
       hideDetails();
       activeMarker = button;
       button.setAttribute('aria-pressed', 'true');
@@ -249,10 +278,14 @@ function setLoadingState(state) {
 async function selectFloor(id, { updateUrl = true, force = false } = {}) {
   const floor = floors.find((item) => item.id === String(id));
   if (!floor) return false;
-  if (activeFloor.id === floor.id && ready && !force) return true;
+  if (activeFloor.id === floor.id && ready && !force) {
+    clearRoomSelection({ updateUrl });
+    hideDetails();
+    return true;
+  }
   const version = ++loadVersion;
   activeFloor = floor;
-  clearRoomHighlight();
+  clearRoomSelection();
   hideDetails();
   pointers.clear();
   lastGesture = null;
@@ -278,11 +311,7 @@ async function selectFloor(id, { updateUrl = true, force = false } = {}) {
     if (buttonRect.top < sidebarRect.top) sidebar.scrollTop += buttonRect.top - sidebarRect.top - 12;
     else if (buttonRect.bottom > sidebarRect.bottom) sidebar.scrollTop += buttonRect.bottom - sidebarRect.bottom + 12;
   });
-  if (updateUrl) {
-    const url = new URL(location.href);
-    url.hash = `planta-${floor.id}`;
-    history.replaceState(null, '', url);
-  }
+  if (updateUrl) updateSelectionUrl(floor);
   setLoadingState('loading');
   const preload = new Image();
   try {
@@ -315,8 +344,13 @@ async function selectFloor(id, { updateUrl = true, force = false } = {}) {
 $('zoom-in').addEventListener('click', () => zoomTo(view.zoom * 1.25));
 $('zoom-out').addEventListener('click', () => zoomTo(view.zoom / 1.25));
 $('reset-view').addEventListener('click', () => { resetView(); announce('Es mostra el plànol sencer.'); });
-$('retry-button').addEventListener('click', () => selectFloor(activeFloor.id, { force: true }));
+$('retry-button').addEventListener('click', () => restoreSelectionFromUrl({ force: true }));
 $('close-details').addEventListener('click', () => hideDetails(true));
+document.querySelector('.skip-link').addEventListener('click', (event) => {
+  event.preventDefault();
+  viewport.focus({ preventScroll: true });
+  viewport.scrollIntoView({ block: 'nearest' });
+});
 
 viewport.addEventListener('wheel', (event) => {
   // Ctrl/Cmd + wheel remains the browser's own accessibility zoom.
@@ -430,7 +464,7 @@ $('fullscreen-button').addEventListener('click', async () => {
 document.addEventListener('fullscreenchange', updateExpandedButton);
 document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape') return;
-  if (selectedRoom) clearRoomHighlight();
+  if (selectedRoom) clearRoomSelection({ updateUrl: true });
   if (!$('point-details').hidden) hideDetails(true);
   if (fallbackExpanded) setFallbackExpanded(false);
 });
@@ -444,14 +478,22 @@ help.addEventListener('click', (event) => {
   if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) help.close();
 });
 
-function floorFromHash() {
-  const id = location.hash.match(/^#planta-([0-4])$/)?.[1];
-  return id ?? '0';
+async function restoreSelectionFromUrl({ initial = false, force = false } = {}) {
+  const hash = location.hash;
+  // Back/forward can emit both popstate and hashchange for the same URL.
+  if (!force && hash === lastHandledHash) return;
+  lastHandledHash = hash;
+  const version = ++urlRestoreVersion;
+  const selection = selectionFromHash(hash) ?? (initial ? selectionFromHash('') : null);
+  if (!selection) return; // Preserve regular anchors, such as the skip-to-map link.
+  const { floor, room } = selection;
+  const loaded = await selectFloor(floor.id, { updateUrl: false, force });
+  if (!loaded || version !== urlRestoreVersion) return;
+  if (room) await selectRoom(floor, room, { updateUrl: false, reveal: true });
 }
-window.addEventListener('hashchange', () => {
-  if (/^#planta-[0-4]$/.test(location.hash) || !location.hash) selectFloor(floorFromHash(), { updateUrl: false });
-});
-selectFloor(floorFromHash(), { updateUrl: false });
+window.addEventListener('hashchange', () => restoreSelectionFromUrl());
+window.addEventListener('popstate', () => restoreSelectionFromUrl());
+restoreSelectionFromUrl({ initial: true });
 
 // Optional browser integration; uses exactly the same action as the floor buttons.
 if (document.modelContext?.registerTool) {
