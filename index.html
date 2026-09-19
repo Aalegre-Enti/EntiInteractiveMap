@@ -35,6 +35,7 @@
       <symbol id="icon-terrace" viewBox="0 0 24 24"><path d="M3 10a9 9 0 0 1 18 0H3Zm9-9v20M7 21h10M5 15v6M19 15v6"/></symbol>
       <symbol id="icon-elevator" viewBox="0 0 24 24"><rect x="3" y="2" width="18" height="20" rx="2"/><path d="M7 18V7m-2 2 2-2 2 2m8-3v11m-2-2 2 2 2-2"/></symbol>
       <symbol id="icon-stairs" viewBox="0 0 24 24"><path d="M3 21h6v-6h6V9h6V3M3 13V5h8M3 5l8 8"/></symbol>
+      <symbol id="icon-auditorium" viewBox="0 0 24 24"><path d="M3 3h18v9H3zM7 16v5M17 16v5M3 21h8m2 0h8"/><rect x="4" y="15" width="6" height="3" rx="1"/><rect x="14" y="15" width="6" height="3" rx="1"/></symbol>
     </svg>
 
     <a class="skip-link" href="#map-viewport">Ves al plànol</a>
@@ -74,12 +75,14 @@
           <div id="map-viewport" class="map-viewport" tabindex="0" role="region" aria-label="Plànol interactiu de la planta baixa" aria-describedby="map-keyboard-help" aria-busy="true">
             <div id="map-transform" class="map-transform" hidden>
               <img id="floor-image" class="floor-image" alt="Plànol de la planta baixa" draggable="false" />
+              <div id="room-overlay" class="room-overlay" aria-hidden="true" hidden></div>
               <svg id="area-overlay" class="area-overlay" aria-hidden="true"></svg>
               <div id="marker-layer" class="marker-layer"></div>
             </div>
           </div>
           <p id="map-keyboard-help" class="sr-only">Fes servir les fletxes per moure el plànol, les tecles més i menys per ampliar o reduir, i la tecla Inici o el zero per veure el plànol sencer.</p>
           <div id="map-message" class="map-message" role="status"><span class="loading-spinner" aria-hidden="true"></span><p id="map-message-text">S’està carregant el plànol…</p><button id="retry-button" class="primary-button" type="button" hidden>Torna-ho a provar</button></div>
+          <p id="overlay-notice" class="overlay-notice" role="status" hidden></p>
           <div class="map-bottom-bar">
             <p class="map-hint"><svg class="icon"><use href="#icon-move"/></svg><span id="map-hint-text">Arrossega per moure’t</span></p>
             <div class="map-controls" role="group" aria-label="Controls del plànol">
@@ -104,7 +107,7 @@
       <span class="dialog-icon"><svg class="icon"><use href="#icon-map"/></svg></span>
       <p class="eyebrow">UNA MICA D’AJUDA</p><h2 id="help-title">Mou-te pel mapa</h2><p class="dialog-intro">Tot el que necessites per explorar l’edifici.</p>
       <ol class="help-steps">
-        <li><span>1</span><div><h3>Tria una planta</h3><p>Prem una de les cinc plantes per veure’n el plànol i la llista d’espais. Desplega un espai per consultar els centres que l’utilitzen i els usos entre setmana i els caps de setmana.</p></div></li>
+        <li><span>1</span><div><h3>Tria una planta i un espai</h3><p>Prem una planta per veure’n el plànol i la llista d’espais. A la planta baixa, selecciona un espai per ressaltar-lo en lila. El ressaltat polsa uns segons i després queda fix. Les aules també mostren els centres i usos.</p></div></li>
         <li><span>2</span><div><h3>Acosta’t als detalls</h3><p>Fes servir els botons + i − o la roda del ratolí. Al mòbil, separa dos dits per ampliar.</p></div></li>
         <li><span>3</span><div><h3>Explora el plànol</h3><p>Arrossega’l amb el ratolí o amb un dit. Prem «Encaixa» per tornar a veure’l sencer.</p></div></li>
       </ol>

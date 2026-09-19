@@ -6,6 +6,7 @@ const $ = (id) => document.getElementById(id);
 const viewport = $('map-viewport');
 const transform = $('map-transform');
 const floorImage = $('floor-image');
+const roomOverlay = $('room-overlay');
 const panel = $('map-panel');
 const navigation = $('floor-navigation');
 const help = $('help-dialog');
@@ -19,6 +20,9 @@ let lastGesture = null;
 let activeMarker = null;
 let fallbackExpanded = false;
 let resizeFrame = 0;
+let currentFloorLoad = Promise.resolve();
+let roomSelectionVersion = 0;
+let selectedRoom = null;
 
 function icon(name) {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -59,7 +63,7 @@ for (const floor of floors) {
   const arrow = icon('arrow');
   arrow.classList.add('floor-chevron');
   button.append(number, label, arrow);
-  const submenu = createRoomSubmenu(floor);
+  const submenu = createRoomSubmenu(floor, { onSelect: selectRoom });
   submenu.hidden = true;
   button.addEventListener('click', () => {
     if (activeFloor.id === floor.id) {
@@ -119,6 +123,68 @@ function zoomTo(zoom, x = viewport.clientWidth / 2, y = viewport.clientHeight / 
   renderView();
 }
 
+function clearRoomHighlight() {
+  roomSelectionVersion++;
+  selectedRoom = null;
+  roomOverlay.hidden = true;
+  roomOverlay.classList.remove('is-pulsing');
+  roomOverlay.style.removeProperty('--room-mask');
+  delete roomOverlay.dataset.roomId;
+  $('map-floor-name').textContent = activeFloor.name;
+  $('overlay-notice').hidden = true;
+  for (const item of document.querySelectorAll('.room-list-item.is-selected')) item.classList.remove('is-selected');
+  for (const control of document.querySelectorAll('[data-room-select]')) {
+    control.removeAttribute('aria-current');
+    if (control.tagName === 'BUTTON') control.setAttribute('aria-pressed', 'false');
+  }
+}
+
+async function selectRoom(floor, room) {
+  if (activeFloor.id !== floor.id || !room.overlay) return;
+  clearRoomHighlight();
+  hideDetails();
+  const version = roomSelectionVersion;
+  selectedRoom = room;
+  const control = [...document.querySelectorAll('[data-room-select]')].find((element) => element.dataset.roomSelect === room.id);
+  control?.closest('.room-list-item').classList.add('is-selected');
+  control?.setAttribute('aria-current', 'true');
+  if (control?.tagName === 'BUTTON') control.setAttribute('aria-pressed', 'true');
+  const isCurrent = () => version === roomSelectionVersion && activeFloor.id === floor.id;
+  try {
+    await currentFloorLoad;
+    if (!isCurrent()) return;
+    if (!ready) throw new Error('El plànol no està disponible.');
+    const url = new URL(room.overlay, document.baseURI).href;
+    const mask = new Image();
+    await new Promise((resolve, reject) => {
+      mask.onload = resolve;
+      mask.onerror = reject;
+      mask.src = url;
+    });
+    if (!isCurrent()) return;
+    if (mask.naturalWidth !== floor.width || mask.naturalHeight !== floor.height) throw new Error('La capa no coincideix amb el plànol.');
+    resetView();
+    roomOverlay.style.setProperty('--room-mask', `url("${url}")`);
+    roomOverlay.dataset.roomId = room.id;
+    roomOverlay.hidden = false;
+    // Restart even when the same cached room is selected twice in one frame.
+    void roomOverlay.offsetWidth;
+    roomOverlay.classList.add('is-pulsing');
+    $('map-floor-name').textContent = room.name;
+    announce(`${room.name}. Espai ressaltat al plànol.`);
+    if (compact.matches) panel.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
+  } catch {
+    if (!isCurrent()) return;
+    clearRoomHighlight();
+    $('overlay-notice').textContent = `No s’ha pogut ressaltar ${room.name}. Torna a seleccionar l’espai per provar-ho de nou.`;
+    $('overlay-notice').hidden = false;
+  }
+}
+
+roomOverlay.addEventListener('animationend', (event) => {
+  if (event.animationName === 'room-highlight-pulse') roomOverlay.classList.remove('is-pulsing');
+});
+
 function hideDetails(returnFocus = false) {
   $('point-details').hidden = true;
   $('area-overlay').replaceChildren();
@@ -144,6 +210,7 @@ function renderPoints() {
     button.setAttribute('aria-controls', 'point-details');
     button.append(icon('pin'));
     button.addEventListener('click', () => {
+      clearRoomHighlight();
       hideDetails();
       activeMarker = button;
       button.setAttribute('aria-pressed', 'true');
@@ -182,6 +249,7 @@ async function selectFloor(id, { updateUrl = true, force = false } = {}) {
   if (activeFloor.id === floor.id && ready && !force) return true;
   const version = ++loadVersion;
   activeFloor = floor;
+  clearRoomHighlight();
   hideDetails();
   pointers.clear();
   lastGesture = null;
@@ -215,11 +283,12 @@ async function selectFloor(id, { updateUrl = true, force = false } = {}) {
   setLoadingState('loading');
   const preload = new Image();
   try {
-    await new Promise((resolve, reject) => {
+    currentFloorLoad = new Promise((resolve, reject) => {
       preload.onload = resolve;
       preload.onerror = reject;
       preload.src = floor.image;
     });
+    await currentFloorLoad;
     if (version !== loadVersion) return false;
     floorImage.src = floor.image;
     floorImage.alt = `Plànol: ${floor.name.toLocaleLowerCase('ca')}`;
@@ -358,6 +427,7 @@ $('fullscreen-button').addEventListener('click', async () => {
 document.addEventListener('fullscreenchange', updateExpandedButton);
 document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape') return;
+  if (selectedRoom) clearRoomHighlight();
   if (!$('point-details').hidden) hideDetails(true);
   if (fallbackExpanded) setFallbackExpanded(false);
 });

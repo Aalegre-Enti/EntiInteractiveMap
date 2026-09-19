@@ -4,6 +4,7 @@ const periods = [
 ];
 
 const serviceIcons = {
+  AUDITORI: 'auditorium',
   OFICINES: 'office',
   MENJADOR: 'dining',
   'SALA ESTUDI': 'study',
@@ -23,7 +24,7 @@ function element(tag, className, text) {
   return node;
 }
 
-export function createRoomSubmenu(floor) {
+export function createRoomSubmenu(floor, { onSelect = () => {} } = {}) {
   const submenu = element('details', 'room-submenu');
   submenu.id = `floor-rooms-${floor.id}`;
   submenu.dataset.floorRooms = floor.id;
@@ -38,7 +39,18 @@ export function createRoomSubmenu(floor) {
     item.dataset.roomId = room.id;
     if (room.kind === 'bathroom' || room.showUsage === false) {
       const isBathroom = room.kind === 'bathroom';
-      item.classList.add('service-entry', isBathroom ? 'bathroom-entry' : 'common-space-entry');
+      item.classList.add(isBathroom ? 'bathroom-entry' : 'common-space-entry');
+      const service = room.overlay ? element('button', 'service-entry room-select-button') : item;
+      service.classList.add('service-entry');
+      if (room.overlay) {
+        service.type = 'button';
+        service.setAttribute('aria-label', `Mostra ${room.name} al plànol`);
+        service.setAttribute('aria-pressed', 'false');
+        service.setAttribute('aria-controls', 'room-overlay');
+        service.dataset.roomSelect = room.id;
+        service.addEventListener('click', () => onSelect(floor, room));
+        item.append(service);
+      }
       const text = element('div', '');
       text.append(element('span', 'room-name', room.name), element('span', 'room-centres', isBathroom ? 'Serveis' : 'Espai comú'));
       const badge = element('span', 'service-badge');
@@ -54,7 +66,7 @@ export function createRoomSubmenu(floor) {
         svg.append(use);
         badge.append(svg);
       }
-      item.append(text, badge);
+      service.append(text, badge);
     } else {
       const details = element('details', 'room-entry');
       const roomSummary = element('summary', 'room-summary');
@@ -64,6 +76,11 @@ export function createRoomSubmenu(floor) {
       const chevron = element('span', 'disclosure-chevron');
       chevron.setAttribute('aria-hidden', 'true');
       roomSummary.append(text, chevron);
+      if (room.overlay) {
+        roomSummary.dataset.roomSelect = room.id;
+        roomSummary.setAttribute('aria-controls', 'room-overlay');
+        roomSummary.addEventListener('click', () => onSelect(floor, room));
+      }
       const content = element('div', 'room-uses');
       for (const period of periods) {
         const uses = room.uses.filter((use) => use.period === period.id);
