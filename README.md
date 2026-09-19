@@ -1,0 +1,63 @@
+# Mapa interactiu de l’edifici
+
+Aplicació estàtica en català per explorar els cinc nivells de l’edifici. Funciona en ordinadors, tauletes i mòbils, sense serveis externs ni dependències de producció.
+
+## Funcions
+
+- Selector de cinc plantes amb els plànols nets proporcionats.
+- Ampliació amb botons, roda del ratolí i gest de dos dits.
+- Desplaçament amb ratolí, dit o teclat; botó per encaixar el plànol.
+- Pantalla completa, amb alternativa per als navegadors que no admeten aquesta funció.
+- Enllaços a cada planta, com ara `#planta-3`.
+- Controls accessibles, ajuda en català i respecte per la preferència de moviment reduït.
+- Capa de punts i àrees ressaltades preparada per afegir-hi informació. De moment, no es publica cap dada d’espais.
+
+## Previsualització local
+
+Amb Node.js 18 o posterior:
+
+```sh
+npm run dev
+```
+
+Obre `http://127.0.0.1:4173`. No cal instal·lar paquets. Si no tens npm disponible, executa `node scripts/serve.mjs`. També es pot utilitzar qualsevol servidor de fitxers estàtics; cal servir la carpeta per HTTP, ja que el navegador no carrega els mòduls JavaScript si s’obre `index.html` directament com a fitxer.
+
+```sh
+npm test
+```
+
+Les proves comproven els cinc fitxers de plànol, les dimensions i els càlculs d’ampliació i desplaçament.
+
+## Publicació a GitHub Pages
+
+1. Puja els fitxers al repositori de GitHub, incloent-hi `img`, `src`, `index.html`, `styles.css`, `favicon.svg` i `.nojekyll`.
+2. A **Settings → Pages → Build and deployment**, tria **Deploy from a branch**.
+3. Selecciona la branca que conté l’aplicació i la carpeta **/ (root)**. Desa els canvis.
+4. GitHub mostrarà l’adreça del lloc quan acabi la publicació.
+
+No hi ha cap pas de compilació. Totes les rutes són relatives, de manera que l’app funciona tant en un domini propi com en el subdirectori d’un repositori de GitHub Pages. No cal cap servidor Node.js a producció. La configuració de Pages i la publicació al repositori s’han de fer a GitHub; no les activa la previsualització local.
+
+## Afegir informació dels espais
+
+Les plantes es defineixen a `src/floors.js`. Cada planta té un camp `points`, actualment buit. Quan es disposi de la informació real, s’hi poden afegir entrades com aquesta (coordenades només d’exemple):
+
+```js
+points: [
+  {
+    id: 'identificador-espai',
+    title: 'Nom de l’espai',
+    description: 'Informació de l’espai en català.',
+    x: 50,
+    y: 40,
+    polygon: [[40, 30], [60, 30], [60, 50], [40, 50]],
+  },
+],
+```
+
+`x` i `y` indiquen la posició del marcador com a percentatges de l’amplada i de l’alçada de la imatge original. L’origen és la cantonada superior esquerra. `polygon` és opcional i permet ressaltar l’àrea de l’espai quan es prem el marcador. El marcador i la zona segueixen el plànol en ampliar o desplaçar-lo; la fitxa es pot tancar amb el seu botó o amb la tecla Esc. Els textos es mostren com a text pla.
+
+Els plànols originals i els retalls d’espais es conserven a `img` per a futures ampliacions. L’aplicació actual utilitza les cinc imatges de `img/CleanedFloorplan`.
+
+## Estil
+
+El color principal és `#94167f`, definit a la variable `--brand` de `styles.css`. No es carreguen tipografies, recursos ni serveis de tercers.
