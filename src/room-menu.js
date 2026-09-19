@@ -69,6 +69,7 @@ export function createRoomSubmenu(floor, { onSelect = () => {} } = {}) {
       service.append(text, badge);
     } else {
       const details = element('details', 'room-entry');
+      details.name = 'room-information';
       const roomSummary = element('summary', 'room-summary');
       const text = element('span', 'room-summary-text');
       text.append(element('span', 'room-name', room.name));

@@ -146,6 +146,9 @@ async function selectRoom(floor, room) {
   const version = roomSelectionVersion;
   selectedRoom = room;
   const control = [...document.querySelectorAll('[data-room-select]')].find((element) => element.dataset.roomSelect === room.id);
+  for (const details of document.querySelectorAll('.room-entry[open]')) {
+    if (!details.contains(control)) details.open = false;
+  }
   control?.closest('.room-list-item').classList.add('is-selected');
   control?.setAttribute('aria-current', 'true');
   if (control?.tagName === 'BUTTON') control.setAttribute('aria-pressed', 'true');
@@ -264,8 +267,8 @@ async function selectFloor(id, { updateUrl = true, force = false } = {}) {
     const selected = button.dataset.floor === floor.id;
     const submenu = $(`floor-rooms-${button.dataset.floor}`);
     submenu.hidden = !selected;
-    submenu.open = selected;
-    button.setAttribute('aria-expanded', String(selected));
+    submenu.open = selected && !compact.matches;
+    button.setAttribute('aria-expanded', String(submenu.open));
   }
   // Only scroll when the selected floor button is outside the sidebar view.
   if (!compact.matches) requestAnimationFrame(() => {

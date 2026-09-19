@@ -54,7 +54,7 @@ La importació actual conté 39 espais: 7 a la planta baixa, 10 a la primera, 10
 
 `src/floors.js` afegeix Lavabos, Ascensors i Escales a cada planta; Auditori, Vestíbul, Entrada i Sala de tutories a la planta baixa; i Sala de vending i Terrassa a la quarta planta. També configura Oficines, Menjador i Sala d’estudi perquè no mostrin centres ni usos. Aquestes personalitzacions es mantenen quan es torna a importar el full. En total hi ha 60 entrades: 14, 13, 13, 10 i 10, de la planta baixa a la quarta.
 
-En seleccionar una planta es desplega la seva llista. Els espais amb informació d’ús es poden desplegar per consultar-la; «Espais de la planta» permet plegar la llista. Al mòbil, el submenú apareix sota els cinc selectors, amb desplaçament propi per mantenir el mapa a l’abast. La publicació continua sent estàtica i no necessita Python ni el full de càlcul al navegador.
+En seleccionar una planta es desplega la seva llista a l’escriptori. Al mòbil, la llista comença plegada per deixar més espai al mapa; es pot obrir amb «Espais de la planta» o prement de nou la planta activa. Les llistes tenen desplaçament propi. Els espais amb informació d’ús es poden desplegar per consultar-la; només hi ha una fitxa d’informació oberta a la vegada. Les capçaleres, els marges i els controls són compactes, amb botons d’almenys 44 píxels d’alçada. La publicació continua sent estàtica i no necessita Python ni el full de càlcul al navegador.
 
 ## Afegir ubicacions dels espais
 
