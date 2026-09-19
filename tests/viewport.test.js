@@ -13,6 +13,24 @@ test('les cinc imatges existeixen i les dimensions coincideixen amb els plànols
   }
 });
 
+test('els 14 espais de la planta baixa tenen capes transparents alineades amb el plànol', async () => {
+  const floor = floors.find((item) => item.id === '0');
+  assert.equal(floor.rooms.length, 14);
+  assert.equal(new Set(floor.rooms.map((room) => room.overlay)).size, 14);
+  for (const room of floor.rooms) {
+    assert.ok(room.overlay, room.name);
+    const data = await readFile(new URL(`../${room.overlay}`, import.meta.url));
+    assert.equal(data.readUInt32BE(16), floor.width, room.name);
+    assert.equal(data.readUInt32BE(20), floor.height, room.name);
+    assert.equal(data[25], 6, `${room.name}: PNG amb canal alfa`);
+  }
+  const auditorium = floor.rooms.find((room) => room.code === 'AUDITORI');
+  assert.equal(auditorium.kind, 'common');
+  assert.equal(auditorium.showUsage, false);
+  assert.deepEqual(auditorium.uses, []);
+  assert.ok(floors.slice(1).every((otherFloor) => otherFloor.rooms.every((room) => !room.overlay)));
+});
+
 test('el plànol sencer cap en pantalles verticals i horitzontals', () => {
   for (const [width, height] of [[280, 300], [360, 640], [1000, 600]]) {
     for (const floor of floors) {
