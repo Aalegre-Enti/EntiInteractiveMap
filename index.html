@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#94167f" />
+    <meta name="description" content="Explora els plànols de les cinc plantes de l’edifici. Tria una planta, amplia el mapa i orienta’t al teu ritme." />
+    <title>Mapa de l’edifici · Plànol interactiu</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preload" as="image" href="./img/CleanedFloorplan/Level0.png" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="icon-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z"/><path d="M9 3v15M15 6v15"/></symbol>
+      <symbol id="icon-layers" viewBox="0 0 24 24"><path d="m12 3 10 5-10 5L2 8l10-5Zm-10 9 10 5 10-5M2 16l10 5 10-5"/></symbol>
+      <symbol id="icon-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 8.5a2.5 2.5 0 0 1 4.9.7c0 1.8-2.5 2-2.5 3.8M12 16h.01"/></symbol>
+      <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="icon-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+      <symbol id="icon-fit" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/><rect x="8" y="8" width="8" height="8" rx="1"/></symbol>
+      <symbol id="icon-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M3 3l6 6m12-6-6 6M3 21l6-6m12 6-6-6"/></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+      <symbol id="icon-move" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M9 6l3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3m12-6 3 3-3 3"/></symbol>
+      <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
+      <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    </svg>
+
+    <a class="skip-link" href="#map-viewport">Ves al plànol</a>
+    <div class="app-shell">
+      <header class="site-header">
+        <a class="brand" href="./" aria-label="Mapa de l’edifici, inici">
+          <span class="brand-mark"><svg class="icon"><use href="#icon-map"/></svg></span>
+          <span>Mapa de l’edifici<span class="brand-caption">PLÀNOL INTERACTIU</span></span>
+        </a>
+        <button id="help-button" class="help-button" type="button"><svg class="icon"><use href="#icon-help"/></svg><span>Com funciona?</span></button>
+      </header>
+
+      <aside class="sidebar" aria-label="Selecció de planta">
+        <div class="floor-section">
+          <div class="section-heading"><h2>Les plantes</h2><span class="floor-count">5 nivells</span></div>
+          <p class="sidebar-intro">Tria la planta que vols explorar.</p>
+          <nav id="floor-navigation" class="floor-navigation" aria-label="Plantes de l’edifici"></nav>
+        </div>
+        <div class="sidebar-guide">
+          <span class="guide-icon"><svg class="icon"><use href="#icon-move"/></svg></span>
+          <h2>Explora al teu ritme</h2>
+          <p>Arrossega el plànol per moure’t i amplia’l per veure’n els detalls.</p>
+          <button id="guide-button" class="text-button" type="button">Ajuda amb el mapa <svg class="icon"><use href="#icon-arrow"/></svg></button>
+        </div>
+        <div class="sidebar-footer"><svg class="icon"><use href="#icon-layers"/></svg><span>Un edifici, cinc plantes</span></div>
+      </aside>
+
+      <main id="main-content" class="main-content">
+        <div class="map-heading">
+          <div><p class="eyebrow">EXPLORA L’EDIFICI</p><h1 id="floor-title">Planta baixa</h1></div>
+          <span class="view-label"><svg class="icon"><use href="#icon-layers"/></svg>Vista del plànol</span>
+        </div>
+        <section id="map-panel" class="map-panel" aria-labelledby="floor-title">
+          <div class="map-floor-label" aria-hidden="true"><span id="map-floor-code">PB</span><span id="map-floor-name">Planta baixa</span></div>
+          <button id="fullscreen-button" class="icon-button fullscreen-button" type="button" aria-label="Amplia el mapa a pantalla completa" title="Pantalla completa"><svg class="icon"><use href="#icon-expand"/></svg></button>
+          <div id="map-viewport" class="map-viewport" tabindex="0" role="region" aria-label="Plànol interactiu de la planta baixa" aria-describedby="map-keyboard-help" aria-busy="true">
+            <div id="map-transform" class="map-transform" hidden>
+              <img id="floor-image" class="floor-image" alt="Plànol de la planta baixa" draggable="false" />
+              <svg id="area-overlay" class="area-overlay" aria-hidden="true"></svg>
+              <div id="marker-layer" class="marker-layer"></div>
+            </div>
+          </div>
+          <p id="map-keyboard-help" class="sr-only">Fes servir les fletxes per moure el plànol, les tecles més i menys per ampliar o reduir, i la tecla Inici o el zero per veure el plànol sencer.</p>
+          <div id="map-message" class="map-message" role="status"><span class="loading-spinner" aria-hidden="true"></span><p id="map-message-text">S’està carregant el plànol…</p><button id="retry-button" class="primary-button" type="button" hidden>Torna-ho a provar</button></div>
+          <div class="map-bottom-bar">
+            <p class="map-hint"><svg class="icon"><use href="#icon-move"/></svg><span id="map-hint-text">Arrossega per moure’t</span></p>
+            <div class="map-controls" role="group" aria-label="Controls del plànol">
+              <button id="zoom-out" class="icon-button" type="button" aria-label="Redueix el plànol" title="Redueix (−)"><svg class="icon"><use href="#icon-minus"/></svg></button>
+              <output id="zoom-level" class="zoom-level" aria-label="Nivell d’ampliació">100 %</output>
+              <button id="zoom-in" class="icon-button" type="button" aria-label="Amplia el plànol" title="Amplia (+)"><svg class="icon"><use href="#icon-plus"/></svg></button>
+              <span class="control-divider"></span>
+              <button id="reset-view" class="fit-button" type="button" aria-label="Mostra el plànol sencer" title="Mostra el plànol sencer (0)"><svg class="icon"><use href="#icon-fit"/></svg><span>Encaixa</span></button>
+            </div>
+          </div>
+          <aside id="point-details" class="point-details" aria-labelledby="point-title" hidden>
+            <button id="close-details" class="icon-button close-details" type="button" aria-label="Tanca la informació de l’espai"><svg class="icon"><use href="#icon-close"/></svg></button>
+            <p class="eyebrow">INFORMACIÓ DE L’ESPAI</p><h2 id="point-title"></h2><p id="point-description"></p>
+          </aside>
+        </section>
+        <footer class="map-footer"><span><span class="legend-swatch"></span>Plànol de la planta</span><span class="footer-tip">Apropa’t per descobrir els detalls.</span></footer>
+      </main>
+    </div>
+
+    <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title">
+      <form method="dialog"><button class="icon-button dialog-close" aria-label="Tanca l’ajuda"><svg class="icon"><use href="#icon-close"/></svg></button></form>
+      <span class="dialog-icon"><svg class="icon"><use href="#icon-map"/></svg></span>
+      <p class="eyebrow">UNA MICA D’AJUDA</p><h2 id="help-title">Mou-te pel mapa</h2><p class="dialog-intro">Tot el que necessites per explorar l’edifici.</p>
+      <ol class="help-steps">
+        <li><span>1</span><div><h3>Tria una planta</h3><p>Prem una de les cinc plantes per veure’n el plànol.</p></div></li>
+        <li><span>2</span><div><h3>Acosta’t als detalls</h3><p>Fes servir els botons + i − o la roda del ratolí. Al mòbil, separa dos dits per ampliar.</p></div></li>
+        <li><span>3</span><div><h3>Explora el plànol</h3><p>Arrossega’l amb el ratolí o amb un dit. Prem «Encaixa» per tornar a veure’l sencer.</p></div></li>
+      </ol>
+      <div class="keyboard-note"><svg class="icon"><use href="#icon-info"/></svg><p><strong>També amb el teclat.</strong> Amb el plànol seleccionat, utilitza les fletxes per moure’t, + i − per ampliar o reduir, i 0 per encaixar.</p></div>
+      <form method="dialog"><button class="primary-button dialog-done">Entesos, explorem!</button></form>
+    </dialog>
+    <p id="announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+    <noscript><div class="noscript-message">Activa el JavaScript del navegador per fer servir el mapa interactiu. També pots consultar els plànols: <a href="./img/CleanedFloorplan/Level0.png">planta baixa</a>, <a href="./img/CleanedFloorplan/Level1.png">primera</a>, <a href="./img/CleanedFloorplan/Level2.png">segona</a>, <a href="./img/CleanedFloorplan/Level3.png">tercera</a> i <a href="./img/CleanedFloorplan/Level4.png">quarta planta</a>.</div></noscript>
+  </body>
+</html>
