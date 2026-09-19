@@ -5,12 +5,14 @@ Aplicació estàtica en català per explorar els cinc nivells de l’edifici. Fu
 ## Funcions
 
 - Selector de cinc plantes amb els plànols nets proporcionats.
+- Submenú per planta amb els 39 espais de `Rooms.ods` i una entrada de lavabos a cadascuna de les cinc plantes.
+- Fitxes desplegables amb tots els centres i usos, diferenciant entre setmana i caps de setmana.
 - Ampliació amb botons, roda del ratolí i gest de dos dits.
 - Desplaçament amb ratolí, dit o teclat; botó per encaixar el plànol.
 - Pantalla completa, amb alternativa per als navegadors que no admeten aquesta funció.
 - Enllaços a cada planta, com ara `#planta-3`.
 - Controls accessibles, ajuda en català i respecte per la preferència de moviment reduït.
-- Capa de punts i àrees ressaltades preparada per afegir-hi informació. De moment, no es publica cap dada d’espais.
+- Capa de punts i àrees ressaltades preparada per afegir-hi les ubicacions dels espais sobre el plànol.
 
 ## Previsualització local
 
@@ -37,7 +39,21 @@ Les proves comproven els cinc fitxers de plànol, les dimensions i els càlculs 
 
 No hi ha cap pas de compilació. Totes les rutes són relatives, de manera que l’app funciona tant en un domini propi com en el subdirectori d’un repositori de GitHub Pages. No cal cap servidor Node.js a producció. La configuració de Pages i la publicació al repositori s’han de fer a GitHub; no les activa la previsualització local.
 
-## Afegir informació dels espais
+## Actualitzar la llista d’espais
+
+`Rooms.ods` és la font de les dades. Per actualitzar la llista després d’editar el full, executa amb Python 3:
+
+```sh
+python scripts/import_rooms.py
+```
+
+L’importador genera `src/rooms.js` sense modificar el full. Conserva totes les assignacions de les columnes ENTI i EUSES (entre setmana) i ISEP i FISIOFOCUS (caps de setmana), i tradueix els textos al català. Manté els codis i les denominacions Artist, Developer i E Leader. Els camps buits no es converteixen en assignacions. Si apareix una descripció nova, cal afegir-ne la traducció a l’importador abans de regenerar les dades.
+
+La importació actual conté 39 espais: 7 a la planta baixa, 10 a la primera, 10 a la segona, 7 a la tercera i 5 a la quarta. La fila 41 no té ni codi ni planta; es conserva al full i es registra a `roomImport.skippedRows`, però no es mostra en cap planta. `src/floors.js` afegeix una entrada de lavabos a cada planta, sense atribuir-li un centre no indicat.
+
+En seleccionar una planta es desplega la seva llista. Cada espai permet consultar els centres i usos; «Espais de la planta» permet plegar la llista. Al mòbil, el submenú apareix sota els cinc selectors, amb desplaçament propi per mantenir el mapa a l’abast. La publicació continua sent estàtica i no necessita Python ni el full de càlcul al navegador.
+
+## Afegir ubicacions dels espais
 
 Les plantes es defineixen a `src/floors.js`. Cada planta té un camp `points`, actualment buit. Quan es disposi de la informació real, s’hi poden afegir entrades com aquesta (coordenades només d’exemple):
 
