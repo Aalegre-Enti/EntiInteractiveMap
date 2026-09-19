@@ -6,7 +6,7 @@ Aplicació estàtica en català per explorar els cinc nivells de l’edifici. Fu
 
 - Selector de cinc plantes amb els plànols nets proporcionats.
 - Submenú per planta amb els 39 espais de `Rooms.ods`, 16 espais comuns addicionals i una entrada de lavabos a cadascuna de les cinc plantes.
-- Selecció dels 14 espais de la planta baixa amb les capes proporcionades: ressaltat lila que polsa durant tres segons i després queda semitransparent.
+- Ressaltat dels 14 espais de la planta baixa i de 10 espais de la primera planta amb les capes proporcionades: lila que polsa durant tres segons i després queda semitransparent.
 - Fitxes desplegables amb els centres i usos, diferenciant entre setmana i caps de setmana. Oficines, Menjador, Sala d’estudi i els espais comuns afegits tenen una icona pròpia i el mateix estil que els lavabos, sense informació dels centres ni usos acadèmics.
 - Ampliació amb botons, roda del ratolí i gest de dos dits.
 - Desplaçament amb ratolí, dit o teclat; botó per encaixar el plànol.
@@ -60,7 +60,9 @@ En seleccionar qualsevol espai, inclosos els comuns, la URL incorpora la planta 
 
 ## Afegir ubicacions dels espais
 
-Les capes PNG de la planta baixa es relacionen amb els codis dels espais a `src/room-overlays.js`. Cada imatge ha de conservar les dimensions del plànol complet (1083 × 976 píxels per a la planta baixa) i delimitar l’espai amb transparència. L’app utilitza el canal alfa com a màscara del color `#94167f`, sense modificar els fitxers originals. L’Auditori comú utilitza `Auditori.png`; AUD-01 i AUD-02 utilitzen les seves capes individuals.
+Les capes PNG es relacionen amb els codis dels espais a `src/room-overlays.js`. Cada imatge ha de conservar les dimensions del plànol complet (1083 × 976 píxels per a la planta baixa; 1200 × 895 per a la primera planta) i delimitar l’espai amb transparència. L’app utilitza el canal alfa com a màscara del color `#94167f`, sense modificar els fitxers originals. L’Auditori comú utilitza `Auditori.png`; AUD-01 i AUD-02 utilitzen les seves capes individuals.
+
+La primera planta té capes per a les aules 1.01–1.05, LAB.REHAB, LAB-1.01, LAB-1.02, Sala d’estudi i Sala de simulació. Els fitxers són a `img/CleanedFloorplan/Level1`. Ascensors, Escales i Lavabos mantenen la selecció i l’enllaç directe, però encara no tenen una capa proporcionada en aquesta planta.
 
 En seleccionar un espai es mostra el plànol sencer, es ressalta només la seva zona i es marca la fila seleccionada. La capa polsa durant tres segons, entre un 32% i un 65% d’opacitat, i després es manté al 32%. La preferència de moviment reduït omet la pulsació. La capa segueix el plànol en ampliar-lo o desplaçar-lo; seleccionar un altre espai la substitueix, i canviar de planta o prémer Esc la retira. Al mòbil, la selecció porta el plànol a la vista. Les altres plantes mantenen les seves llistes i queden preparades per afegir-hi capes al mateix fitxer de configuració.
 

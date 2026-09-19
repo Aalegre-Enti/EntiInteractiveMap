@@ -17,8 +17,24 @@ const groundFloorFiles = {
   WC: 'WC.png',
 };
 
+const firstFloorFiles = {
+  '1.01': '1.01.png',
+  '1.02': '1.02.png',
+  '1.03': '1.03.png',
+  '1.04': '1.04.png',
+  '1.05': '1.05.png',
+  'LAB.REHAB': 'Lab-Rehab.png',
+  'LAB-1.01': 'LAB-1.01.png',
+  'LAB-1.02': 'LAB-1.02.png',
+  'SALA ESTUDI': "Sala d'estudi.png",
+  'SALA SIMULACIO': 'Simulació.png',
+};
+
 export const roomOverlays = {
   '0': Object.fromEntries(Object.entries(groundFloorFiles).map(([code, file]) => [
     code, `./img/CleanedFloorplan/Level0/${encodeURIComponent(file)}`,
+  ])),
+  '1': Object.fromEntries(Object.entries(firstFloorFiles).map(([code, file]) => [
+    code, `./img/CleanedFloorplan/Level1/${encodeURIComponent(file)}`,
   ])),
 };
