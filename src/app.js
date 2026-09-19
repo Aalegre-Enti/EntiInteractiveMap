@@ -1,4 +1,5 @@
 import { floors } from './floors.js';
+import { createRoomSubmenu } from './room-menu.js';
 import { MIN_ZOOM, MAX_ZOOM, fitScale, constrainOffset, zoomAround } from './viewport.js';
 
 const $ = (id) => document.getElementById(id);
@@ -31,13 +32,16 @@ function icon(name) {
 
 function announce(message) { $('announcer').textContent = message; }
 
-for (const floor of [...floors].reverse()) {
+for (const floor of floors) {
+  const group = document.createElement('div');
+  group.className = 'floor-group';
+  group.dataset.floorGroup = floor.id;
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'floor-button';
   button.dataset.floor = floor.id;
   button.setAttribute('aria-label', floor.name);
-  button.setAttribute('aria-controls', 'map-panel');
+  button.setAttribute('aria-controls', `map-panel floor-rooms-${floor.id}`);
   const number = document.createElement('span');
   number.className = 'floor-number';
   number.textContent = floor.code;
@@ -50,13 +54,23 @@ for (const floor of [...floors].reverse()) {
   title.dataset.short = floor.shortName;
   const subtitle = document.createElement('span');
   subtitle.className = 'floor-button-subtitle';
-  subtitle.textContent = `Nivell ${floor.id}`;
+  subtitle.textContent = `${floor.rooms.length} espais`;
   label.append(title, subtitle);
   const arrow = icon('arrow');
   arrow.classList.add('floor-chevron');
   button.append(number, label, arrow);
-  button.addEventListener('click', () => selectFloor(floor.id));
-  navigation.append(button);
+  const submenu = createRoomSubmenu(floor);
+  submenu.hidden = true;
+  button.addEventListener('click', () => {
+    if (activeFloor.id === floor.id) {
+      submenu.open = !submenu.open;
+    } else {
+      selectFloor(floor.id);
+    }
+  });
+  submenu.addEventListener('toggle', () => button.setAttribute('aria-expanded', String(!submenu.hidden && submenu.open)));
+  group.append(button, submenu);
+  navigation.append(group);
 }
 
 const compact = matchMedia('(max-width: 760px)');
@@ -64,11 +78,14 @@ function updateFloorLabels() {
   for (const title of navigation.querySelectorAll('.floor-button-title')) {
     title.textContent = compact.matches ? title.dataset.short : title.dataset.full;
   }
-  // Visual order and keyboard order both follow the building on desktop,
-  // and run from the ground floor upward on small screens.
+  // Keep the same ground-floor-first order on desktop and mobile.
   navigation.style.flexDirection = compact.matches ? 'row' : 'column';
-  const order = compact.matches ? floors : [...floors].reverse();
-  for (const floor of order) navigation.append(navigation.querySelector(`[data-floor="${floor.id}"]`));
+  for (const floor of floors) {
+    const group = navigation.querySelector(`[data-floor-group="${floor.id}"]`);
+    const submenu = $(`floor-rooms-${floor.id}`);
+    navigation.append(group);
+    (compact.matches ? $('mobile-room-submenus') : group).append(submenu);
+  }
 }
 compact.addEventListener('change', updateFloorLabels);
 updateFloorLabels();
@@ -174,9 +191,22 @@ async function selectFloor(id, { updateUrl = true, force = false } = {}) {
   $('map-floor-name').textContent = floor.name;
   viewport.setAttribute('aria-label', `Plànol interactiu: ${floor.name.toLocaleLowerCase('ca')}`);
   document.title = `${floor.name} · Mapa de l’edifici`;
-  for (const button of navigation.querySelectorAll('button')) {
+  for (const button of navigation.querySelectorAll('.floor-button')) {
     button.setAttribute('aria-current', String(button.dataset.floor === floor.id));
+    const selected = button.dataset.floor === floor.id;
+    const submenu = $(`floor-rooms-${button.dataset.floor}`);
+    submenu.hidden = !selected;
+    submenu.open = selected;
+    button.setAttribute('aria-expanded', String(selected));
   }
+  // Only scroll when the selected floor button is outside the sidebar view.
+  if (!compact.matches) requestAnimationFrame(() => {
+    const sidebar = document.querySelector('.sidebar');
+    const buttonRect = navigation.querySelector(`[data-floor="${floor.id}"]`).getBoundingClientRect();
+    const sidebarRect = sidebar.getBoundingClientRect();
+    if (buttonRect.top < sidebarRect.top) sidebar.scrollTop += buttonRect.top - sidebarRect.top - 12;
+    else if (buttonRect.bottom > sidebarRect.bottom) sidebar.scrollTop += buttonRect.bottom - sidebarRect.bottom + 12;
+  });
   if (updateUrl) {
     const url = new URL(location.href);
     url.hash = `planta-${floor.id}`;
