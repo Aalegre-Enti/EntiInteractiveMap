@@ -11,7 +11,7 @@ Aplicació estàtica en català per explorar els cinc nivells de l’edifici. Fu
 - Ampliació amb botons, roda del ratolí i gest de dos dits.
 - Desplaçament amb ratolí, dit o teclat; botó per encaixar el plànol.
 - Pantalla completa, amb alternativa per als navegadors que no admeten aquesta funció.
-- Enllaços a cada planta, com ara `#planta-3`.
+- Enllaços a cada planta i sala, com ara `#planta-3` o `#planta-0/sala/PB.01`. La URL s’actualitza en seleccionar un espai i es pot copiar per compartir-lo.
 - Controls accessibles, ajuda en català i respecte per la preferència de moviment reduït.
 - Capa de punts i àrees ressaltades preparada per afegir-hi les ubicacions dels espais sobre el plànol.
 
@@ -55,6 +55,8 @@ La importació actual conté 39 espais: 7 a la planta baixa, 10 a la primera, 10
 `src/floors.js` afegeix Lavabos, Ascensors i Escales a cada planta; Auditori, Vestíbul, Entrada i Sala de tutories a la planta baixa; i Sala de vending i Terrassa a la quarta planta. També configura Oficines, Menjador i Sala d’estudi perquè no mostrin centres ni usos. Aquestes personalitzacions es mantenen quan es torna a importar el full. En total hi ha 60 entrades: 14, 13, 13, 10 i 10, de la planta baixa a la quarta.
 
 En seleccionar una planta es desplega la seva llista a l’escriptori. Al mòbil, la llista comença plegada per deixar més espai al mapa; es pot obrir amb «Espais de la planta» o prement de nou la planta activa. Les llistes tenen desplaçament propi. Els espais amb informació d’ús es poden desplegar per consultar-la; només hi ha una fitxa d’informació oberta a la vegada. Les capçaleres, els marges i els controls són compactes, amb botons d’almenys 44 píxels d’alçada. La publicació continua sent estàtica i no necessita Python ni el full de càlcul al navegador.
+
+En seleccionar qualsevol espai, inclosos els comuns, la URL incorpora la planta i el codi de la sala (`#planta-0/sala/AUDITORI`, per exemple). Obrir o recarregar aquest enllaç recupera la planta, desplega la llista i la informació disponible, marca la sala i carrega el ressaltat si té capa. També funciona amb els botons enrere i endavant del navegador. Canviar de planta o desmarcar amb Esc elimina la sala de la URL. Els fragments de la URL funcionen en subdirectoris de GitHub Pages sense configurar redireccions.
 
 ## Afegir ubicacions dels espais
 
