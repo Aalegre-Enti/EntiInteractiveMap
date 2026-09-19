@@ -1,0 +1,574 @@
+[
+  {
+    "name": "access-1",
+    "a": [
+      449,
+      636
+    ],
+    "b": [
+      479,
+      636
+    ]
+  },
+  {
+    "name": "access-2",
+    "a": [
+      499,
+      636
+    ],
+    "b": [
+      529,
+      636
+    ]
+  },
+  {
+    "name": "access-3",
+    "a": [
+      449,
+      712
+    ],
+    "b": [
+      478,
+      712
+    ]
+  },
+  {
+    "name": "access-4",
+    "a": [
+      500,
+      712
+    ],
+    "b": [
+      529,
+      712
+    ]
+  },
+  {
+    "name": "northwest-classroom-entry-threshold",
+    "a": [
+      453,
+      336
+    ],
+    "b": [
+      477,
+      312
+    ]
+  },
+  {
+    "name": "west-classroom-entry-threshold",
+    "a": [
+      411,
+      458
+    ],
+    "b": [
+      431,
+      439
+    ]
+  },
+  {
+    "name": "north-centre-classroom-entry-threshold",
+    "a": [
+      554,
+      247
+    ],
+    "b": [
+      583,
+      247
+    ]
+  },
+  {
+    "name": "northeast-classroom-entry-threshold",
+    "a": [
+      815,
+      204
+    ],
+    "b": [
+      844,
+      204
+    ]
+  },
+  {
+    "name": "northeast-distributor-entry-threshold",
+    "a": [
+      815,
+      259
+    ],
+    "b": [
+      855,
+      259
+    ]
+  },
+  {
+    "name": "laboratory-entry-threshold",
+    "a": [
+      891,
+      252
+    ],
+    "b": [
+      891,
+      222
+    ]
+  },
+  {
+    "name": "east-stair-lobby-door-threshold",
+    "a": [
+      873,
+      375
+    ],
+    "b": [
+      849,
+      375
+    ]
+  },
+  {
+    "name": "laboratory-service-access-threshold",
+    "a": [
+      906,
+      341
+    ],
+    "b": [
+      951,
+      341
+    ]
+  },
+  {
+    "name": "middle-service-access-threshold",
+    "a": [
+      729,
+      341
+    ],
+    "b": [
+      764,
+      354
+    ]
+  },
+  {
+    "name": "east-stair-access-threshold",
+    "a": [
+      775,
+      360
+    ],
+    "b": [
+      814,
+      373
+    ]
+  },
+  {
+    "name": "middle-small-room-door-threshold",
+    "a": [
+      687,
+      445
+    ],
+    "b": [
+      708,
+      452
+    ]
+  },
+  {
+    "name": "east-stair-south-door-threshold",
+    "a": [
+      746,
+      465
+    ],
+    "b": [
+      770,
+      473
+    ]
+  },
+  {
+    "name": "north-stair-north-door-threshold",
+    "a": [
+      544,
+      302
+    ],
+    "b": [
+      537,
+      325
+    ]
+  },
+  {
+    "name": "north-stair-west-door-threshold",
+    "a": [
+      519,
+      382
+    ],
+    "b": [
+      526,
+      357
+    ]
+  },
+  {
+    "name": "north-stair-lobby-door-threshold",
+    "a": [
+      543,
+      406
+    ],
+    "b": [
+      533,
+      431
+    ]
+  },
+  {
+    "name": "diagonal-service-north-access-threshold",
+    "a": [
+      358,
+      485
+    ],
+    "b": [
+      391,
+      452
+    ]
+  },
+  {
+    "name": "diagonal-service-south-door-threshold",
+    "a": [
+      423,
+      489
+    ],
+    "b": [
+      407,
+      503
+    ]
+  },
+  {
+    "name": "central-diagonal-access-threshold",
+    "a": [
+      454,
+      519
+    ],
+    "b": [
+      486,
+      487
+    ]
+  },
+  {
+    "name": "central-diagonal-south-door-threshold",
+    "a": [
+      451,
+      523
+    ],
+    "b": [
+      434,
+      540
+    ]
+  },
+  {
+    "name": "laboratory-store-door-threshold",
+    "a": [
+      1040,
+      385
+    ],
+    "b": [
+      1022,
+      385
+    ]
+  },
+  {
+    "name": "central-distributor-access-threshold",
+    "a": [
+      385,
+      597
+    ],
+    "b": [
+      422,
+      597
+    ]
+  },
+  {
+    "name": "recording-room-door-threshold",
+    "a": [
+      299,
+      540
+    ],
+    "b": [
+      280,
+      540
+    ]
+  },
+  {
+    "name": "storage-door-threshold",
+    "a": [
+      309,
+      640
+    ],
+    "b": [
+      309,
+      618
+    ]
+  },
+  {
+    "name": "control-room-door-threshold",
+    "a": [
+      257,
+      686
+    ],
+    "b": [
+      257,
+      665
+    ]
+  },
+  {
+    "name": "central-distribution-access-threshold",
+    "a": [
+      341,
+      653
+    ],
+    "b": [
+      341,
+      693
+    ]
+  },
+  {
+    "name": "booth-1-door-threshold",
+    "a": [
+      113,
+      744
+    ],
+    "b": [
+      91,
+      744
+    ]
+  },
+  {
+    "name": "booth-2-door-threshold",
+    "a": [
+      128,
+      744
+    ],
+    "b": [
+      151,
+      744
+    ]
+  },
+  {
+    "name": "instrument-room-door-threshold",
+    "a": [
+      256,
+      744
+    ],
+    "b": [
+      256,
+      765
+    ]
+  },
+  {
+    "name": "southern-laboratory-entry-threshold",
+    "a": [
+      287,
+      790
+    ],
+    "b": [
+      319,
+      790
+    ]
+  },
+  {
+    "name": "southern-service-access-threshold",
+    "a": [
+      323,
+      739
+    ],
+    "b": [
+      372,
+      739
+    ]
+  },
+  {
+    "name": "west-lower-booth-door-threshold",
+    "a": [
+      85,
+      914
+    ],
+    "b": [
+      64,
+      914
+    ]
+  },
+  {
+    "name": "east-lower-booth-door-threshold",
+    "a": [
+      151,
+      910
+    ],
+    "b": [
+      172,
+      910
+    ]
+  },
+  {
+    "name": "southwest-booth-door-threshold",
+    "a": [
+      112,
+      921
+    ],
+    "b": [
+      90,
+      921
+    ]
+  },
+  {
+    "name": "southeast-booth-door-threshold",
+    "a": [
+      124,
+      921
+    ],
+    "b": [
+      146,
+      921
+    ]
+  },
+  {
+    "name": "south-stair-north-entry-threshold",
+    "a": [
+      422,
+      713
+    ],
+    "b": [
+      395,
+      713
+    ]
+  },
+  {
+    "name": "upper-bathroom-door-threshold",
+    "a": [
+      579,
+      620
+    ],
+    "b": [
+      564,
+      635
+    ]
+  },
+  {
+    "name": "bathroom-lobby-door-threshold",
+    "a": [
+      610,
+      656
+    ],
+    "b": [
+      594,
+      672
+    ]
+  },
+  {
+    "name": "accessible-lobby-northeast-opening",
+    "a": [
+      604,
+      596
+    ],
+    "b": [
+      637,
+      628
+    ]
+  },
+  {
+    "name": "accessible-lobby-southeast-opening",
+    "a": [
+      618,
+      648
+    ],
+    "b": [
+      633,
+      634
+    ]
+  },
+  {
+    "name": "accessible-bathroom-door-threshold",
+    "a": [
+      631,
+      708
+    ],
+    "b": [
+      631,
+      685
+    ]
+  },
+  {
+    "name": "bathroom-west-passage-threshold",
+    "a": [
+      631,
+      735
+    ],
+    "b": [
+      631,
+      714
+    ]
+  },
+  {
+    "name": "bathroom-northeast-door-threshold",
+    "a": [
+      674,
+      736
+    ],
+    "b": [
+      674,
+      714
+    ]
+  },
+  {
+    "name": "access-47",
+    "a": [
+      598,
+      741
+    ],
+    "b": [
+      598,
+      760
+    ]
+  },
+  {
+    "name": "access-48",
+    "a": [
+      698,
+      741
+    ],
+    "b": [
+      698,
+      760
+    ]
+  },
+  {
+    "name": "access-49",
+    "a": [
+      598,
+      763
+    ],
+    "b": [
+      598,
+      782
+    ]
+  },
+  {
+    "name": "access-50",
+    "a": [
+      698,
+      763
+    ],
+    "b": [
+      698,
+      782
+    ]
+  },
+  {
+    "name": "access-51",
+    "a": [
+      598,
+      785
+    ],
+    "b": [
+      598,
+      804
+    ]
+  },
+  {
+    "name": "access-52",
+    "a": [
+      698,
+      785
+    ],
+    "b": [
+      698,
+      804
+    ]
+  }
+]

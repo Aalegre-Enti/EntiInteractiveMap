@@ -1,0 +1,594 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1395" height="1040" viewBox="0 0 1395 1040" version="1.1">
+  <title>Walls, doors, accesses and stairs — img19</title>
+  <desc>Editable manual architectural trace of OriginalFloorplan/img19.jpg, using its original 1395 by 1040 image coordinates. Four layers contain walls and structural columns, doors and their swings, access thresholds, and three staircases. No embedded raster, room labels, furniture, fixtures, floor patterns, room colors, window swings, clearance circles or site annotations. Visible door positions, swings and wall openings were reviewed against a coordinate-aligned source overlay. Source labels conceal some short wall sections and parts of the west junction; these remain approximate. No surveyed scale or dimensional accuracy is asserted.</desc>
+  <g id="walls" fill="#292d32" stroke="#292d32" stroke-linejoin="miter" inkscape:groupmode="layer" inkscape:label="Walls">
+    <polyline points="18,1005 18,456 49,335 347,30 1338,23" fill="none" stroke-width="4.5" stroke-linecap="butt" id="north-and-west-envelope" />
+    <polyline points="1348,28 970,542" fill="none" stroke-width="4.5" stroke-linecap="butt" id="east-envelope" />
+    <polyline points="18,1005 388,1005 388,733" fill="none" stroke-width="5" stroke-linecap="butt" id="south-envelope" />
+    <polygon points="337,35 347,25 368,25 367,32 349,32 341,42" stroke-width="0" />
+    <polygon points="528,23 550,23 550,49 528,49" stroke-width="0" id="north-pier-01" />
+    <polygon points="691,23 727,22 727,30 715,30 715,49 702,49 702,30 691,30" stroke-width="0" />
+    <polygon points="871,22 906,21 906,29 897,29 897,47 881,47 881,29 871,29" stroke-width="0" />
+    <polygon points="1047,19 1087,19 1087,27 1075,27 1075,43 1059,43 1059,27 1047,27" stroke-width="0" />
+    <polygon points="1235,19 1256,19 1256,42 1235,42" stroke-width="0" />
+    <polygon points="1334,16 1358,16 1357,25 1360,29 1341,49 1328,39 1336,29" stroke-width="0" />
+    <polygon points="245,144 252,136 270,150 259,162 247,151" stroke-width="0" />
+    <polygon points="119,271 129,262 145,278 133,291 121,279" stroke-width="0" />
+    <polygon points="43,333 49,324 58,333 54,347 44,347 40,343" stroke-width="0" />
+    <polygon points="16,448 26,449 28,459 24,460 25,477 18,478" stroke-width="0" />
+    <polygon points="16,546 41,546 41,562 29,562 29,576 16,576" stroke-width="0" />
+    <polygon points="15,724 39,724 39,740 28,740 28,751 15,751" stroke-width="0" />
+    <polygon points="15,898 37,898 37,917 27,917 27,931 15,931" stroke-width="0" />
+    <polygon points="15,984 41,984 41,1003 53,1003 53,1010 15,1010" stroke-width="0" />
+    <polygon points="184,994 199,994 199,984 211,984 211,995 225,995 225,1009 184,1009" stroke-width="0" />
+    <polygon points="365,994 377,994 377,983 393,983 393,1010 365,1010" stroke-width="0" />
+    <polygon points="369,903 390,903 390,917 369,917" stroke-width="0" />
+    <polygon points="1181,199 1195,191 1210,202 1200,219 1185,208" stroke-width="0" />
+    <polygon points="1043,384 1053,374 1068,385 1059,401" stroke-width="0" />
+    <circle cx="354" cy="43" r="6" stroke-width="0" />
+    <circle cx="255" cy="146" r="6.5" stroke-width="0" />
+    <circle cx="131" cy="271" r="6.5" stroke-width="0" />
+    <circle cx="252" cy="392" r="8" stroke-width="0" />
+    <circle cx="377" cy="265" r="8" stroke-width="0" />
+    <circle cx="202" cy="555" r="8" stroke-width="0" />
+    <circle cx="202" cy="734" r="7.5" stroke-width="0" />
+    <circle cx="203" cy="910" r="7.5" stroke-width="0" />
+    <circle cx="711" cy="212" r="7.5" stroke-width="0" />
+    <circle cx="1068" cy="207" r="6.5" stroke-width="0" />
+    <circle cx="1196" cy="204" r="7" stroke-width="0" />
+    <circle cx="1059" cy="391" r="6.5" stroke-width="0" />
+    <rect x="520" y="207" width="26" height="13" rx="6.5" stroke-width="0" />
+    <rect x="520" y="35" width="26" height="13" rx="6.5" stroke-width="0" />
+    <polyline points="619,30 619,257" fill="none" stroke-width="3.5" stroke-linecap="butt" id="west-teaching-room-divider" />
+    <path d="M 614,257 L 614,266 Q 614,279 628,279 L 824,279 L 824,212" fill="none" stroke-width="7" id="teaching-room-south-wall" />
+    <polyline points="619,155 824,155" fill="none" stroke-width="2.2" stroke-linecap="butt" id="teaching-room-internal-partition" />
+    <polyline points="824,184 824,143 837,143" fill="none" stroke-width="4.5" stroke-linecap="butt" />
+    <polyline points="867,143 869,143" fill="none" stroke-width="4.5" stroke-linecap="butt" />
+    <polyline points="870,27 870,167 890,167" fill="none" stroke-width="4.5" stroke-linecap="butt" id="north-lab-west-wall" />
+    <polyline points="870,199 889,199 889,219 879,219" fill="none" stroke-width="4.5" stroke-linecap="butt" />
+    <polygon points="880,202 898,202 898,219 880,219" stroke-width="0" />
+    <circle cx="889" cy="210" r="8" stroke-width="0" />
+    <polyline points="889,202 1187,202" fill="none" stroke-width="3.5" stroke-linecap="butt" id="laboratory-divider" />
+    <polyline points="890,254 872,254 872,375 903,375" fill="none" stroke-width="6" stroke-linecap="butt" id="south-lab-west-wall" />
+    <polyline points="826,256 826,267" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="869,256 869,267" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="507,256 579,256 579,261" fill="none" stroke-width="7" stroke-linecap="butt" id="west-room-south-wall" />
+    <polyline points="610,259 614,259" fill="none" stroke-width="5" stroke-linecap="butt" />
+    <polyline points="255,155 377,266" fill="none" stroke-width="3" stroke-linecap="butt" id="northwest-room-divider" />
+    <polyline points="377,255 478,255" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="497,255 507,255" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="377,270 471,367" fill="none" stroke-width="3" stroke-linecap="butt" id="recording-room-diagonal-wall" />
+    <polyline points="507,256 458,405 428,434" fill="none" stroke-width="7" stroke-linecap="butt" id="west-laboratory-corridor-wall" />
+    <polyline points="129,284 363,518" fill="none" stroke-width="5" stroke-linecap="butt" id="west-classroom-diagonal-wall" />
+    <polyline points="32,549 270,549 270,556" fill="none" stroke-width="5" stroke-linecap="butt" id="west-classroom-south-wall" />
+    <polyline points="302,556 362,556" fill="none" stroke-width="5" stroke-linecap="butt" />
+    <polyline points="397,455 427,486" fill="none" stroke-width="5" stroke-linecap="butt" id="west-service-enclosure-north" />
+    <polyline points="410,503 380,530 364,516" fill="none" stroke-width="5" stroke-linecap="butt" id="west-service-enclosure-south" />
+    <polyline points="363,516 363,650" fill="none" stroke-width="7" stroke-linecap="butt" id="west-distributor-east-wall" />
+    <polyline points="383,528 383,555 365,555" fill="none" stroke-width="4" stroke-linecap="butt" />
+    <polyline points="363,488 363,516" fill="none" stroke-width="5" stroke-linecap="butt" />
+    <polyline points="484,480 501,497" fill="none" stroke-width="5" stroke-linecap="butt" />
+    <polyline points="457,515 456,519 471,533 501,502" fill="none" stroke-width="5" stroke-linecap="butt" id="diagonal-access-return" />
+    <polyline points="440,532 430,543 430,569" fill="none" stroke-width="4" stroke-linecap="butt" />
+    <polyline points="364,597 384,597" fill="none" stroke-width="4" stroke-linecap="butt" />
+    <polyline points="423,597 430,597" fill="none" stroke-width="4" stroke-linecap="butt" />
+    <polyline points="364,690 387,690 387,709" fill="none" stroke-width="6" stroke-linecap="butt" />
+    <polyline points="270,556 270,690 250,690 250,696" fill="none" stroke-width="5" stroke-linecap="butt" id="middle-classroom-east-wall" />
+    <polyline points="250,724 250,725 32,725" fill="none" stroke-width="5" stroke-linecap="butt" id="middle-classroom-south-wall" />
+    <polyline points="250,725 250,742 268,742" fill="none" stroke-width="4" stroke-linecap="butt" />
+    <polyline points="250,773 272,773" fill="none" stroke-width="5" stroke-linecap="butt" />
+    <polyline points="314,772 314,700 338,700 338,695 386,695" fill="none" stroke-width="5" stroke-linecap="butt" id="lower-service-room-north-wall" />
+    <polyline points="319,702 369,702 369,738" fill="none" stroke-width="3.5" stroke-linecap="butt" />
+    <polyline points="319,702 319,738" fill="none" stroke-width="3.5" stroke-linecap="butt" />
+    <polyline points="384,734 384,1002" fill="none" stroke-width="7" stroke-linecap="butt" id="southeast-classroom-east-wall" />
+    <polyline points="272,773 284,773" fill="none" stroke-width="4" stroke-linecap="butt" />
+    <polyline points="313,773 313,761" fill="none" stroke-width="4" stroke-linecap="butt" />
+    <path d="M 252,776 L 230,776 Q 208,776 208,798 L 208,996" fill="none" stroke-width="4" id="lower-classroom-divider" />
+    <polygon points="376,726 391,726 391,741 376,741" stroke-width="0" />
+    <polyline points="542,298 712,350 718,339 728,342" fill="none" stroke-width="7" stroke-linecap="butt" id="north-stair-north-wall" />
+    <polyline points="542,298 541,303" fill="none" stroke-width="5" stroke-linecap="butt" />
+    <polyline points="533,327 523,357" fill="none" stroke-width="6" stroke-linecap="butt" id="north-stair-west-wall" />
+    <polyline points="516,390 513,397 683,448 687,446" fill="none" stroke-width="7" stroke-linecap="butt" id="north-stair-south-wall" />
+    <polyline points="711,351 683,444" fill="none" stroke-width="6" stroke-linecap="butt" id="north-stair-east-wall" />
+    <polygon points="512,381 528,385 525,399 509,394" stroke-width="0" />
+    <polygon points="530,387 545,391 541,404 526,399" stroke-width="0" />
+    <polyline points="527,431 523,443 488,477 494,483" fill="none" stroke-width="6" stroke-linecap="butt" />
+    <polyline points="706,389 754,405 774,362 763,358" fill="none" stroke-width="5" stroke-linecap="butt" id="north-service-room-east-wall" />
+    <polyline points="763,358 762,352" fill="none" stroke-width="4" stroke-linecap="butt" />
+    <polyline points="706,454 739,464 756,406" fill="none" stroke-width="6" stroke-linecap="butt" id="north-service-south-wall" />
+    <polygon points="710,449 721,449 721,460 710,460" stroke-width="0" />
+    <polyline points="774,362 778,363" fill="none" stroke-width="4" stroke-linecap="butt" />
+    <polyline points="815,376 812,386 952,433" fill="none" stroke-width="7" stroke-linecap="butt" id="east-stair-north-wall" />
+    <polyline points="815,376 847,376" fill="none" stroke-width="5" stroke-linecap="butt" />
+    <polyline points="739,464 744,466" fill="none" stroke-width="5" stroke-linecap="butt" />
+    <polyline points="770,474 972,540" fill="none" stroke-width="8" stroke-linecap="butt" id="east-stair-south-wall" />
+    <polyline points="969,383 925,523" fill="none" stroke-width="7" stroke-linecap="butt" id="east-stair-east-wall" />
+    <polyline points="903,341 903,384 969,384 969,341 951,341" fill="none" stroke-width="5" stroke-linecap="butt" id="east-service-enclosure" />
+    <polyline points="873,341 904,341" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="952,341 952,381" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="966,475 1010,489" fill="none" stroke-width="3.5" stroke-linecap="butt" id="storage-room-north-wall" />
+    <polyline points="523,443 693,499 601,591 491,484 523,443" fill="none" stroke-width="5" stroke-linecap="butt" id="west-triangular-void" />
+    <polyline points="529,449 684,503 601,584 500,482 529,449" fill="none" stroke-width="1.5" stroke-linecap="butt" id="west-void-inner-edge" />
+    <polyline points="789,487 928,531 743,726 644,630 789,487" fill="none" stroke-width="5" stroke-linecap="butt" id="east-triangular-void" />
+    <polyline points="790,494 919,533 743,718 651,630 790,494" fill="none" stroke-width="1.5" stroke-linecap="butt" id="east-void-inner-edge" />
+    <polyline points="430,570 540,569 558,550" fill="none" stroke-width="6" stroke-linecap="butt" id="upper-lift-shaft-north-wall" />
+    <polyline points="430,570 430,640 452,640" fill="none" stroke-width="6" stroke-linecap="butt" />
+    <polyline points="538,570 538,638 524,638" fill="none" stroke-width="6" stroke-linecap="butt" />
+    <polyline points="488,570 488,638" fill="none" stroke-width="5" stroke-linecap="butt" />
+    <polyline points="483,638 495,638" fill="none" stroke-width="6" stroke-linecap="butt" />
+    <polyline points="486,713 486,764" fill="none" stroke-width="5" stroke-linecap="butt" />
+    <polyline points="426,713 426,766 549,766 549,713 531,713" fill="none" stroke-width="6" stroke-linecap="butt" id="lower-lift-shafts" />
+    <polyline points="426,713 443,713" fill="none" stroke-width="6" stroke-linecap="butt" />
+    <polyline points="475,713 493,713" fill="none" stroke-width="6" stroke-linecap="butt" />
+    <polyline points="388,710 391,710 391,716" fill="none" stroke-width="4" stroke-linecap="butt" />
+    <polyline points="539,638 562,638" fill="none" stroke-width="5" stroke-linecap="butt" />
+    <polyline points="559,552 603,595" fill="none" stroke-width="6" stroke-linecap="butt" />
+    <line x1="603" y1="595" x2="636" y2="627" fill="none" stroke-width="1.5" stroke-dasharray="5 3" id="accessible-room-upper-boundary" />
+    <polyline points="583,616 589,610" fill="none" stroke-width="4" stroke-linecap="butt" />
+    <polyline points="581,625 609,653" fill="none" stroke-width="3.5" stroke-linecap="butt" id="accessible-room-divider" />
+    <polyline points="611,655 620,648" fill="none" stroke-width="4" stroke-linecap="butt" />
+    <polyline points="636,633 746,736 746,812 555,812 555,713 594,673" fill="none" stroke-width="6" stroke-linecap="butt" id="lower-bathroom-shell" />
+    <polyline points="557,713 581,713 581,693" fill="none" stroke-width="3.5" stroke-linecap="butt" />
+    <polyline points="581,713 632,713 632,718" fill="none" stroke-width="3.5" stroke-linecap="butt" />
+    <polyline points="613,666 632,685 632,691" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="670,665 670,717" fill="none" stroke-width="3.5" stroke-linecap="butt" id="bathroom-upper-east-divider" />
+    <polyline points="670,682 688,682" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="696,717 696,713 722,713" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="670,717 674,717" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="632,737 632,741" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="670,737 670,741" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="600,741 643,741" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="654,741 696,741" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="600,764 643,764" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="654,764 696,764" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="600,788 643,788" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="654,788 696,788" fill="none" stroke-width="3" stroke-linecap="butt" />
+    <polyline points="643,741 643,809" fill="none" stroke-width="3.5" stroke-linecap="butt" id="bathroom-west-stall-back" />
+    <polyline points="654,741 654,809" fill="none" stroke-width="3.5" stroke-linecap="butt" id="bathroom-east-stall-back" />
+    <polyline points="600,741 600,745" fill="none" stroke-width="2.5" stroke-linecap="butt" />
+    <polyline points="696,741 696,745" fill="none" stroke-width="2.5" stroke-linecap="butt" />
+    <polyline points="600,764 600,768" fill="none" stroke-width="2.5" stroke-linecap="butt" />
+    <polyline points="696,764 696,768" fill="none" stroke-width="2.5" stroke-linecap="butt" />
+    <polyline points="600,788 600,792" fill="none" stroke-width="2.5" stroke-linecap="butt" />
+    <polyline points="696,788 696,792" fill="none" stroke-width="2.5" stroke-linecap="butt" />
+    <polyline points="391,739 391,868 550,868 550,766" fill="none" stroke-width="3.5" stroke-linecap="butt" id="south-stair-enclosure" />
+  </g>
+  <g id="stairs" fill="none" stroke="#292d32" stroke-width=".9" stroke-linejoin="round" inkscape:groupmode="layer" inkscape:label="Stairs">
+    <line x1="595" y1="319" x2="585.057" y2="352.558" />
+    <line x1="601.231" y1="320.846" x2="591.288" y2="354.404" />
+    <line x1="607.462" y1="322.692" x2="597.518" y2="356.25" />
+    <line x1="613.692" y1="324.538" x2="603.749" y2="358.096" />
+    <line x1="619.923" y1="326.385" x2="609.98" y2="359.943" />
+    <line x1="626.154" y1="328.231" x2="616.211" y2="361.789" />
+    <line x1="632.385" y1="330.077" x2="622.442" y2="363.635" />
+    <line x1="638.615" y1="331.923" x2="628.672" y2="365.481" />
+    <line x1="644.846" y1="333.769" x2="634.903" y2="367.327" />
+    <line x1="651.077" y1="335.615" x2="641.134" y2="369.173" />
+    <line x1="657.308" y1="337.462" x2="647.365" y2="371.019" />
+    <line x1="663.538" y1="339.308" x2="653.595" y2="372.866" />
+    <line x1="669.769" y1="341.154" x2="659.826" y2="374.712" />
+    <line x1="676" y1="343" x2="666.057" y2="376.558" />
+    <line x1="595" y1="319" x2="676" y2="343" stroke-width="1.2" />
+    <line x1="585.057" y1="352.558" x2="666.057" y2="376.558" stroke-width="1.2" />
+    <line x1="568" y1="405" x2="578.322" y2="371.557" />
+    <line x1="574.231" y1="406.923" x2="584.553" y2="373.48" />
+    <line x1="580.462" y1="408.846" x2="590.784" y2="375.403" />
+    <line x1="586.692" y1="410.769" x2="597.014" y2="377.326" />
+    <line x1="592.923" y1="412.692" x2="603.245" y2="379.249" />
+    <line x1="599.154" y1="414.615" x2="609.476" y2="381.172" />
+    <line x1="605.385" y1="416.538" x2="615.707" y2="383.095" />
+    <line x1="611.615" y1="418.462" x2="621.937" y2="385.018" />
+    <line x1="617.846" y1="420.385" x2="628.168" y2="386.941" />
+    <line x1="624.077" y1="422.308" x2="634.399" y2="388.864" />
+    <line x1="630.308" y1="424.231" x2="640.63" y2="390.787" />
+    <line x1="636.538" y1="426.154" x2="646.86" y2="392.711" />
+    <line x1="642.769" y1="428.077" x2="653.091" y2="394.634" />
+    <line x1="649" y1="430" x2="659.322" y2="396.557" />
+    <line x1="568" y1="405" x2="649" y2="430" stroke-width="1.2" />
+    <line x1="578.322" y1="371.557" x2="659.322" y2="396.557" stroke-width="1.2" />
+    <line x1="585" y1="353" x2="696" y2="387" stroke-width="1.4" />
+    <line x1="579" y1="370" x2="691" y2="404" stroke-width="1.4" />
+    <path d="M 595,319 C 555,307 520,390 568,405" stroke-width="1.1" />
+    <polyline points="569,387 657,414 673,365 586,338" stroke-width="1" />
+    <polyline points="590.034,341.87 586,338 591.516,337.094" stroke-width="1" />
+    <line x1="632" y1="331" x2="604" y2="359" stroke-width="1.1" />
+    <line x1="639" y1="333" x2="611" y2="361" stroke-width="1.1" />
+    <line x1="840" y1="401" x2="829.678" y2="434.443" />
+    <line x1="846.231" y1="402.923" x2="835.909" y2="436.366" />
+    <line x1="852.462" y1="404.846" x2="842.14" y2="438.289" />
+    <line x1="858.692" y1="406.769" x2="848.37" y2="440.213" />
+    <line x1="864.923" y1="408.692" x2="854.601" y2="442.136" />
+    <line x1="871.154" y1="410.615" x2="860.832" y2="444.059" />
+    <line x1="877.385" y1="412.538" x2="867.063" y2="445.982" />
+    <line x1="883.615" y1="414.462" x2="873.293" y2="447.905" />
+    <line x1="889.846" y1="416.385" x2="879.524" y2="449.828" />
+    <line x1="896.077" y1="418.308" x2="885.755" y2="451.751" />
+    <line x1="902.308" y1="420.231" x2="891.986" y2="453.674" />
+    <line x1="908.538" y1="422.154" x2="898.216" y2="455.597" />
+    <line x1="914.769" y1="424.077" x2="904.447" y2="457.52" />
+    <line x1="921" y1="426" x2="910.678" y2="459.443" />
+    <line x1="840" y1="401" x2="921" y2="426" stroke-width="1.2" />
+    <line x1="829.678" y1="434.443" x2="910.678" y2="459.443" stroke-width="1.2" />
+    <line x1="813" y1="489" x2="823.322" y2="455.557" />
+    <line x1="819.231" y1="490.923" x2="829.553" y2="457.48" />
+    <line x1="825.462" y1="492.846" x2="835.784" y2="459.403" />
+    <line x1="831.692" y1="494.769" x2="842.014" y2="461.326" />
+    <line x1="837.923" y1="496.692" x2="848.245" y2="463.249" />
+    <line x1="844.154" y1="498.615" x2="854.476" y2="465.172" />
+    <line x1="850.385" y1="500.538" x2="860.707" y2="467.095" />
+    <line x1="856.615" y1="502.462" x2="866.937" y2="469.018" />
+    <line x1="862.846" y1="504.385" x2="873.168" y2="470.941" />
+    <line x1="869.077" y1="506.308" x2="879.399" y2="472.864" />
+    <line x1="875.308" y1="508.231" x2="885.63" y2="474.787" />
+    <line x1="881.538" y1="510.154" x2="891.86" y2="476.711" />
+    <line x1="887.769" y1="512.077" x2="898.091" y2="478.634" />
+    <line x1="894" y1="514" x2="904.322" y2="480.557" />
+    <line x1="813" y1="489" x2="894" y2="514" stroke-width="1.2" />
+    <line x1="823.322" y1="455.557" x2="904.322" y2="480.557" stroke-width="1.2" />
+    <line x1="829" y1="436" x2="941" y2="470" stroke-width="1.4" />
+    <line x1="824" y1="452" x2="936" y2="486" stroke-width="1.4" />
+    <path d="M 840,401 C 800,389 765,474 813,489" stroke-width="1.1" />
+    <polyline points="816,471 902,497 918,449 833,422" stroke-width="1" />
+    <polyline points="837.009,425.896 833,422 838.522,421.131" stroke-width="1" />
+    <line x1="879" y1="413" x2="851" y2="444" stroke-width="1.1" />
+    <line x1="886" y1="415" x2="858" y2="446" stroke-width="1.1" />
+    <line x1="432" y1="769" x2="432" y2="806" />
+    <line x1="438" y1="769" x2="438" y2="806" />
+    <line x1="444" y1="769" x2="444" y2="806" />
+    <line x1="450" y1="769" x2="450" y2="806" />
+    <line x1="456" y1="769" x2="456" y2="806" />
+    <line x1="462" y1="769" x2="462" y2="806" />
+    <line x1="468" y1="769" x2="468" y2="806" />
+    <line x1="474" y1="769" x2="474" y2="806" />
+    <line x1="480" y1="769" x2="480" y2="806" />
+    <line x1="486" y1="769" x2="486" y2="806" />
+    <line x1="492" y1="769" x2="492" y2="806" />
+    <line x1="498" y1="769" x2="498" y2="806" />
+    <line x1="504" y1="769" x2="504" y2="806" />
+    <line x1="510" y1="769" x2="510" y2="806" />
+    <line x1="432" y1="769" x2="510" y2="769" stroke-width="1.2" />
+    <line x1="432" y1="806" x2="510" y2="806" stroke-width="1.2" />
+    <line x1="432" y1="866" x2="432" y2="829" />
+    <line x1="438" y1="866" x2="438" y2="829" />
+    <line x1="444" y1="866" x2="444" y2="829" />
+    <line x1="450" y1="866" x2="450" y2="829" />
+    <line x1="456" y1="866" x2="456" y2="829" />
+    <line x1="462" y1="866" x2="462" y2="829" />
+    <line x1="468" y1="866" x2="468" y2="829" />
+    <line x1="474" y1="866" x2="474" y2="829" />
+    <line x1="480" y1="866" x2="480" y2="829" />
+    <line x1="486" y1="866" x2="486" y2="829" />
+    <line x1="492" y1="866" x2="492" y2="829" />
+    <line x1="498" y1="866" x2="498" y2="829" />
+    <line x1="504" y1="866" x2="504" y2="829" />
+    <line x1="510" y1="866" x2="510" y2="829" />
+    <line x1="432" y1="866" x2="510" y2="866" stroke-width="1.2" />
+    <line x1="432" y1="829" x2="510" y2="829" stroke-width="1.2" />
+    <line x1="432" y1="806" x2="510" y2="806" stroke-width="1.5" />
+    <line x1="432" y1="829" x2="510" y2="829" stroke-width="1.5" />
+    <line x1="510" y1="806" x2="510" y2="829" stroke-width="1.5" />
+    <line x1="510" y1="813" x2="548" y2="813" />
+    <line x1="510" y1="823" x2="548" y2="823" />
+    <path d="M 432,769 C 378,770 378,865 432,866" stroke-width="1.1" />
+    <path d="M 510,769 C 563,775 563,861 510,866" stroke-width="1.1" />
+    <polyline points="435,788 530,788 530,847 433,847" stroke-width="1" />
+    <polyline points="438,849.5 433,847 438,844.5" stroke-width="1" />
+    <line x1="473" y1="769" x2="484" y2="806" stroke-width="1.2" />
+    <line x1="478" y1="769" x2="489" y2="806" stroke-width="1.2" />
+  </g>
+  <g id="accesses" fill="none" stroke="#292d32" stroke-width=".65" inkscape:groupmode="layer" inkscape:label="Accesses">
+    <line x1="837" y1="143" x2="865" y2="143" stroke-dasharray="3 2" id="upper-teaching-room-entry-threshold" />
+    <line x1="824" y1="184" x2="824" y2="212" stroke-dasharray="3 2" id="lower-teaching-room-entry-threshold" />
+    <line x1="890" y1="171" x2="890" y2="198" stroke-dasharray="3 2" id="north-laboratory-entry-threshold" />
+    <line x1="890" y1="220" x2="890" y2="251" stroke-dasharray="3 2" id="south-laboratory-entry-threshold" />
+    <line x1="826" y1="256" x2="869" y2="256" stroke-dasharray="3 2" id="upper-lobby-access-threshold" />
+    <line x1="583" y1="260" x2="610" y2="260" stroke-dasharray="3 2" id="west-laboratory-entry-threshold" />
+    <line x1="497" y1="255" x2="478" y2="255" stroke-dasharray="3 2" id="recording-room-entry-threshold" />
+    <line x1="272" y1="556" x2="302" y2="556" stroke-dasharray="3 2" id="west-classroom-entry-threshold" />
+    <line x1="407" y1="457" x2="428" y2="434" stroke-dasharray="3 2" id="west-lab-corridor-entry-threshold" />
+    <line x1="364" y1="488" x2="397" y2="454" stroke-dasharray="3 2" id="west-service-double-access-threshold" />
+    <line x1="427" y1="486" x2="410" y2="503" stroke-dasharray="3 2" id="west-service-entry-threshold" />
+    <line x1="456" y1="513" x2="438" y2="531" stroke-dasharray="3 2" id="diagonal-lobby-outer-door-threshold" />
+    <line x1="457" y1="513" x2="484" y2="486" stroke-dasharray="3 2" id="diagonal-lobby-inner-access-threshold" />
+    <line x1="384" y1="597" x2="423" y2="597" stroke-dasharray="3 2" id="distributor-inner-access-threshold" />
+    <line x1="364" y1="650" x2="364" y2="690" stroke-dasharray="3 2" id="lift-lobby-west-access-threshold" />
+    <line x1="250" y1="696" x2="250" y2="724" stroke-dasharray="3 2" id="middle-classroom-entry-threshold" />
+    <line x1="250" y1="773" x2="250" y2="742" stroke-dasharray="3 2" id="southwest-classroom-entry-threshold" />
+    <line x1="320" y1="738" x2="368" y2="738" stroke-dasharray="3 2" id="lower-service-closet-threshold" />
+    <line x1="284" y1="773" x2="313" y2="773" stroke-dasharray="3 2" id="southeast-classroom-entry-threshold" />
+    <line x1="541" y1="303" x2="533" y2="327" stroke-dasharray="3 2" id="north-stair-upper-access-threshold" />
+    <line x1="514" y1="382" x2="523" y2="357" stroke-dasharray="3 2" id="north-stair-lower-access-threshold" />
+    <line x1="535" y1="405" x2="527" y2="431" stroke-dasharray="3 2" id="west-stair-corridor-door-threshold" />
+    <line x1="728" y1="342" x2="762" y2="352" stroke-dasharray="3 2" id="north-service-double-door-threshold" />
+    <line x1="687" y1="448" x2="706" y2="454" stroke-dasharray="3 2" id="north-service-south-entry-threshold" />
+    <line x1="778" y1="363" x2="815" y2="376" stroke-dasharray="3 2" id="east-stair-north-access-threshold" />
+    <line x1="868" y1="374" x2="847" y2="374" stroke-dasharray="3 2" id="east-laboratory-south-access-threshold" />
+    <line x1="744" y1="466" x2="770" y2="474" stroke-dasharray="3 2" id="east-stair-south-access-threshold" />
+    <line x1="905" y1="339" x2="952" y2="339" stroke-dasharray="3 2" id="east-service-double-door-threshold" />
+    <line x1="946" y1="469" x2="966" y2="475" stroke-dasharray="3 2" id="storage-room-door-threshold" />
+    <line x1="452" y1="637" x2="483" y2="637" stroke-dasharray="3 2" />
+    <line x1="495" y1="637" x2="524" y2="637" stroke-dasharray="3 2" />
+    <line x1="443" y1="712" x2="475" y2="712" stroke-dasharray="3 2" />
+    <line x1="493" y1="712" x2="531" y2="712" stroke-dasharray="3 2" />
+    <line x1="424" y1="716" x2="392" y2="716" stroke-dasharray="3 2" id="lower-stair-lobby-door-threshold" />
+    <line x1="583" y1="616" x2="562" y2="638" stroke-dasharray="3 2" id="upper-accessible-room-door-threshold" />
+    <line x1="611" y1="655" x2="594" y2="673" stroke-dasharray="3 2" id="lower-accessible-room-door-threshold" />
+    <line x1="632" y1="711" x2="632" y2="691" stroke-dasharray="3 2" id="accessible-bathroom-entry-threshold" />
+    <line x1="696" y1="717" x2="674" y2="717" stroke-dasharray="3 2" id="upper-east-bathroom-entry-threshold" />
+    <line x1="632" y1="737" x2="632" y2="718" stroke-dasharray="3 2" id="bathroom-west-access-threshold" />
+    <line x1="670" y1="737" x2="670" y2="718" stroke-dasharray="3 2" id="bathroom-east-access-threshold" />
+    <line x1="600" y1="764" x2="600" y2="745" stroke-dasharray="3 2" id="west-stall-1-threshold" />
+    <line x1="696" y1="764" x2="696" y2="745" stroke-dasharray="3 2" id="east-stall-1-threshold" />
+    <line x1="600" y1="788" x2="600" y2="768" stroke-dasharray="3 2" id="west-stall-2-threshold" />
+    <line x1="696" y1="788" x2="696" y2="768" stroke-dasharray="3 2" id="east-stall-2-threshold" />
+    <line x1="600" y1="809" x2="600" y2="792" stroke-dasharray="3 2" id="west-stall-3-threshold" />
+    <line x1="696" y1="809" x2="696" y2="792" stroke-dasharray="3 2" id="east-stall-3-threshold" />
+  </g>
+  <g id="doors" fill="none" stroke="#292d32" stroke-width="1.15" stroke-linejoin="round" stroke-linecap="round" inkscape:groupmode="layer" inkscape:label="Doors">
+    <g id="upper-teaching-room-entry-a">
+      <line x1="837" y1="143" x2="837" y2="151.96" stroke-width="1.25" />
+      <path d="M 845.96,143 A 8.96,8.96 0 0 1 837,151.96" stroke-width=".8" />
+    </g>
+    <g id="upper-teaching-room-entry-b">
+      <line x1="865" y1="143" x2="865" y2="162.04" stroke-width="1.25" />
+      <path d="M 845.96,143 A 19.04,19.04 0 0 0 865,162.04" stroke-width=".8" />
+    </g>
+    <g id="lower-teaching-room-entry-a">
+      <line x1="824" y1="184" x2="805.52" y2="184" stroke-width="1.25" />
+      <path d="M 824,202.48 A 18.48,18.48 0 0 1 805.52,184" stroke-width=".8" />
+    </g>
+    <g id="lower-teaching-room-entry-b">
+      <line x1="824" y1="212" x2="814.48" y2="212" stroke-width="1.25" />
+      <path d="M 824,202.48 A 9.52,9.52 0 0 0 814.48,212" stroke-width=".8" />
+    </g>
+    <g id="north-laboratory-entry-a">
+      <line x1="890" y1="171" x2="871.1" y2="171" stroke-width="1.25" />
+      <path d="M 890,189.9 A 18.9,18.9 0 0 1 871.1,171" stroke-width=".8" />
+    </g>
+    <g id="north-laboratory-entry-b">
+      <line x1="890" y1="198" x2="881.9" y2="198" stroke-width="1.25" />
+      <path d="M 890,189.9 A 8.1,8.1 0 0 0 881.9,198" stroke-width=".8" />
+    </g>
+    <g id="south-laboratory-entry-a">
+      <line x1="890" y1="220" x2="880.08" y2="220" stroke-width="1.25" />
+      <path d="M 890,229.92 A 9.92,9.92 0 0 1 880.08,220" stroke-width=".8" />
+    </g>
+    <g id="south-laboratory-entry-b">
+      <line x1="890" y1="251" x2="868.92" y2="251" stroke-width="1.25" />
+      <path d="M 890,229.92 A 21.08,21.08 0 0 0 868.92,251" stroke-width=".8" />
+    </g>
+    <g id="upper-lobby-access-a">
+      <line x1="826" y1="256" x2="826" y2="277.5" stroke-width="1.25" />
+      <path d="M 847.5,256 A 21.5,21.5 0 0 1 826,277.5" stroke-width=".8" />
+    </g>
+    <g id="upper-lobby-access-b">
+      <line x1="869" y1="256" x2="869" y2="277.5" stroke-width="1.25" />
+      <path d="M 847.5,256 A 21.5,21.5 0 0 0 869,277.5" stroke-width=".8" />
+    </g>
+    <g id="west-laboratory-entry-a">
+      <line x1="583" y1="260" x2="583" y2="269.18" stroke-width="1.25" />
+      <path d="M 592.18,260 A 9.18,9.18 0 0 1 583,269.18" stroke-width=".8" />
+    </g>
+    <g id="west-laboratory-entry-b">
+      <line x1="610" y1="260" x2="610" y2="277.82" stroke-width="1.25" />
+      <path d="M 592.18,260 A 17.82,17.82 0 0 0 610,277.82" stroke-width=".8" />
+    </g>
+    <g id="recording-room-entry">
+      <line x1="497" y1="255" x2="497" y2="274" stroke-width="1.25" />
+      <path d="M 478,255 A 19,19 0 0 0 497,274" stroke-width=".8" />
+    </g>
+    <g id="west-classroom-entry-a">
+      <line x1="272" y1="556" x2="272" y2="575.8" stroke-width="1.25" />
+      <path d="M 291.8,556 A 19.8,19.8 0 0 1 272,575.8" stroke-width=".8" />
+    </g>
+    <g id="west-classroom-entry-b">
+      <line x1="302" y1="556" x2="302" y2="566.2" stroke-width="1.25" />
+      <path d="M 291.8,556 A 10.2,10.2 0 0 0 302,566.2" stroke-width=".8" />
+    </g>
+    <g id="west-lab-corridor-entry-a">
+      <line x1="407" y1="457" x2="422.64" y2="471.28" stroke-width="1.25" />
+      <path d="M 421.28,441.36 A 21.178,21.178 0 0 1 422.64,471.28" stroke-width=".8" />
+    </g>
+    <g id="west-lab-corridor-entry-b">
+      <line x1="428" y1="434" x2="435.36" y2="440.72" stroke-width="1.25" />
+      <path d="M 421.28,441.36 A 9.966,9.966 0 0 0 435.36,440.72" stroke-width=".8" />
+    </g>
+    <g id="west-service-double-access-a">
+      <line x1="364" y1="488" x2="347" y2="471.5" stroke-width="1.25" />
+      <path d="M 380.5,471 A 23.691,23.691 0 0 0 347,471.5" stroke-width=".8" />
+    </g>
+    <g id="west-service-double-access-b">
+      <line x1="397" y1="454" x2="380" y2="437.5" stroke-width="1.25" />
+      <path d="M 380.5,471 A 23.691,23.691 0 0 1 380,437.5" stroke-width=".8" />
+    </g>
+    <g id="west-service-entry">
+      <line x1="427" y1="486" x2="444" y2="503" stroke-width="1.25" />
+      <path d="M 410,503 A 24.042,24.042 0 0 0 444,503" stroke-width=".8" />
+    </g>
+    <g id="diagonal-lobby-outer-door">
+      <line x1="456" y1="513" x2="438" y2="495" stroke-width="1.25" />
+      <path d="M 438,531 A 25.456,25.456 0 0 1 438,495" stroke-width=".8" />
+    </g>
+    <g id="diagonal-lobby-inner-access-a">
+      <line x1="457" y1="513" x2="443.5" y2="499.5" stroke-width="1.25" />
+      <path d="M 470.5,499.5 A 19.092,19.092 0 0 0 443.5,499.5" stroke-width=".8" />
+    </g>
+    <g id="diagonal-lobby-inner-access-b">
+      <line x1="484" y1="486" x2="470.5" y2="472.5" stroke-width="1.25" />
+      <path d="M 470.5,499.5 A 19.092,19.092 0 0 1 470.5,472.5" stroke-width=".8" />
+    </g>
+    <g id="distributor-inner-access-a">
+      <line x1="384" y1="597" x2="384" y2="577.5" stroke-width="1.25" />
+      <path d="M 403.5,597 A 19.5,19.5 0 0 0 384,577.5" stroke-width=".8" />
+    </g>
+    <g id="distributor-inner-access-b">
+      <line x1="423" y1="597" x2="423" y2="577.5" stroke-width="1.25" />
+      <path d="M 403.5,597 A 19.5,19.5 0 0 1 423,577.5" stroke-width=".8" />
+    </g>
+    <g id="lift-lobby-west-access-a">
+      <line x1="364" y1="650" x2="384" y2="650" stroke-width="1.25" />
+      <path d="M 364,670 A 20,20 0 0 0 384,650" stroke-width=".8" />
+    </g>
+    <g id="lift-lobby-west-access-b">
+      <line x1="364" y1="690" x2="384" y2="690" stroke-width="1.25" />
+      <path d="M 364,670 A 20,20 0 0 1 384,690" stroke-width=".8" />
+    </g>
+    <g id="middle-classroom-entry-a">
+      <line x1="250" y1="696" x2="268.48" y2="696" stroke-width="1.25" />
+      <path d="M 250,714.48 A 18.48,18.48 0 0 0 268.48,696" stroke-width=".8" />
+    </g>
+    <g id="middle-classroom-entry-b">
+      <line x1="250" y1="724" x2="259.52" y2="724" stroke-width="1.25" />
+      <path d="M 250,714.48 A 9.52,9.52 0 0 1 259.52,724" stroke-width=".8" />
+    </g>
+    <g id="southwest-classroom-entry-a">
+      <line x1="250" y1="773" x2="270.46" y2="773" stroke-width="1.25" />
+      <path d="M 250,752.54 A 20.46,20.46 0 0 1 270.46,773" stroke-width=".8" />
+    </g>
+    <g id="southwest-classroom-entry-b">
+      <line x1="250" y1="742" x2="260.54" y2="742" stroke-width="1.25" />
+      <path d="M 250,752.54 A 10.54,10.54 0 0 0 260.54,742" stroke-width=".8" />
+    </g>
+    <g id="lower-service-closet-a">
+      <line x1="320" y1="738" x2="320" y2="762" stroke-width="1.25" />
+      <path d="M 344,738 A 24,24 0 0 1 320,762" stroke-width=".8" />
+    </g>
+    <g id="lower-service-closet-b">
+      <line x1="368" y1="738" x2="368" y2="762" stroke-width="1.25" />
+      <path d="M 344,738 A 24,24 0 0 0 368,762" stroke-width=".8" />
+    </g>
+    <g id="southeast-classroom-entry-a">
+      <line x1="284" y1="773" x2="284" y2="763.14" stroke-width="1.25" />
+      <path d="M 293.86,773 A 9.86,9.86 0 0 0 284,763.14" stroke-width=".8" />
+    </g>
+    <g id="southeast-classroom-entry-b">
+      <line x1="313" y1="773" x2="313" y2="753.86" stroke-width="1.25" />
+      <path d="M 293.86,773 A 19.14,19.14 0 0 1 313,753.86" stroke-width=".8" />
+    </g>
+    <g id="north-stair-upper-access">
+      <line x1="541" y1="303" x2="565" y2="311" stroke-width="1.25" />
+      <path d="M 533,327 A 25.298,25.298 0 0 0 565,311" stroke-width=".8" />
+    </g>
+    <g id="north-stair-lower-access">
+      <line x1="514" y1="382" x2="539" y2="391" stroke-width="1.25" />
+      <path d="M 523,357 A 26.571,26.571 0 0 1 539,391" stroke-width=".8" />
+    </g>
+    <g id="west-stair-corridor-door">
+      <line x1="535" y1="405" x2="509" y2="397" stroke-width="1.25" />
+      <path d="M 527,431 A 27.203,27.203 0 0 1 509,397" stroke-width=".8" />
+    </g>
+    <g id="north-service-double-door-a">
+      <line x1="728" y1="342" x2="732.8" y2="325.68" stroke-width="1.25" />
+      <path d="M 744.32,346.8 A 17.011,17.011 0 0 0 732.8,325.68" stroke-width=".8" />
+    </g>
+    <g id="north-service-double-door-b">
+      <line x1="762" y1="352" x2="767.2" y2="334.32" stroke-width="1.25" />
+      <path d="M 744.32,346.8 A 18.429,18.429 0 0 1 767.2,334.32" stroke-width=".8" />
+    </g>
+    <g id="north-service-south-entry">
+      <line x1="687" y1="448" x2="693" y2="429" stroke-width="1.25" />
+      <path d="M 706,454 A 19.925,19.925 0 0 0 693,429" stroke-width=".8" />
+    </g>
+    <g id="east-stair-north-access-a">
+      <line x1="778" y1="363" x2="771.5" y2="381.5" stroke-width="1.25" />
+      <path d="M 796.5,369.5 A 19.609,19.609 0 0 1 771.5,381.5" stroke-width=".8" />
+    </g>
+    <g id="east-stair-north-access-b">
+      <line x1="815" y1="376" x2="808.5" y2="394.5" stroke-width="1.25" />
+      <path d="M 796.5,369.5 A 19.609,19.609 0 0 0 808.5,394.5" stroke-width=".8" />
+    </g>
+    <g id="east-laboratory-south-access">
+      <line x1="868" y1="374" x2="868" y2="353" stroke-width="1.25" />
+      <path d="M 847,374 A 21,21 0 0 1 868,353" stroke-width=".8" />
+    </g>
+    <g id="east-stair-south-access">
+      <line x1="744" y1="466" x2="752" y2="440" stroke-width="1.25" />
+      <path d="M 770,474 A 27.203,27.203 0 0 0 752,440" stroke-width=".8" />
+    </g>
+    <g id="east-service-double-door-a">
+      <line x1="905" y1="339" x2="905" y2="315.5" stroke-width="1.25" />
+      <path d="M 928.5,339 A 23.5,23.5 0 0 0 905,315.5" stroke-width=".8" />
+    </g>
+    <g id="east-service-double-door-b">
+      <line x1="952" y1="339" x2="952" y2="315.5" stroke-width="1.25" />
+      <path d="M 928.5,339 A 23.5,23.5 0 0 1 952,315.5" stroke-width=".8" />
+    </g>
+    <g id="storage-room-door">
+      <line x1="946" y1="469" x2="952" y2="449" stroke-width="1.25" />
+      <path d="M 966,475 A 20.881,20.881 0 0 0 952,449" stroke-width=".8" />
+    </g>
+    <g id="upper-west-lift-door">
+      <line x1="452" y1="637" x2="483" y2="637" stroke-width=".65" />
+      <line x1="452" y1="638.25" x2="467.5" y2="638.25" stroke-width="1" />
+      <line x1="467.5" y1="635.75" x2="483" y2="635.75" stroke-width="1" />
+    </g>
+    <g id="upper-east-lift-door">
+      <line x1="495" y1="637" x2="524" y2="637" stroke-width=".65" />
+      <line x1="495" y1="638.25" x2="509.5" y2="638.25" stroke-width="1" />
+      <line x1="509.5" y1="635.75" x2="524" y2="635.75" stroke-width="1" />
+    </g>
+    <g id="lower-west-lift-door">
+      <line x1="443" y1="712" x2="475" y2="712" stroke-width=".65" />
+      <line x1="443" y1="713.25" x2="459" y2="713.25" stroke-width="1" />
+      <line x1="459" y1="710.75" x2="475" y2="710.75" stroke-width="1" />
+    </g>
+    <g id="lower-east-lift-door">
+      <line x1="493" y1="712" x2="531" y2="712" stroke-width=".65" />
+      <line x1="493" y1="713.25" x2="512" y2="713.25" stroke-width="1" />
+      <line x1="512" y1="710.75" x2="531" y2="710.75" stroke-width="1" />
+    </g>
+    <g id="lower-stair-lobby-door">
+      <line x1="424" y1="716" x2="424" y2="748" stroke-width="1.25" />
+      <path d="M 392,716 A 32,32 0 0 0 424,748" stroke-width=".8" />
+    </g>
+    <g id="upper-accessible-room-door">
+      <line x1="583" y1="616" x2="605" y2="637" stroke-width="1.25" />
+      <path d="M 562,638 A 30.414,30.414 0 0 0 605,637" stroke-width=".8" />
+    </g>
+    <g id="lower-accessible-room-door">
+      <line x1="611" y1="655" x2="593" y2="638" stroke-width="1.25" />
+      <path d="M 594,673 A 24.759,24.759 0 0 1 593,638" stroke-width=".8" />
+    </g>
+    <g id="accessible-bathroom-entry">
+      <line x1="632" y1="711" x2="652" y2="711" stroke-width="1.25" />
+      <path d="M 632,691 A 20,20 0 0 1 652,711" stroke-width=".8" />
+    </g>
+    <g id="upper-east-bathroom-entry">
+      <line x1="696" y1="717" x2="696" y2="695" stroke-width="1.25" />
+      <path d="M 674,717 A 22,22 0 0 1 696,695" stroke-width=".8" />
+    </g>
+    <g id="bathroom-west-access">
+      <line x1="632" y1="737" x2="613" y2="737" stroke-width="1.25" />
+      <path d="M 632,718 A 19,19 0 0 0 613,737" stroke-width=".8" />
+    </g>
+    <g id="bathroom-east-access">
+      <line x1="670" y1="737" x2="689" y2="737" stroke-width="1.25" />
+      <path d="M 670,718 A 19,19 0 0 1 689,737" stroke-width=".8" />
+    </g>
+    <g id="west-stall-1">
+      <line x1="600" y1="764" x2="619" y2="764" stroke-width="1.25" />
+      <path d="M 600,745 A 19,19 0 0 1 619,764" stroke-width=".8" />
+    </g>
+    <g id="east-stall-1">
+      <line x1="696" y1="764" x2="677" y2="764" stroke-width="1.25" />
+      <path d="M 696,745 A 19,19 0 0 0 677,764" stroke-width=".8" />
+    </g>
+    <g id="west-stall-2">
+      <line x1="600" y1="788" x2="620" y2="788" stroke-width="1.25" />
+      <path d="M 600,768 A 20,20 0 0 1 620,788" stroke-width=".8" />
+    </g>
+    <g id="east-stall-2">
+      <line x1="696" y1="788" x2="676" y2="788" stroke-width="1.25" />
+      <path d="M 696,768 A 20,20 0 0 0 676,788" stroke-width=".8" />
+    </g>
+    <g id="west-stall-3">
+      <line x1="600" y1="809" x2="617" y2="809" stroke-width="1.25" />
+      <path d="M 600,792 A 17,17 0 0 1 617,809" stroke-width=".8" />
+    </g>
+    <g id="east-stall-3">
+      <line x1="696" y1="809" x2="679" y2="809" stroke-width="1.25" />
+      <path d="M 696,792 A 17,17 0 0 0 679,809" stroke-width=".8" />
+    </g>
+  </g>
+</svg>

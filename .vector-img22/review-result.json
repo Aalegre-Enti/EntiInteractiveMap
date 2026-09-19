@@ -1,0 +1,10 @@
+{
+  "file": "img22-architectural.svg",
+  "verified_access_thresholds": 52,
+  "blocked_thresholds": [],
+  "svg_parses": true,
+  "raster_images": 0,
+  "visible_text_elements": 0,
+  "review_method": "Visual comparison with enlarged source crops; wall-only rendering checked at 15 interior samples per access threshold.",
+  "limitations": "Geometry fully covered by source labels cannot be verified."
+}
