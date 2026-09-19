@@ -301,7 +301,7 @@ function setFallbackExpanded(expanded) {
   panel.classList.toggle('is-expanded', expanded);
   document.body.classList.toggle('has-expanded-map', expanded);
   // Match native fullscreen focus containment on browsers without that API.
-  for (const element of [document.querySelector('.site-header'), document.querySelector('.sidebar'), document.querySelector('.map-heading'), document.querySelector('.map-footer')]) element.inert = expanded;
+  for (const element of [document.querySelector('.skip-link'), document.querySelector('.site-header'), document.querySelector('.sidebar'), document.querySelector('.map-heading'), document.querySelector('.map-footer')]) element.inert = expanded;
   if (expanded) {
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('aria-modal', 'true');
@@ -349,3 +349,24 @@ window.addEventListener('hashchange', () => {
   if (/^#planta-[0-4]$/.test(location.hash) || !location.hash) selectFloor(floorFromHash(), { updateUrl: false });
 });
 selectFloor(floorFromHash(), { updateUrl: false });
+
+// Optional browser integration; uses exactly the same action as the floor buttons.
+if (document.modelContext?.registerTool) {
+  const lifecycle = new AbortController();
+  window.addEventListener('pagehide', (event) => { if (!event.persisted) lifecycle.abort(); }, { once: true });
+  try {
+    Promise.resolve(document.modelContext.registerTool({
+      name: 'select_building_floor',
+      title: 'Selecciona una planta',
+      description: 'Mostra el plànol de la planta indicada (0: planta baixa; 1–4: plantes superiors).',
+      inputSchema: { type: 'object', properties: { floor: { type: 'integer', minimum: 0, maximum: 4 } }, required: ['floor'], additionalProperties: false },
+      annotations: { readOnlyHint: false, untrustedContentHint: false },
+      async execute(input) {
+        if (!Number.isInteger(input?.floor) || input.floor < 0 || input.floor > 4) throw new Error('La planta ha de ser un nombre enter entre 0 i 4.');
+        const loaded = await selectFloor(String(input.floor));
+        if (!loaded) throw new Error('No s’ha pogut mostrar el plànol.');
+        return { floor: Number(activeFloor.id), name: activeFloor.name, loaded: true };
+      },
+    }, { signal: lifecycle.signal })).catch(() => {});
+  } catch { /* The visible controls remain available in unsupported browsers. */ }
+}
