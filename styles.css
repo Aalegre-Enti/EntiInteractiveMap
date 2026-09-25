@@ -147,10 +147,12 @@ h1 { margin: 0; font-weight: 600; font-size: 1.25rem; letter-spacing: -.035em; l
 .room-marker:hover, .room-marker:focus-visible, .room-marker[aria-pressed="true"] { opacity: 1; z-index: 3; }
 .room-marker[aria-pressed="true"] .room-marker-dot { box-shadow: 0 0 0 1px var(--brand), 0 0 0 5px rgba(var(--brand-rgb), .18); }
 .room-marker[aria-pressed="true"] .room-marker-label { background: var(--brand); color: #fff; }
-.here-marker { position: absolute; z-index: 2; width: var(--here-size, 28px); height: var(--here-size, 28px); color: var(--brand-dark); pointer-events: none; transform: translate(-50%, -50%) scale(var(--marker-scale, 1)); transform-origin: center; }
-.here-dot { display: grid; place-items: center; width: var(--here-size, 28px); height: var(--here-size, 28px); border: 4px solid #fff; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 1px var(--brand), 0 0 0 6px rgba(var(--brand-rgb), .13); color: #fff; }
+.here-marker { position: absolute; z-index: 4; width: var(--here-size, 28px); height: var(--here-size, 28px); color: var(--brand-dark); pointer-events: none; transform: translate(-50%, -50%) scale(var(--marker-scale, 1)); transform-origin: center; }
+/* A hatched halo distinguishes the location without obscuring its direction arrows. */
+.here-marker::before { content: ''; position: absolute; z-index: -1; inset: -8px; border: 1px solid var(--brand); border-radius: 50%; background: repeating-linear-gradient(135deg, var(--brand) 0 1.5px, #fff 1.5px 6px); box-shadow: 0 0 0 3px #fff; }
+.here-dot { display: grid; place-items: center; width: var(--here-size, 28px); height: var(--here-size, 28px); border: 4px solid #fff; border-radius: 50%; background: var(--brand); color: #fff; }
 .here-arrows { display: none; width: calc(var(--here-size, 28px) - 9px); height: calc(var(--here-size, 28px) - 9px); stroke-width: 2.5; }
-.here-label { position: absolute; bottom: calc(100% + 9px); left: 50%; transform: translateX(-50%); display: grid; gap: 2px; padding: 7px 10px; border-radius: 6px; background: #fff; box-shadow: var(--floating-shadow); text-align: center; white-space: nowrap; }
+.here-label { position: absolute; bottom: calc(100% + 15px); left: 50%; transform: translateX(-50%); display: grid; gap: 2px; padding: 7px 10px; border-radius: var(--black-radius); background: var(--brand); color: #fff; box-shadow: 0 0 0 2px #fff; text-align: center; white-space: nowrap; }
 .here-label strong { font-size: .8125rem; font-weight: 700; }
 .here-label > span { font-size: .75rem; }
 .here-marker[data-direction="up"], .here-marker[data-direction="down"] { opacity: var(--here-other-opacity, .65); }
@@ -158,7 +160,7 @@ h1 { margin: 0; font-weight: 600; font-size: 1.25rem; letter-spacing: -.035em; l
 .here-marker[data-direction="down"] .here-arrows { transform: rotate(180deg); }
 .here-marker.label-right .here-label { left: 0; transform: none; }
 .here-marker.label-left .here-label { left: auto; right: 0; transform: none; }
-.here-marker.label-below .here-label { bottom: auto; top: calc(100% + 9px); }
+.here-marker.label-below .here-label { bottom: auto; top: calc(100% + 15px); }
 .icon-button { display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 10px; border-radius: 7px; background: #fff; flex-shrink: 0; }
 .icon-button:hover:not(:disabled), .fit-button:hover { background: var(--brand-light); color: var(--brand); }
 .fullscreen-button { position: absolute; top: 8px; right: 8px; z-index: 3; background: var(--surface); }
