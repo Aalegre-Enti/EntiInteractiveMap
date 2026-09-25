@@ -5,7 +5,7 @@ function element(tag, className, text) {
   return node;
 }
 
-export function createRoomSubmenu(floor, { onSelect, periods, t, language }) {
+export function createRoomSubmenu(floor, { onSelect, periods, t, language, showRoomUsage = false }) {
   const submenu = element('details', 'room-submenu');
   submenu.id = `floor-rooms-${floor.id}`;
   submenu.dataset.floorRooms = floor.id;
@@ -50,6 +50,16 @@ export function createRoomSubmenu(floor, { onSelect, periods, t, language }) {
         badge.append(svg);
       }
       service.append(text, badge);
+    } else if (!showRoomUsage) {
+      const button = element('button', 'room-summary room-select-button');
+      button.type = 'button';
+      button.setAttribute('aria-label', t(room.overlay ? 'showRoom' : 'selectRoom', { room: room.name }));
+      button.setAttribute('aria-pressed', 'false');
+      if (room.overlay) button.setAttribute('aria-controls', 'room-overlay');
+      button.dataset.roomSelect = room.id;
+      button.append(element('span', 'room-name', room.name));
+      button.addEventListener('click', () => onSelect(floor, room));
+      item.append(button);
     } else {
       const details = element('details', 'room-entry');
       details.name = 'room-information';

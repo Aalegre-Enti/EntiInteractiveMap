@@ -1,6 +1,6 @@
 import { roomMarkerLabel } from './room-markers.js';
 
-export function renderDisplayDirectory(floor, floors, t) {
+export function renderDisplayDirectory(floor, floors, t, { showRoomUsage = false } = {}) {
   const indicators = document.getElementById('display-floors');
   indicators.replaceChildren();
   for (const item of floors) {
@@ -25,12 +25,15 @@ export function renderDisplayDirectory(floor, floors, t) {
     code.className = 'display-room-code';
     code.textContent = roomMarkerLabel(room);
     const name = document.createElement('span');
-    // Classroom codes already identify the room; show its centres without repeating the code.
+    // Classroom codes already identify the room; only add useful secondary text.
     if (code.textContent === room.name) {
-      name.className = 'display-room-centres';
-      name.textContent = [...new Set(room.uses.map((use) => use.institution))].join(' · ');
+      if (showRoomUsage && room.showUsage) {
+        name.className = 'display-room-centres';
+        name.textContent = [...new Set(room.uses.map((use) => use.institution))].join(' · ');
+      }
     } else name.textContent = room.name;
-    item.append(code, name);
+    item.append(code);
+    if (name.textContent) item.append(name);
     list.append(item);
   });
 }

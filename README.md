@@ -12,7 +12,7 @@ Edita `config.json`, desa’l i recarrega la pàgina. A GitHub Pages, publica ta
 | `theme` | Color principal `brand`, text `ink`, text secundari `muted`, vores `line`, fons `surface` i tipografia `fontFamily`. Els colors utilitzen `#RRGGBB`. |
 | `floors` | Plantes, ordre del menú, imatges, sales, usos, capes i punts d’informació. La quantitat de plantes es calcula automàticament. |
 | `periods` | Identificadors i noms dels períodes d’ús, com ara entre setmana i caps de setmana. |
-| `view` | Planta inicial, ampliació màxima, pas d’ampliació, marge inicial, sensibilitat de la roda, desplaçament amb teclat i menú mòbil plegat. |
+| `view` | Planta inicial, ampliació màxima, pas d’ampliació, marge inicial, sensibilitat de la roda, desplaçament amb teclat, menú mòbil plegat i visibilitat dels usos (`showRoomUsage`). |
 | `overlay` | Opacitat fixa, opacitat màxima de la pulsació, durada de cada cicle en segons i nombre de cicles. `pulseCount: 0` desactiva la pulsació. |
 | `roomMarkers` | Visibilitat dels punts de sala (`enabled`), opacitat quan no estan seleccionats (`inactiveOpacity`), diàmetre del punt (`dotSize`) i mida de l’etiqueta (`labelSize`), en píxels. |
 | `here` | Etiqueta, mida del punt en píxels, opacitat en altres plantes i ubicació per defecte. |
@@ -72,6 +72,8 @@ Afegeix-la a `rooms` de la planta corresponent:
 
 `code` és obligatori i únic dins la planta. `name` pot ometre’s per mostrar el codi. `id` és opcional i es deriva de la planta i el codi; si el defineixes, ha de ser únic a tot l’edifici. Cada `uses[].period` ha de correspondre a un `id` de `periods`.
 
+Els centres, activitats i períodes d’ús s’amaguen al menú i al mode de pantalla amb `view.showRoomUsage: false` (valor per defecte). Les dades es conserven per a futures actualitzacions. Amb `view.showRoomUsage: true`, es mostren els usos de les sales que també tinguin `showUsage: true`.
+
 Per a un espai comú, utilitza `kind: "common"`; per als lavabos, `kind: "bathroom"`. Tots dos amaguen els usos per defecte i utilitzen l’estil compacte amb icona. `showUsage: false` també permet amagar els usos d’una aula existent, com Oficines, Menjador o Sala d’estudi.
 
 ```json
@@ -91,13 +93,13 @@ Opcions visuals de les sales comunes:
 - `badge`: text curt en lloc d’icona, per exemple `"WC"`.
 - `subtitle`: text sota el nom. Sense aquest camp, es mostra el text de serveis o espai comú de `texts`.
 
-Per destacar una sala al mapa, afegeix `overlay` amb la ruta a la seva capa, per exemple `"./img/CleanedFloorplan/Level0/Auditori.png"`. La capa ha de ser una imatge transparent amb les mateixes dimensions i alineació que el plànol complet. L’app utilitza el canal alfa per aplicar el color de `theme.brand`. Sense `overlay`, la sala conserva la informació i l’enllaç, però no mostra ressaltat.
+Per destacar una sala al mapa, afegeix `overlay` amb la ruta a la seva capa, per exemple `"./img/CleanedFloorplan/Level0/Auditori.png"`. La capa ha de ser una imatge transparent amb les mateixes dimensions i alineació que el plànol complet. L’app utilitza el canal alfa per aplicar una trama de ratlles diagonals amb el color de `theme.brand`; el gruix i la separació es mantenen constants en ampliar el plànol. Sense `overlay`, la sala conserva l’enllaç, però no mostra ressaltat.
 
-Les dades són text pla, no HTML. Només una fitxa de sala pot quedar desplegada alhora. En seleccionar-la, la URL s’actualitza; recarregar o compartir l’enllaç recupera la planta i la sala. Exemple: `#planta-0/sala/0.1`. També funciona amb plantes noves: `#planta-soterrani/sala/A.01`.
+Les dades són text pla, no HTML. Si els usos estan activats, només una fitxa de sala pot quedar desplegada alhora. En seleccionar una sala, la URL s’actualitza; recarregar o compartir l’enllaç recupera la planta i la sala. Exemple: `#planta-0/sala/0.1`. També funciona amb plantes noves: `#planta-soterrani/sala/A.01`.
 
 ### Punts de les sales
 
-Cada espai actual té un punt amb una etiqueta curta. Només apareixen els punts de la planta que s’està consultant. Prémer un punt selecciona la sala, desplega la seva informació, actualitza l’enllaç i mostra la capa si en té. El punt seleccionat té intensitat completa; els altres queden atenuats. La selecció també se sincronitza amb el menú, els enllaços compartits i els botons enrere i endavant.
+Cada espai actual té un punt amb una etiqueta curta. Només apareixen els punts de la planta que s’està consultant. Prémer un punt selecciona la sala, actualitza l’enllaç i mostra la capa si en té. Si els usos estan activats, també desplega la seva informació. El punt seleccionat té intensitat completa; els altres queden atenuats. La selecció també se sincronitza amb el menú, els enllaços compartits i els botons enrere i endavant.
 
 Afegeix o modifica `marker` dins de cada sala:
 

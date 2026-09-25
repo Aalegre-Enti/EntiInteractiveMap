@@ -36,6 +36,8 @@ export function validateConfig(input) {
   number(config.view.panStep, 'view.panStep', 1, 1000);
   number(config.view.fastPanStep, 'view.fastPanStep', 1, 1000);
   boolean(config.view.mobileMenuCollapsed, 'view.mobileMenuCollapsed');
+  config.view.showRoomUsage ??= false;
+  boolean(config.view.showRoomUsage, 'view.showRoomUsage');
   object(config.overlay, 'overlay');
   for (const key of ['opacity', 'pulseOpacity']) number(config.overlay[key], `overlay.${key}`, 0, 1);
   number(config.overlay.pulseDuration, 'overlay.pulseDuration', .1, 10);

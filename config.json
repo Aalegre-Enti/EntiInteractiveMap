@@ -24,11 +24,12 @@
     "wheelSensitivity": 0.002,
     "panStep": 50,
     "fastPanStep": 100,
-    "mobileMenuCollapsed": true
+    "mobileMenuCollapsed": true,
+    "showRoomUsage": false
   },
   "overlay": {
-    "opacity": 0.32,
-    "pulseOpacity": 0.65,
+    "opacity": 0.65,
+    "pulseOpacity": 0.9,
     "pulseDuration": 1,
     "pulseCount": 3
   },
@@ -126,7 +127,7 @@
     "helpTitle": "Mou-te pel mapa",
     "helpIntro": "Tot el que necessites per explorar l’edifici.",
     "helpStep1Title": "Tria una planta i un espai",
-    "helpStep1Body": "Prem una planta per veure’n el plànol. Pots seleccionar una sala des de la llista o prement el seu punt al mapa. Els punts de la planta actual tenen una etiqueta i es mostren atenuats fins que els selecciones. Les sales amb una capa disponible es ressalten. En obrir la informació d’una sala, es plega l’anterior.",
+    "helpStep1Body": "Prem una planta per veure’n el plànol. Pots seleccionar una sala des de la llista o prement el seu punt al mapa. La sala seleccionada es ressalta amb ratlles diagonals i el seu punt es mostra amb intensitat completa.",
     "helpStep2Title": "Acosta’t als detalls",
     "helpStep2Body": "Fes servir els botons + i − o la roda del ratolí. Al mòbil, separa dos dits per ampliar.",
     "helpStep3Title": "Explora el plànol",

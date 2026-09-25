@@ -146,7 +146,7 @@ export function startApp(config) {
     const arrow = icon('arrow');
     arrow.classList.add('floor-chevron');
     button.append(number, label, arrow);
-    const submenu = createRoomSubmenu(floor, { onSelect: selectRoom, periods: config.periods, t, language: config.site.language });
+    const submenu = createRoomSubmenu(floor, { onSelect: selectRoom, periods: config.periods, t, language: config.site.language, showRoomUsage: config.view.showRoomUsage });
     submenu.hidden = true;
     button.addEventListener('click', () => {
       if (activeFloor.id === floor.id) {
@@ -385,7 +385,7 @@ export function startApp(config) {
     }
     const version = ++loadVersion;
     activeFloor = floor;
-    if (displayMode) renderDisplayDirectory(floor, floors, t);
+    if (displayMode) renderDisplayDirectory(floor, floors, t, config.view);
     renderHereLocation();
     clearRoomSelection();
     hideDetails();
