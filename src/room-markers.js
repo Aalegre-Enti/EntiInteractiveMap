@@ -1,8 +1,24 @@
+export function roomMarkerLabel(room) {
+  return room.marker?.label ?? room.name;
+}
+
 // Coordinates are percentages of the full floor image, just like “Ets aquí”.
-export function createRoomMarkers(floor, { onSelect, t }) {
+export function createRoomMarkers(floor, { onSelect, t, display = false }) {
   const fragment = document.createDocumentFragment();
   for (const room of floor.rooms) {
     if (!room.marker) continue;
+    if (display) {
+      const marker = document.createElement('span');
+      marker.className = 'room-marker display-room-marker';
+      marker.style.left = `${room.marker.x}%`;
+      marker.style.top = `${room.marker.y}%`;
+      marker.setAttribute('role', 'img');
+      const label = roomMarkerLabel(room);
+      marker.setAttribute('aria-label', label === room.name ? room.name : `${label}: ${room.name}`);
+      marker.textContent = label;
+      fragment.append(marker);
+      continue;
+    }
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'room-marker';
@@ -19,7 +35,7 @@ export function createRoomMarkers(floor, { onSelect, t }) {
     dot.setAttribute('aria-hidden', 'true');
     const label = document.createElement('span');
     label.className = 'room-marker-label';
-    label.textContent = room.marker.label ?? room.name;
+    label.textContent = roomMarkerLabel(room);
     label.setAttribute('aria-hidden', 'true');
     button.append(dot, label);
     button.addEventListener('click', () => onSelect(floor, room));

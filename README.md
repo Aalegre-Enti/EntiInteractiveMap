@@ -152,6 +152,26 @@ Afegeix entrades a `points` dins d’una planta. Les coordenades són percentatg
 }
 ```
 
+## Pantalla informativa 16:9 amb canvi automàtic de planta
+
+Afegeix `?autoflip=10` a la URL per mostrar cada planta durant **10 segons**. Canvia el nombre per ajustar el temps; per exemple, `?autoflip=30` mostra cada planta durant 30 segons. El mode automàtic utilitza una vista per a pantalles sense interacció: directori complet de la planta, codis d’aula i abreviacions que coincideixen amb les etiquetes del plànol, tipografia proporcional a la pantalla i cap control que requereixi tocar o desplaçar la pàgina. Les abreviacions es configuren a `marker.label` de cada sala; si no s’indica, s’utilitza `name`. El directori mostra el nom complet dels espais abreujats i els centres de les aules identificades pel seu codi. No cal una pàgina diferent ni modificar el JSON per activar el mode.
+
+```text
+http://127.0.0.1:4173/?autoflip=10
+http://127.0.0.1:4173/?autoflip=15#planta-2
+http://127.0.0.1:4173/?autoflip=20&aqui=1&x=52.5&y=60#planta-0
+```
+
+El canvi comença a la planta indicada per l’enllaç (o la planta inicial habitual), segueix l’ordre de `floors` del JSON i torna a la primera després de l’última. El temps es compta quan el plànol acaba de carregar. Si una imatge falla, es mostra l’error durant aquest interval i després es continua amb la planta següent.
+
+Una barra fina damunt del menú de plantes indica el temps restant: comença plena i es buida fins al canvi següent. Comparteix el termini del temporitzador i es reinicia quan es carrega una altra planta o es reprèn la rotació. No es mostra en mode manual ni amb una sola planta.
+
+En canviar de planta es neteja la selecció de sala i s’encaixa el plànol. La rotació es suspèn mentre la pestanya és oculta, i torna a donar un interval complet quan es reprèn. Els canvis automàtics actualitzen l’enllaç sense afegir entrades a l’historial del navegador.
+
+`autoflip` admet segons entre **1 i 86400**, inclosos decimals amb punt (per exemple, `2.5`). Sense el paràmetre, amb `autoflip=0`, o amb un valor buit, repetit o invàlid, el mapa funciona en mode manual amb els controls habituals. Amb una sola planta es conserva la vista informativa, sense rotació.
+
+La vista està pensada per a pantalles horitzontals 16:9, incloses 1280 × 720, 1920 × 1080 i 3840 × 2160. Els paràmetres de localització `aqui`, `x` i `y` continuen disponibles. Per omplir el televisor, configura el navegador o reproductor de la pantalla en mode de pantalla completa o quiosc; la pàgina no pot activar la pantalla completa sense un gest de l’usuari. Elimina `autoflip` per tornar al mapa interactiu.
+
 ## Importació opcional de Rooms.ods
 
 Pots editar directament el JSON sense utilitzar el full. Si prefereixes continuar actualitzant els usos des del full, executa amb Python 3:

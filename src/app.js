@@ -4,6 +4,8 @@ import { createRoomSubmenu } from './room-menu.js';
 import { createRoomMarkers, updateRoomMarkers } from './room-markers.js';
 import { selectionHash, selectionFromHash } from './selection-url.js';
 import { hereFromSearch, hereFloorStatus } from './here-location.js';
+import { autoFlipDelayFromSearch, createAutoFlipTimer } from './auto-flip.js';
+import { renderDisplayDirectory } from './display-mode.js';
 import { MIN_ZOOM, fitScale, constrainOffset, zoomAround } from './viewport.js';
 
 const $ = (id) => document.getElementById(id);
@@ -11,6 +13,7 @@ export function startApp(config) {
   configurePage(config);
   const { floors } = config;
   const t = (key, values) => formatText(config.texts, key, values);
+  const numberFormatter = new Intl.NumberFormat(config.site.language);
   const getHereStatus = (location, floorId) => hereFloorStatus(location, floorId, floors, config.texts, config.here.label, config.site.language);
   const viewport = $('map-viewport');
   const transform = $('map-transform');
@@ -35,6 +38,57 @@ export function startApp(config) {
   let urlRestoreVersion = 0;
   let lastHandledUrl;
   let hereLocation = null;
+  let displayMode = false;
+  let autoFlipDelay = null;
+  let autoFlipPaused = false;
+  let floorLoading = true;
+  let autoFlipProgressFrame = 0;
+  const autoFlip = createAutoFlipTimer({
+    floors,
+    getFloorId: () => activeFloor.id,
+    onAdvance: (id) => selectFloor(id, { replaceUrl: true }),
+  });
+
+  function scheduleAutoFlip() {
+    autoFlip.restart(!autoFlipPaused && !floorLoading && !document.hidden && !help.open ? autoFlipDelay : null);
+    renderAutoFlipProgress();
+  }
+
+  function renderAutoFlipProgress() {
+    cancelAnimationFrame(autoFlipProgressFrame);
+    const progress = $('auto-flip-progress');
+    progress.hidden = autoFlipDelay === null || floors.length < 2;
+    if (progress.hidden) return;
+    const remaining = autoFlip.remaining();
+    progress.value = floorLoading ? 1 : remaining / autoFlipDelay;
+    const label = floorLoading ? t('loading') : t('autoFlipTimeLeft', {
+      seconds: numberFormatter.format(Math.ceil(remaining / 1000)),
+    });
+    if (progress.getAttribute('aria-valuetext') !== label) progress.setAttribute('aria-valuetext', label);
+    if (remaining > 0) autoFlipProgressFrame = requestAnimationFrame(renderAutoFlipProgress);
+  }
+
+  function renderAutoFlipControl() {
+    const button = $('auto-flip-button');
+    const enabled = autoFlipDelay !== null && floors.length > 1;
+    button.hidden = !enabled;
+    panel.classList.toggle('has-auto-flip', enabled);
+    const label = t(autoFlipPaused ? 'resumeAutoFlip' : 'pauseAutoFlip', {
+      seconds: numberFormatter.format(autoFlipDelay / 1000),
+    });
+    button.setAttribute('aria-label', label);
+    button.title = label;
+    button.querySelector('use').setAttribute('href', autoFlipPaused ? '#icon-play' : '#icon-pause');
+  }
+
+  $('auto-flip-button').addEventListener('click', () => {
+    autoFlipPaused = !autoFlipPaused;
+    renderAutoFlipControl();
+    scheduleAutoFlip();
+  });
+  document.addEventListener('visibilitychange', scheduleAutoFlip);
+  window.addEventListener('pagehide', () => { autoFlip.stop(); renderAutoFlipProgress(); });
+  window.addEventListener('pageshow', scheduleAutoFlip);
 
   function icon(name) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -97,6 +151,7 @@ export function startApp(config) {
     button.addEventListener('click', () => {
       if (activeFloor.id === floor.id) {
         submenu.open = !submenu.open;
+        scheduleAutoFlip();
       } else {
         selectFloor(floor.id);
       }
@@ -152,14 +207,15 @@ export function startApp(config) {
     renderView();
   }
 
-  function updateSelectionUrl(floor, room = null) {
+  function updateSelectionUrl(floor, room = null, { replace = false } = {}) {
     // An interaction supersedes any link that is still waiting for its floor image.
     urlRestoreVersion++;
     const url = new URL(location.href);
     url.hash = selectionHash(floor, room);
     lastHandledUrl = url.href;
     if (location.href === url.href) return;
-    history.pushState(null, '', url);
+    if (replace) history.replaceState(null, '', url);
+    else history.pushState(null, '', url);
   }
 
   function clearRoomSelection({ updateUrl = false, closeInformation = true } = {}) {
@@ -186,6 +242,7 @@ export function startApp(config) {
 
   async function selectRoom(floor, room, { updateUrl = true, reveal = false, fromMap = false } = {}) {
     if (activeFloor.id !== floor.id) return;
+    scheduleAutoFlip();
     clearRoomSelection({ closeInformation: false });
     hideDetails();
     const version = roomSelectionVersion;
@@ -263,6 +320,7 @@ export function startApp(config) {
     if (config.roomMarkers.enabled) {
       $('marker-layer').append(createRoomMarkers(activeFloor, {
         t,
+        display: displayMode,
         onSelect: (floor, room) => selectRoom(floor, room, { reveal: true, fromMap: true }),
       }));
       updateRoomMarkers($('marker-layer'), selectedRoom?.id);
@@ -302,6 +360,8 @@ export function startApp(config) {
 
   function setLoadingState(state) {
     ready = state === 'ready';
+    floorLoading = state === 'loading';
+    scheduleAutoFlip();
     viewport.setAttribute('aria-busy', String(state === 'loading'));
     transform.hidden = !ready;
     $('map-message').hidden = ready;
@@ -313,17 +373,19 @@ export function startApp(config) {
     for (const id of ['zoom-in', 'zoom-out', 'reset-view']) $(id).disabled = !ready;
   }
 
-  async function selectFloor(id, { updateUrl = true, force = false } = {}) {
+  async function selectFloor(id, { updateUrl = true, force = false, replaceUrl = false } = {}) {
     const floor = floors.find((item) => item.id === String(id));
     if (!floor) return false;
     if (activeFloor.id === floor.id && ready && !force) {
       clearRoomSelection({ updateUrl });
       hideDetails();
       renderHereLocation();
+      scheduleAutoFlip();
       return true;
     }
     const version = ++loadVersion;
     activeFloor = floor;
+    if (displayMode) renderDisplayDirectory(floor, floors, t);
     renderHereLocation();
     clearRoomSelection();
     hideDetails();
@@ -333,7 +395,7 @@ export function startApp(config) {
     $('floor-title').textContent = floor.name;
     $('map-floor-code').textContent = floor.code;
     $('map-floor-name').textContent = floor.name;
-    viewport.setAttribute('aria-label', t('interactivePlan', {floor:floor.name.toLocaleLowerCase(config.site.language)}));
+    viewport.setAttribute('aria-label', t(displayMode ? 'plan' : 'interactivePlan', {floor:floor.name.toLocaleLowerCase(config.site.language)}));
     document.title = t('titleFloor', {floor:floor.name, site:config.site.name});
     for (const button of navigation.querySelectorAll('.floor-button')) {
       button.setAttribute('aria-current', String(button.dataset.floor === floor.id));
@@ -344,15 +406,15 @@ export function startApp(config) {
       button.setAttribute('aria-expanded', String(submenu.open));
     }
     // Only scroll when the selected floor button is outside the sidebar view.
-    if (!compact.matches) requestAnimationFrame(() => {
+    if (!displayMode && !compact.matches) requestAnimationFrame(() => {
       const sidebar = document.querySelector('.sidebar');
       const buttonRect = navigation.querySelector(`[data-floor="${floor.id}"]`).getBoundingClientRect();
       const sidebarRect = sidebar.getBoundingClientRect();
       if (buttonRect.top < sidebarRect.top) sidebar.scrollTop += buttonRect.top - sidebarRect.top - 12;
       else if (buttonRect.bottom > sidebarRect.bottom) sidebar.scrollTop += buttonRect.bottom - sidebarRect.bottom + 12;
     });
-    else requestAnimationFrame(() => navigation.querySelector(`[data-floor="${floor.id}"]`).scrollIntoView({ block:'nearest', inline:'nearest' }));
-    if (updateUrl) updateSelectionUrl(floor);
+    else if (!displayMode) requestAnimationFrame(() => navigation.querySelector(`[data-floor="${floor.id}"]`).scrollIntoView({ block:'nearest', inline:'nearest' }));
+    if (updateUrl) updateSelectionUrl(floor, null, { replace: replaceUrl });
     setLoadingState('loading');
     const preload = new Image();
     try {
@@ -395,7 +457,7 @@ export function startApp(config) {
 
   viewport.addEventListener('wheel', (event) => {
     // Ctrl/Cmd + wheel remains the browser's own accessibility zoom.
-    if (!ready || event.ctrlKey || event.metaKey) return;
+    if (displayMode || !ready || event.ctrlKey || event.metaKey) return;
     event.preventDefault();
     const rect = viewport.getBoundingClientRect();
     const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientHeight : 1);
@@ -414,7 +476,7 @@ export function startApp(config) {
   }
 
   viewport.addEventListener('pointerdown', (event) => {
-    if (!ready || event.button !== 0 || event.target.closest('button')) return;
+    if (displayMode || !ready || event.button !== 0 || event.target.closest('button')) return;
     viewport.focus({ preventScroll: true });
     viewport.setPointerCapture(event.pointerId);
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
@@ -444,7 +506,7 @@ export function startApp(config) {
   for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) viewport.addEventListener(event, endPointer);
 
   viewport.addEventListener('keydown', (event) => {
-    if (event.target !== viewport || !ready || event.ctrlKey || event.metaKey || event.altKey) return;
+    if (displayMode || event.target !== viewport || !ready || event.ctrlKey || event.metaKey || event.altKey) return;
     const move = event.shiftKey ? config.view.fastPanStep : config.view.panStep;
     switch (event.key) {
       case '+': case '=': zoomTo(view.zoom * config.view.zoomStep); break;
@@ -510,7 +572,11 @@ export function startApp(config) {
     if (fallbackExpanded) setFallbackExpanded(false);
   });
 
-  function showHelp() { if (!help.open) help.showModal(); }
+  function showHelp() {
+    if (!help.open) help.showModal();
+    scheduleAutoFlip();
+  }
+  help.addEventListener('close', scheduleAutoFlip);
   $('help-button').addEventListener('click', showHelp);
   $('guide-button').addEventListener('click', showHelp);
   help.addEventListener('click', (event) => {
@@ -525,19 +591,34 @@ export function startApp(config) {
     if (!force && url.href === lastHandledUrl) return;
     lastHandledUrl = url.href;
     const version = ++urlRestoreVersion;
+    const delay = autoFlipDelayFromSearch(url.search);
+    const modeChanged = displayMode !== (delay !== null);
+    displayMode = delay !== null;
+    document.body.classList.toggle('is-display', displayMode);
+    $('display-sidebar').hidden = !displayMode;
+    $('display-caption').hidden = !displayMode;
+    if (displayMode && help.open) help.close();
+    viewport.tabIndex = displayMode ? -1 : 0;
+    if (displayMode) viewport.removeAttribute('aria-describedby');
+    else viewport.setAttribute('aria-describedby', 'map-keyboard-help');
+    if (delay !== autoFlipDelay) autoFlipPaused = false;
+    autoFlipDelay = delay;
+    renderAutoFlipControl();
+    scheduleAutoFlip();
     hereLocation = hereFromSearch(url.search, floors, config.here.defaultLocation);
     renderHereLocation();
     const homeUrl = new URL('./', document.baseURI);
     homeUrl.search = url.search;
-    document.querySelector('.brand').href = homeUrl.href;
+    if (displayMode) document.querySelector('.brand').removeAttribute('href');
+    else document.querySelector('.brand').href = homeUrl.href;
     // A location-only link starts on its own floor; an explicit floor/room wins.
     const defaultSelection = { floor: floors.find((floor) => floor.id === (hereLocation?.floorId ?? config.view.defaultFloorId)), room: null };
     const selection = (!url.hash || url.hash === '#') ? defaultSelection : selectionFromHash(url.hash, floors) ?? (initial ? defaultSelection : null);
     if (!selection) return; // Preserve regular anchors, such as the skip-to-map link.
     const { floor, room } = selection;
-    const loaded = await selectFloor(floor.id, { updateUrl: false, force });
+    const loaded = await selectFloor(floor.id, { updateUrl: false, force: force || modeChanged });
     if (!loaded || version !== urlRestoreVersion) return;
-    if (room) await selectRoom(floor, room, { updateUrl: false, reveal: true });
+    if (room) await selectRoom(floor, room, { updateUrl: false, reveal: !displayMode });
   }
   window.addEventListener('hashchange', () => restoreSelectionFromUrl());
   window.addEventListener('popstate', () => restoreSelectionFromUrl());

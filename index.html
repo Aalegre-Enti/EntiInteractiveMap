@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#94167f" />
+    <meta name="theme-color" content="#111111" />
     <meta name="description" content="Explora els plànols de les plantes de l’edifici. Tria una planta, amplia el mapa i orienta’t al teu ritme." />
     <title>Mapa de l’edifici · Plànol interactiu</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
@@ -17,6 +17,8 @@
       <symbol id="icon-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 8.5a2.5 2.5 0 0 1 4.9.7c0 1.8-2.5 2-2.5 3.8M12 16h.01"/></symbol>
       <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
       <symbol id="icon-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+      <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+      <symbol id="icon-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8V4Z"/></symbol>
       <symbol id="icon-fit" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/><rect x="8" y="8" width="8" height="8" rx="1"/></symbol>
       <symbol id="icon-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M3 3l6 6m12-6-6 6M3 21l6-6m12 6-6-6"/></symbol>
       <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
@@ -45,6 +47,7 @@
           <span><span id="brand-name">Mapa de l’edifici</span><span id="brand-caption" class="brand-caption">PLÀNOL INTERACTIU</span></span>
         </a>
         <button id="help-button" class="help-button" type="button" aria-label="Com funciona?" data-label="help"><svg class="icon" aria-hidden="true"><use href="#icon-help"/></svg><span data-text="help">Com funciona?</span></button>
+        <span id="display-caption" class="display-caption" hidden data-text="mapView">Vista del plànol</span>
       </header>
 
       <aside class="sidebar" aria-label="Selecció de planta" data-label="chooseFloor">
@@ -63,6 +66,14 @@
         <div class="sidebar-footer"><svg class="icon"><use href="#icon-layers"/></svg><span id="building-floors"></span></div>
       </aside>
 
+      <aside id="display-sidebar" class="display-sidebar" aria-labelledby="display-floor-title" hidden>
+        <progress id="auto-flip-progress" class="auto-flip-progress" max="1" value="1" aria-label="Temps restant en aquesta planta" data-label="autoFlipProgress" hidden></progress>
+        <div id="display-floors" class="display-floors"></div>
+        <h2 id="display-floor-title"></h2>
+        <p id="display-room-count"></p>
+        <ol id="display-rooms" class="display-rooms"></ol>
+      </aside>
+
       <main id="main-content" class="main-content">
         <div class="map-heading">
           <div><p class="eyebrow" data-text="mapEyebrow">EXPLORA L’EDIFICI</p><h1 id="floor-title"></h1></div>
@@ -70,6 +81,7 @@
         </div>
         <section id="map-panel" class="map-panel" aria-labelledby="floor-title">
           <div class="map-floor-label" aria-hidden="true"><span id="map-floor-code"></span><span id="map-floor-name"></span></div>
+          <button id="auto-flip-button" class="icon-button auto-flip-button" type="button" hidden><svg class="icon" aria-hidden="true"><use href="#icon-pause"/></svg></button>
           <button id="fullscreen-button" class="icon-button fullscreen-button" type="button" aria-label="Amplia el mapa a pantalla completa" data-label="fullscreen" title="Pantalla completa" data-title="titleFullscreen"><svg class="icon"><use href="#icon-expand"/></svg></button>
           <div id="map-viewport" class="map-viewport" tabindex="0" role="region" aria-label="Plànol interactiu" aria-describedby="map-keyboard-help" aria-busy="true">
             <div id="map-transform" class="map-transform" hidden>
