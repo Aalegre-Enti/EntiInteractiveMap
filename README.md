@@ -93,7 +93,7 @@ Opcions visuals de les sales comunes:
 
 Per destacar una sala al mapa, afegeix `overlay` amb la ruta a la seva capa, per exemple `"./img/CleanedFloorplan/Level0/Auditori.png"`. La capa ha de ser una imatge transparent amb les mateixes dimensions i alineació que el plànol complet. L’app utilitza el canal alfa per aplicar el color de `theme.brand`. Sense `overlay`, la sala conserva la informació i l’enllaç, però no mostra ressaltat.
 
-Les dades són text pla, no HTML. Només una fitxa de sala pot quedar desplegada alhora. En seleccionar-la, la URL s’actualitza; recarregar o compartir l’enllaç recupera la planta i la sala. Exemple: `#planta-0/sala/PB.01`. També funciona amb plantes noves: `#planta-soterrani/sala/A.01`.
+Les dades són text pla, no HTML. Només una fitxa de sala pot quedar desplegada alhora. En seleccionar-la, la URL s’actualitza; recarregar o compartir l’enllaç recupera la planta i la sala. Exemple: `#planta-0/sala/0.1`. També funciona amb plantes noves: `#planta-soterrani/sala/A.01`.
 
 ### Punts de les sales
 
@@ -105,7 +105,7 @@ Afegeix o modifica `marker` dins de cada sala:
 "marker": {
   "x": 38.04,
   "y": 15.47,
-  "label": "PB.01",
+  "label": "0.1",
   "labelPosition": "bottom"
 }
 ```
@@ -130,7 +130,7 @@ Per establir una ubicació fixa per defecte:
 Utilitza `defaultLocation: null` per no mostrar cap ubicació per defecte. La URL pot substituir-la:
 
 ```text
-?aqui=1&x=52.5&y=60#planta-0/sala/PB.01
+?aqui=1&x=52.5&y=60#planta-0/sala/0.1
 ```
 
 `aqui` és l’`id` de qualsevol planta configurada. `x` i `y` són percentatges de la imatge completa entre 0 i 100, d’esquerra a dreta i de dalt a baix; admeten decimals amb punt. Si la URL no conté cap dels tres paràmetres, s’utilitza la ubicació del JSON. Si els paràmetres són incomplets o invàlids, no es mostra cap punt.

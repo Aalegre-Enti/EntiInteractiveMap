@@ -200,8 +200,8 @@
           }
         },
         {
-          "id": "0-PB.01",
-          "code": "PB.01",
+          "id": "0-0.1",
+          "code": "0.1",
           "name": "0.1",
           "kind": "room",
           "uses": [
@@ -213,15 +213,15 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level0/PB.01.png",
+          "overlay": "./img/CleanedFloorplan/Level0/0.1.png",
           "marker": {
             "x": 30.08,
             "y": 14.86
           }
         },
         {
-          "id": "0-PB.02",
-          "code": "PB.02",
+          "id": "0-0.2",
+          "code": "0.2",
           "name": "0.2",
           "kind": "room",
           "uses": [
@@ -233,15 +233,15 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level0/PB.02.png",
+          "overlay": "./img/CleanedFloorplan/Level0/0.2.png",
           "marker": {
             "x": 19.67,
             "y": 27.6
           }
         },
         {
-          "id": "0-PB.03",
-          "code": "PB.03",
+          "id": "0-0.3",
+          "code": "0.3",
           "name": "0.3",
           "kind": "room",
           "uses": [
@@ -258,15 +258,15 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level0/PB.03.png",
+          "overlay": "./img/CleanedFloorplan/Level0/0.3.png",
           "marker": {
             "x": 11.08,
             "y": 42.57
           }
         },
         {
-          "id": "0-PB.04",
-          "code": "PB.04",
+          "id": "0-0.4",
+          "code": "0.4",
           "name": "0.4",
           "kind": "room",
           "uses": [
@@ -278,15 +278,15 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level0/PB.04.png",
+          "overlay": "./img/CleanedFloorplan/Level0/0.4.png",
           "marker": {
             "x": 10.25,
             "y": 63.8
           }
         },
         {
-          "id": "0-PB.05",
-          "code": "PB.05",
+          "id": "0-0.5",
+          "code": "0.5",
           "name": "0.5",
           "kind": "room",
           "uses": [
@@ -298,7 +298,7 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level0/PB.05.png",
+          "overlay": "./img/CleanedFloorplan/Level0/0.5.png",
           "marker": {
             "x": 14.92,
             "y": 78.44
@@ -437,8 +437,8 @@
       "points": [],
       "rooms": [
         {
-          "id": "1-1.01",
-          "code": "1.01",
+          "id": "1-1.3",
+          "code": "1.3",
           "name": "1.3",
           "kind": "room",
           "uses": [
@@ -460,15 +460,15 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level1/1.01.png",
+          "overlay": "./img/CleanedFloorplan/Level1/1.3.png",
           "marker": {
             "x": 53.33,
             "y": 8.72
           }
         },
         {
-          "id": "1-1.02",
-          "code": "1.02",
+          "id": "1-1.4",
+          "code": "1.4",
           "name": "1.4",
           "kind": "room",
           "uses": [
@@ -490,15 +490,15 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level1/1.02.png",
+          "overlay": "./img/CleanedFloorplan/Level1/1.4.png",
           "marker": {
             "x": 51.75,
             "y": 20.78
           }
         },
         {
-          "id": "1-1.03",
-          "code": "1.03",
+          "id": "1-1.5",
+          "code": "1.5",
           "name": "1.5",
           "kind": "room",
           "uses": [
@@ -515,15 +515,15 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level1/1.03.png",
+          "overlay": "./img/CleanedFloorplan/Level1/1.5.png",
           "marker": {
             "x": 11.33,
             "y": 43.02
           }
         },
         {
-          "id": "1-1.04",
-          "code": "1.04",
+          "id": "1-1.6",
+          "code": "1.6",
           "name": "1.6",
           "kind": "room",
           "uses": [
@@ -540,15 +540,15 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level1/1.04.png",
+          "overlay": "./img/CleanedFloorplan/Level1/1.6.png",
           "marker": {
             "x": 7.92,
             "y": 83.35
           }
         },
         {
-          "id": "1-1.05",
-          "code": "1.05",
+          "id": "1-1.7",
+          "code": "1.7",
           "name": "1.7",
           "kind": "room",
           "uses": [
@@ -565,15 +565,15 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level1/1.05.png",
+          "overlay": "./img/CleanedFloorplan/Level1/1.7.png",
           "marker": {
             "x": 21.08,
             "y": 84.13
           }
         },
         {
-          "id": "1-LAB.REHAB",
-          "code": "LAB.REHAB",
+          "id": "1-Sala de recerca Polivalent",
+          "code": "Sala de recerca Polivalent",
           "name": "Sala de recerca Polivalent",
           "kind": "room",
           "uses": [
@@ -595,7 +595,7 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level1/Lab-Rehab.png",
+          "overlay": "./img/CleanedFloorplan/Level1/Sala de recerca Polivalent.png",
           "marker": {
             "x": 21.33,
             "y": 30.95,
@@ -603,8 +603,8 @@
           }
         },
         {
-          "id": "1-LAB-1.01",
-          "code": "LAB-1.01",
+          "id": "1-1.2",
+          "code": "1.2",
           "name": "1.2",
           "kind": "room",
           "uses": [
@@ -621,15 +621,15 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level1/LAB-1.01.png",
+          "overlay": "./img/CleanedFloorplan/Level1/1.2.png",
           "marker": {
             "x": 77.42,
             "y": 10.39
           }
         },
         {
-          "id": "1-LAB-1.02",
-          "code": "LAB-1.02",
+          "id": "1-1.1",
+          "code": "1.1",
           "name": "1.1",
           "kind": "room",
           "uses": [
@@ -646,7 +646,7 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level1/LAB-1.02.png",
+          "overlay": "./img/CleanedFloorplan/Level1/1.1.png",
           "marker": {
             "x": 72.92,
             "y": 30.5
@@ -691,8 +691,8 @@
           }
         },
         {
-          "id": "1-SALA SIMULACIO",
-          "code": "SALA SIMULACIO",
+          "id": "1-Laboratori de Simulació",
+          "code": "Laboratori de Simulació",
           "name": "Laboratori de Simulació",
           "kind": "room",
           "uses": [
@@ -714,7 +714,7 @@
           ],
           "showUsage": true,
           "source": "spreadsheet",
-          "overlay": "./img/CleanedFloorplan/Level1/Simulació.png",
+          "overlay": "./img/CleanedFloorplan/Level1/Laboratori de Simulació.png",
           "marker": {
             "x": 9.75,
             "y": 61.12,
@@ -786,8 +786,8 @@
       "points": [],
       "rooms": [
         {
-          "id": "2-2.01",
-          "code": "2.01",
+          "id": "2-2.3",
+          "code": "2.3",
           "name": "2.3",
           "kind": "room",
           "uses": [
@@ -813,11 +813,11 @@
             "x": 53.33,
             "y": 8.72
           },
-          "overlay": "./img/CleanedFloorplan/Level2/2.01.png"
+          "overlay": "./img/CleanedFloorplan/Level2/2.3.png"
         },
         {
-          "id": "2-2.02",
-          "code": "2.02",
+          "id": "2-2.4",
+          "code": "2.4",
           "name": "2.4",
           "kind": "room",
           "uses": [
@@ -843,11 +843,11 @@
             "x": 51.83,
             "y": 20.67
           },
-          "overlay": "./img/CleanedFloorplan/Level2/2.02.png"
+          "overlay": "./img/CleanedFloorplan/Level2/2.4.png"
         },
         {
-          "id": "2-2.03",
-          "code": "2.03",
+          "id": "2-2.5",
+          "code": "2.5",
           "name": "2.5",
           "kind": "room",
           "uses": [
@@ -863,11 +863,11 @@
             "x": 21.25,
             "y": 31.84
           },
-          "overlay": "./img/CleanedFloorplan/Level2/2.03.png"
+          "overlay": "./img/CleanedFloorplan/Level2/2.5.png"
         },
         {
-          "id": "2-2.04",
-          "code": "2.04",
+          "id": "2-2.6",
+          "code": "2.6",
           "name": "2.6",
           "kind": "room",
           "uses": [
@@ -888,11 +888,11 @@
             "x": 9.58,
             "y": 61.45
           },
-          "overlay": "./img/CleanedFloorplan/Level2/2.04.png"
+          "overlay": "./img/CleanedFloorplan/Level2/2.6.png"
         },
         {
-          "id": "2-2.05",
-          "code": "2.05",
+          "id": "2-2.7",
+          "code": "2.7",
           "name": "2.7",
           "kind": "room",
           "uses": [
@@ -908,11 +908,11 @@
             "x": 6.67,
             "y": 82.68
           },
-          "overlay": "./img/CleanedFloorplan/Level2/2.05.png"
+          "overlay": "./img/CleanedFloorplan/Level2/2.7.png"
         },
         {
-          "id": "2-2.06",
-          "code": "2.06",
+          "id": "2-2.8",
+          "code": "2.8",
           "name": "2.8",
           "kind": "room",
           "uses": [
@@ -928,11 +928,11 @@
             "x": 21.25,
             "y": 84.25
           },
-          "overlay": "./img/CleanedFloorplan/Level2/2.06.png"
+          "overlay": "./img/CleanedFloorplan/Level2/2.8.png"
         },
         {
-          "id": "2-LAB.POLI-2.02",
-          "code": "LAB.POLI-2.02",
+          "id": "2-Sala Polivalent A",
+          "code": "Sala Polivalent A",
           "name": "Sala Polivalent A",
           "kind": "room",
           "uses": [
@@ -954,11 +954,11 @@
             "y": 40.78,
             "label": "POL A"
           },
-          "overlay": "./img/CleanedFloorplan/Level2/LAB.POLI-2.02.png"
+          "overlay": "./img/CleanedFloorplan/Level2/Sala Polivalent A.png"
         },
         {
-          "id": "2-LAB.VR-2.01",
-          "code": "LAB.VR-2.01",
+          "id": "2-Laboratori XR",
+          "code": "Laboratori XR",
           "name": "Laboratori XR",
           "kind": "room",
           "uses": [
@@ -975,11 +975,11 @@
             "y": 15.08,
             "label": "XR"
           },
-          "overlay": "./img/CleanedFloorplan/Level2/LAB.VR-2.01.png"
+          "overlay": "./img/CleanedFloorplan/Level2/Laboratori XR.png"
         },
         {
-          "id": "2-LAB-2.01",
-          "code": "LAB-2.01",
+          "id": "2-2.1",
+          "code": "2.1",
           "name": "2.1",
           "kind": "room",
           "uses": [
@@ -1000,11 +1000,11 @@
             "x": 75.58,
             "y": 28.72
           },
-          "overlay": "./img/CleanedFloorplan/Level2/LAB-2.01.png"
+          "overlay": "./img/CleanedFloorplan/Level2/2.1.png"
         },
         {
-          "id": "2-LAB-2.02",
-          "code": "LAB-2.02",
+          "id": "2-2.2",
+          "code": "2.2",
           "name": "2.2",
           "kind": "room",
           "uses": [
@@ -1025,7 +1025,7 @@
             "x": 77.5,
             "y": 10.84
           },
-          "overlay": "./img/CleanedFloorplan/Level2/LAB-2.02.png"
+          "overlay": "./img/CleanedFloorplan/Level2/2.2.png"
         },
         {
           "id": "2-ascensors",
@@ -1092,8 +1092,8 @@
       "points": [],
       "rooms": [
         {
-          "id": "3-3.01",
-          "code": "3.01",
+          "id": "3-3.1",
+          "code": "3.1",
           "name": "3.1",
           "kind": "room",
           "uses": [
@@ -1109,11 +1109,11 @@
             "x": 75.25,
             "y": 10.5
           },
-          "overlay": "./img/CleanedFloorplan/Level3/3.01.png"
+          "overlay": "./img/CleanedFloorplan/Level3/3.1.png"
         },
         {
-          "id": "3-3.02",
-          "code": "3.02",
+          "id": "3-3.2",
+          "code": "3.2",
           "name": "3.2",
           "kind": "room",
           "uses": [
@@ -1129,11 +1129,11 @@
             "x": 48.33,
             "y": 13.41
           },
-          "overlay": "./img/CleanedFloorplan/Level3/3.02.png"
+          "overlay": "./img/CleanedFloorplan/Level3/3.2.png"
         },
         {
-          "id": "3-3.03",
-          "code": "3.03",
+          "id": "3-3.3",
+          "code": "3.3",
           "name": "3.3",
           "kind": "room",
           "uses": [
@@ -1149,11 +1149,11 @@
             "x": 32,
             "y": 16.87
           },
-          "overlay": "./img/CleanedFloorplan/Level3/3.03.png"
+          "overlay": "./img/CleanedFloorplan/Level3/3.3.png"
         },
         {
-          "id": "3-3.04",
-          "code": "3.04",
+          "id": "3-3.4",
+          "code": "3.4",
           "name": "3.4",
           "kind": "room",
           "uses": [
@@ -1174,7 +1174,7 @@
             "x": 21.42,
             "y": 30.61
           },
-          "overlay": "./img/CleanedFloorplan/Level3/3.04.png"
+          "overlay": "./img/CleanedFloorplan/Level3/3.4.png"
         },
         {
           "id": "3-ESTUDI MUSICA",
@@ -1257,8 +1257,8 @@
           "overlay": "./img/CleanedFloorplan/Level3/Magatzem de música.png"
         },
         {
-          "id": "3-LAB.POLI-3.02",
-          "code": "LAB.POLI-3.02",
+          "id": "3-Sala Polivalent B",
+          "code": "Sala Polivalent B",
           "name": "Sala Polivalent B",
           "kind": "room",
           "uses": [
@@ -1275,11 +1275,11 @@
             "y": 84.69,
             "label": "POL B"
           },
-          "overlay": "./img/CleanedFloorplan/Level3/LAB.POLI-3.02.png"
+          "overlay": "./img/CleanedFloorplan/Level3/Sala Polivalent B.png"
         },
         {
-          "id": "3-LAB-3.01",
-          "code": "LAB-3.01",
+          "id": "3-Laboratori de Ciberseguretat",
+          "code": "Laboratori de Ciberseguretat",
           "name": "Laboratori de Ciberseguretat",
           "kind": "room",
           "uses": [
@@ -1296,7 +1296,7 @@
             "y": 28.16,
             "label": "CIBER"
           },
-          "overlay": "./img/CleanedFloorplan/Level3/LAB-3.01.png"
+          "overlay": "./img/CleanedFloorplan/Level3/Laboratori de Ciberseguretat.png"
         },
         {
           "id": "3-ascensors",
@@ -1363,8 +1363,8 @@
       "points": [],
       "rooms": [
         {
-          "id": "4-4.01",
-          "code": "4.01",
+          "id": "4-4.1",
+          "code": "4.1",
           "name": "4.1",
           "kind": "room",
           "uses": [
@@ -1380,11 +1380,11 @@
             "x": 7.92,
             "y": 83.13
           },
-          "overlay": "./img/CleanedFloorplan/Level4/4.01.png"
+          "overlay": "./img/CleanedFloorplan/Level4/4.1.png"
         },
         {
-          "id": "4-4.02",
-          "code": "4.02",
+          "id": "4-4.2",
+          "code": "4.2",
           "name": "4.2",
           "kind": "room",
           "uses": [
@@ -1405,11 +1405,11 @@
             "x": 21.33,
             "y": 84.92
           },
-          "overlay": "./img/CleanedFloorplan/Level4/4.02.png"
+          "overlay": "./img/CleanedFloorplan/Level4/4.2.png"
         },
         {
-          "id": "4-LAB-4.01",
-          "code": "LAB-4.01",
+          "id": "4-Laboratori de Salut",
+          "code": "Laboratori de Salut",
           "name": "Laboratori de Salut",
           "kind": "room",
           "uses": [
@@ -1426,7 +1426,7 @@
             "y": 37.43,
             "label": "SALUT"
           },
-          "overlay": "./img/CleanedFloorplan/Level4/LAB-4.01.png"
+          "overlay": "./img/CleanedFloorplan/Level4/Laboratori de Salut.png"
         },
         {
           "id": "4-OFICINES",
@@ -1640,7 +1640,7 @@
       "OFICINES": "Oficines",
       "SALA ESTUDI": "Sala d’estudi",
       "MENJADOR": "Menjador",
-      "SALA SIMULACIO": "Laboratori de Simulació"
+      "Laboratori de Simulació": "Laboratori de Simulació"
     },
     "translations": {
       "GRADO FISIO": "Grau de fisioteràpia",

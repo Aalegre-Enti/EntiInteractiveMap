@@ -228,8 +228,7 @@ body.has-expanded-map { overflow: hidden; }
 .brand-mark, .skip-link, .primary-button, .dialog-icon,
 .floor-button[aria-current="true"], .floor-button[aria-current="true"] .floor-number,
 .map-floor-label > span:first-child, .room-marker[aria-pressed="true"] .room-marker-label,
-.map-marker, .legend-swatch { border-radius: var(--black-radius); }
-.room-marker-dot, .here-dot { border-top-left-radius: 0; border-top-right-radius: 0; }
+.legend-swatch { border-radius: var(--black-radius); }
 
 /* Opt-in signage layout: the same floor data, readable without scrolling or input. */
 .is-display { overflow: hidden; cursor: none; }
@@ -264,7 +263,9 @@ body.has-expanded-map { overflow: hidden; }
 .is-display .main-content { min-height: 0; padding: 2vh 2vw 2vh 0; background: #fff; }
 .is-display .map-panel { min-height: 0; border-radius: 0; background: var(--surface); }
 .is-display .map-viewport { inset: 1.5vh; cursor: none; touch-action: auto; }
-.display-room-marker { width: max-content; min-width: 3.4vh; height: 3.4vh; padding: 0 .65vh; border: .2vh solid #fff; border-radius: 0 0 .8vh .8vh; background: var(--brand); color: #fff; font-size: 1.6vh; font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap; opacity: 1; pointer-events: none; }
+.display-room-marker { --room-marker-dot-size: 1.2vh; --room-marker-label-gap: 1.15vh; --room-marker-label-size: 1.6vh; width: 3.4vh; height: 3.4vh; opacity: 1; pointer-events: none; }
+.display-room-marker .room-marker-dot { border-width: .2vh; }
+.display-room-marker .room-marker-label { max-width: none; padding: .25vh .6vh; border-radius: 0 0 .6vh .6vh; background: var(--brand); color: #fff; font-variant-numeric: tabular-nums; }
 .is-display .here-marker { --here-size: 4vh; }
 .is-display .here-label { font-size: 1.8vh; }
 .is-display .here-label strong { font-size: 2vh; }
